@@ -331,7 +331,19 @@ header a:hover {color: var(--JauneVif);transition: 0.2s;}   header a:not(:hover)
 /*----------------------------------*/
             /* MES PROJETS */
 #projets {
-    
+    /* si la souris passe sur un projet */
+    .blocklist:hover {
+        transform: scale(1.05);
+        transition: 0.5s;
+    }
+    .blocklist:not(:hover) {
+        transition: 0.5s;
+    }
+
+    .couleur-projet {
+        border: 2px solid var(--BleuClair);
+        background-color: var(--BleuFonce);
+    }
 }
 
 /*----------------------------------*/
