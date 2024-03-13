@@ -1,0 +1,441 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;/*pour que le padding et le margin ne soit pas pris en compte dans la taille de l'élément*/
+    font-family: Arial, Helvetica, sans-serif;
+    --Jaune: rgb(225, 255, 106);
+    --JauneVif: rgb(255, 255, 0);
+    --BleuClair: rgb(147, 226, 255);
+    --Orange: rgb(255, 210, 75);
+    --BleuFonce: rgba(10,50,92,1);
+    --BleuFonce2: rgba(5,28,52,1);
+    --Blanc: #fff;
+    --Noir: #000;
+
+    color: var(--Blanc);
+}
+
+/* par défaut */
+body {
+    background: var(--Noir);
+}
+body h2 {
+    color: var(--BleuClair);
+}
+body h3 {
+    color: var(--Orange);
+    font-size: calc(20px + 1vw);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/*RESPONSIVE DE LA TAILLE DE LA POLICE*/
+/* police p */
+body p {
+    color: var(--Blanc);
+}
+/* police h1 */
+body .section h1{
+    white-space: nowrap; /*pour que le texte ne passe pas à la ligne*/
+}
+/* police h */
+body .section h1, h2, h3{
+    text-align: center;
+}
+/* police a */
+body a {
+    color: var(--Jaune);
+    text-decoration: none;
+} body a > p { color: var(--Jaune); }
+body button {
+    /* enlever la décoration du bouton */
+    cursor: pointer;
+    /*taille du bouton*/
+    width: 40px;
+    height: 40px;
+}
+
+/*tableau*/
+table {
+    background-color: var(--BleuFonce);
+    min-width: 50%;
+    max-width: 100%;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+table td {
+    /*police en fonction de la taille du tableau*/
+    font-size: calc(20px + 1vw);
+    padding: 8px; /* Espacement interne */
+    font-size: 1.2em;
+}
+table td img {
+    /*centrer les images par défaut*/
+    text-align: center;
+    vertical-align: middle;
+    /*largeur en fonction de la taille de l'écran*/
+    width: 100%;
+    min-width: 25px;
+    max-width: calc(200px + 1vw);
+    height: auto;
+}
+.liste {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2% 5%; /* Ajustez les marges en fonction de vos préférences */
+}
+
+/*Block div de liste avec flexbox*/
+.contentblock {
+    display: flex;
+    flex-wrap: wrap;
+}
+.blocklist {
+    width: 48%; /* Deux blocs par ligne par défaut */
+    box-sizing: border-box; /* Pour inclure les bordures et les marges dans la largeur définie */
+    margin: 1%;
+    padding: 5px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background-color: var(--BleuFonce);
+    border-radius: 10px;
+}
+.blocklist > img {
+    max-height: calc(150px + 1vw);
+}
+.blocklist a {
+    padding: 5px;
+    font-size: auto;
+}
+.blocklist p {
+    /* adapté à la taille de l'écran */
+    font-size: calc(10px + 1vw);
+    text-align: center;
+    padding: calc(5px + 0.5vw);
+    margin: 0;
+
+}
+@media screen and (max-width: 1000px) {
+    .blocklist > img {
+        max-height: 100px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .blocklist {
+        width: 100%; /* Un si trop petit */
+    }
+}
+
+/*-----------*/
+
+@media screen and (min-width: 800px){
+    body p {
+    font-size: 2.5vw;
+    }
+
+    body .section h1, h2{
+        white-space: nowrap;
+        font-size: 5vw;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}
+@media screen and (max-width: 800px){
+    body p {
+    font-size: 20px;
+    }
+
+    body .section h1, h2{
+        font-size: calc(30px + 2.5vw);
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+/*---------PARAMETRES-DIVERS---------*/
+.btn-box {/*Conteneur du bouton*/
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+}
+.btn {/*Contenu du bouton, un lien en général*/
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: solid 2px var(--Jaune);
+    color: var(--Jaune);
+    border-radius: 20em;
+}
+.btn:hover {/*agrandir le bouton si on passe la souris dessus*/
+    transform: scale(1.1);
+    transition: 0.2s;
+    /*couleur du texte*/
+    color: var(--JauneVif);
+}.btn:not(:hover) {/*si la souris n'est pas dessus*/transition: 1s;}
+/*flèche du bas*/
+@keyframes moveDown {
+    0% {
+        transform: translateY(0); /* L'élément est initialement à sa position de départ */
+    }
+    50% {
+        transform: translateY(15px); /* À mi-chemin de l'animation, l'élément monte de 20px */
+    }
+    100% {
+        transform: translateY(0); /* À la fin de l'animation, l'élément revient à sa position de départ */
+    }
+}
+/*flèche du haut*/
+@keyframes moveUp {
+    0% {
+        transform: translateY(0); /* L'élément est initialement à sa position de départ */
+    }
+    50% {
+        transform: translateY(-15px); /* À mi-chemin de l'animation, l'élément monte de 20px */
+    }
+    100% {
+        transform: translateY(0); /* À la fin de l'animation, l'élément revient à sa position de départ */
+    }
+}
+.fleche {
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.flechebas {
+    /*Animation de la fleche en utilisant le keyframe moveDown*/
+    animation: moveDown 5s ease-in-out infinite; /* 5s est la durée de l'animation */
+}
+.flechehaut {
+    /*Animation de la fleche en utilisant le keyframe moveDown*/
+    animation: moveUp 5s ease-in-out infinite;
+}
+.liste {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+/*----------------------------------*/
+
+/*---------HEADER---------*/
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    background: var(--BleuFonce);
+
+    /*bordure bas du menu en noir*/
+    border-bottom: 5px solid var(--Noir);
+}
+
+header .nom {
+    font-size: 1rem;
+    margin-left: 1rem;
+    white-space: nowrap;
+}
+
+/* Burger menu */
+.burger-menu {
+    display: none;
+}
+/* Fin burger menu */
+
+header .menu ul {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 100%;
+    height: 100%;
+    list-style-type: none;
+}
+
+header .menu {
+    width: 70%;
+}
+
+header a {
+    color: var(--Jaune);
+    text-decoration: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    font-size: 1.2em;
+}
+/*rendre la couleur du texte plus clair quand on passe la souris dessus*/
+header a:hover {color: var(--JauneVif);transition: 0.2s;}   header a:not(:hover) {transition: 0.5s;}
+/*-----------FIN-HEADER-----------*/
+
+
+/*PARAMETRE PAR DEFAULT DE TOUTES LES SECTIONS*/
+.section {
+    /*arrière plan*/
+    background: radial-gradient(circle, var(--BleuFonce) 0%, var(--BleuFonce2) 100%);
+
+    /*TAILLES*/
+    padding-top: 2em;
+    padding-bottom: 2em;
+
+    /*taille en hauteur minimum*/
+    min-height: 100vh;
+    
+    
+}
+.section > .content{
+    /*écart entre gauche et droite de la page du contenu*/
+    width: 70%;
+
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+@media screen and (max-width: 800px){
+    .section > .content{
+        width: 90%;
+    }
+    
+}
+
+    
+/*-----------------------------------*/
+            /* ACCUEIL */
+
+#accueil .content {
+    
+}
+
+/*----------------------------------*/
+        /* A PROPOS DE MOI */
+#informations .content {
+    
+}
+
+
+/*---------------------------------------*/
+            /* MES COMPETENCES */
+#competences {
+    
+}
+
+#competences td {
+    font-size:calc(25px + 2vw);
+}
+
+/*----------------------------------*/
+            /* MES PROJETS */
+#projets {
+    
+}
+
+/*----------------------------------*/
+            /* ME CONTACTER */
+#contact {
+    
+}
+
+/*----------------------------------*/
+            /* FOOTER */
+
+footer {
+    /*arrière plan*/
+    background: var(--BleuFonce2);
+    /*espaces entre le texte en hauteur*/
+    height: 10vh;
+    /*position*/
+    display: flex;/*pour que les éléments soient sur la même ligne au centre*/
+    /*bordure en haut*/
+    border-top: 5px solid var(--Noir);
+}
+
+footer .content {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .content p, footer .content span {
+    color: var(--BleuClair);
+    font-size: 3vmin;
+}
+
+footer .content {
+    width: 90%;
+    min-width: 5%; /* Pour limiter la largeur du contenu */
+    margin: 0 auto; /* Pour centrer le contenu horizontalement */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/*--------------------------------------*/
+
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 1200px) {
+    header .menu ul li a {
+        font-size: calc(10px + 0.5vw);
+        padding: 5px 10px;
+    }
+
+    header .nom {
+        font-size: calc(10px + 0.6vw);
+    }
+
+    
+
+}
+
+@media screen and (max-width: 920px){
+    /*----HEADER----*/
+    
+    /*barre de menu*/
+    header .menu ul.show {
+        display: flex;
+    }
+    header .menu ul {
+        display: none;
+        flex-direction: column;
+        /*position a droite de l'écran*/
+        position: absolute;
+        top: 10vh;
+        left: 0;
+        width: 100%;
+        height: auto;
+        /* arrière plan avec transparence */
+        background-color: rgba(51, 51, 51,0.9);
+        z-index: 19;
+    }
+    header .menu li {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .burger-menu {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 10px;
+
+    }
+
+    .burger-menu > div {
+        width: 30px;
+        height: 3px;
+        background-color: var(--Jaune);
+        margin: 6px 0;
+        align-self: flex-end;
+    }
+    /*----------------------------------*/            
+
+}

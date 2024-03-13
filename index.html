@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Ethan Lacomme</title>
+    <link rel="icon" type="image/png" href="img/portefolio.jpg" />
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
+</head>
+<body>
+    
+    <header>
+        <div class="nom"><h1>Ethan Lacomme</h1></div>
+        
+        <div class="menu">
+            <ul>
+                <!-- activer ou non le contenu en 1 ou partie par partie -->
+                <!--<button onclick="toggleOptimisedContent()"></button>-->
+
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#informations">A propos de moi</a></li>
+                <li><a href="#competences">Mes compétences</a></li>
+                <li><a href="#projets">Mes projets</a></li>
+                <li><a href="#contact">Me contacter</a></li>
+            </ul>
+        </div>
+        <div class="burger-menu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+
+    <div class="section" id="accueil">
+        <div class="content">
+            <h2>Bonjour</h2>
+            <p>Bienvenue sur mon portefolio.</p>
+            <br>
+            <p>Vous pouvez naviguer par les différentes sections se trouvant en haut de la page,</p>
+            <p>ou en suivant le sens de lecture de haut en bas en passant par les boutons</p>
+        </div>
+        <div class="centre fleche flechebas"><img src="img/FlècheBas.jpg" alt="Suivant"></div>
+        <div class="btn-box"><a href="#informations" class="btn">A propos de moi</a></div>
+    </div>
+
+    <div class="section" id="informations">
+        <div class="btn-box"><a href="#accueil" class="btn">Accueil</a></div>
+        <div class="centre fleche flechehaut"><img src="img/FlècheHaut.jpg" alt="Retour"></div>
+        <div class="content">
+            <div>
+                <h2>A propos de moi</h2>
+                <p>
+                    Je m'appelle Ethan Lacomme, j'ai <span id="age">??</span> ans.
+                </p>
+                <p>
+                    Je suis un jeune développeur, curieux par les possibilités de création qu'offre ce domaine.
+                </p>
+                <p>
+                    Je suis actuellement en seconde année de BTS SIO (Services Informatiques aux Organisations) Option SLAM
+                    au <a href="https://www.stpaulbb.org" target="_blank">lycée Saint Paul Bourdon Blanc</a> à Orléans. 
+                </p>
+            </div>
+        </div>
+        <!-- inclusion du CV-->
+        <div class="btn-box"><a href="documents/CV LACOMME Ethan.pdf" target="_blank" class="btn">Mon CV</a></div>
+        <div class="centre fleche flechebas"><img src="img/FlècheBas.jpg" alt="Suivant"></div>
+        <div class="btn-box"><a href="#competences" class="btn">Mes compétences</a></div>
+    </div>
+
+    <div class="section" id="competences">
+        <div class="btn-box"><a href="#informations" class="btn">A propos de moi</a></div>
+        <div class="centre fleche flechehaut"><img src="img/FlècheHaut.jpg" alt="Retour"></div>
+        <div class="content">
+            <h2>Mes compétences</h2>
+
+            <h3>Languages de programmation</h3>
+            <div class="contentblock">
+                <div class="blocklist">
+                    <img src="img/html.jpg" alt="HTML Logo">
+                    <a href="https://fr.wikipedia.org/wiki/Hypertext_Markup_Language" target="_blank">
+                        <p>HTML</p>
+                    </a>
+                </div>
+                <div class="blocklist">
+                    <img src="img/css.jpg" alt="CSS Logo">
+                    <a href="https://fr.wikipedia.org/wiki/Feuilles_de_style_en_cascade" target="_blank">
+                        <p>CSS</p>
+                    </a>
+                </div>
+                <div class="blocklist">
+                    <img src="img/javascript.jpg" alt="JavaScript Logo">
+                    <a href="https://fr.wikipedia.org/wiki/JavaScript" target="_blank">
+                        <p>JavaScript</p>
+                    </a>
+                </div>
+                <div class="blocklist">
+                    <img src="img/php.jpg" alt="PHP Logo">
+                    <a href="https://fr.wikipedia.org/wiki/PHP" target="_blank">
+                        <p>PHP</p>
+                    </a>
+                </div>
+                <div class="blocklist">
+                    <img src="img/sql.jpg" alt="SQL Logo">
+                    <a href="https://fr.wikipedia.org/wiki/Structured_Query_Language" target="_blank">
+                        <p>SQL</p>
+                    </a>
+                </div>
+                <div class="blocklist">
+                    <img src="img/java.jpg" alt="Java Logo">
+                    <a href="https://fr.wikipedia.org/wiki/Java_(langage)" target="_blank">
+                        <p>Java</p>
+                    </a>
+                </div>
+                <div class="blocklist">
+                    <img src="img/python.jpg" alt="Python Logo">
+                    <a href="https://fr.wikipedia.org/wiki/Python_(langage)" target="_blank">
+                        <p>Python</p>
+                    </a>
+                </div>
+            </div>
+
+            <h3>Environnements</h3>
+            <div class="contentblock">
+                <div class="blocklist">
+                    <img src="img/windows.jpg" alt="Windows Logo">
+                    <a href="https://fr.wikipedia.org/wiki/Microsoft_Windows" target="_blank">
+                        <p>Windows</p>
+                    </a>
+                </div>
+                <div class="blocklist">
+                    <img src="img/linux.jpg" alt="Linux Logo">
+                    <a href="https://fr.wikipedia.org/wiki/Linux" target="_blank">
+                        <p>Linux</p>
+                    </a>
+                </div>
+            </div>    
+        </div>
+        <div class="centre fleche flechebas"><img src="img/FlècheBas.jpg" alt="Suivant"></div>
+        <div class="btn-box"><a href="#projets" class="btn">Mes projets</a></div>
+    </div>
+
+    <div class="section" id="projets">
+        <div class="btn-box"><a href="#competences" class="btn">Mes compétences</a></div>
+        <div class="centre fleche flechehaut"><img src="img/FlècheHaut.jpg" alt="Retour"></div>
+        <div class="content">
+            <h2>Mes projets</h2>
+        </div>
+        <div class="centre fleche flechebas"><img src="img/FlècheBas.jpg" alt="Suivant"></div>
+        <div class="btn-box"><a href="#contact" class="btn">Me contacter</a></div>
+    </div>
+
+    <div class="section" id="contact">
+        <div class="btn-box"><a href="#projets" class="btn">Mes projets</a></div>
+        <div class="centre fleche flechehaut"><img src="img/FlècheHaut.jpg" alt="Retour"></div>
+        <div class="content">
+            <h2>Me contacter</h2>
+            <div class="contentblock">
+                <div class="blocklist">
+                    <img src="img/Gmail.jpg" alt="Gmail Logo">
+                    <p>ethanlacomme316@gmail.com</p>
+                </div>
+                <div class="blocklist">
+                    <img src="img/LinkedIn.jpg" alt="LinkedIn Logo">
+                    <a href="https://www.linkedin.com/in/ethan-l-55aa94250/" target="_blank">
+                        <p>Lien LinkedIn : Ethan Lacomme</p>
+                    </a>
+                </div>
+                <div class="blocklist">
+                    <img src="img/GitHub.jpg" alt="GitHub Logo">
+                    <a href="https://github.com/EthanLacomme" target="_blank">
+                        <p>Lien GitHub : EthanLacomme</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="content">
+            <div class="left"><p>© <span class="anneeActuelle">copyright-année</span> Ethan Lacomme</p></div>
+            <div class="right"><p>Site réalisé par Ethan Lacomme</p></div>
+        </div>
+    </footer>
+
+</body>
+</html>
