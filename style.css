@@ -307,22 +307,16 @@ header a:hover {color: var(--JauneVif);transition: 0.2s;}   header a:not(:hover)
 /*-----------------------------------*/
             /* ACCUEIL */
 
-#accueil .content {
-    
-}
+            
 
 /*----------------------------------*/
         /* A PROPOS DE MOI */
-#informations .content {
-    
-}
+
 
 
 /*---------------------------------------*/
             /* MES COMPETENCES */
-#competences {
-    
-}
+
 
 #competences td {
     font-size:calc(25px + 2vw);
@@ -354,9 +348,7 @@ header a:hover {color: var(--JauneVif);transition: 0.2s;}   header a:not(:hover)
 
 /*----------------------------------*/
             /* ME CONTACTER */
-#contact {
-    
-}
+
 
 /*----------------------------------*/
             /* FOOTER */
