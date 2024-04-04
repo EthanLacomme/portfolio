@@ -121,6 +121,13 @@ table td img {
     margin: 0;
 
 }
+.lien {
+    cursor: pointer;
+}
+.info {
+    cursor: help;
+}
+
 @media screen and (max-width: 1000px) {
     .blocklist > img {
         max-height: 100px;
