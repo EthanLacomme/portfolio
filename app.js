@@ -45,13 +45,18 @@ document.addEventListener("DOMContentLoaded", function () {//DOM = Document Obje
                 e.preventDefault();
                 const targetId = this.getAttribute("href").substring(1);
 
+                // console.log(targetId);
+
                 sections.forEach((section) => {
                     section.style.display = "none";
                 });
 
                 const targetSection = document.getElementById(targetId);
                 if (targetSection) {
+                    // console.log(targetId);
                     targetSection.style.display = "block";
+                } else {
+                    // console.error("Section introuvable");
                 }
                 //revenir en haut de la page
                 window.scrollTo(0, 0);

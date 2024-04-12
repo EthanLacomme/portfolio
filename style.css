@@ -331,12 +331,17 @@ header a:hover {color: var(--JauneVif);transition: 0.2s;}   header a:not(:hover)
 
 /*----------------------------------*/
             /* MES PROJETS */
-#projets {
-    /* si la souris passe sur un projet */
-    .blocklist:hover {
-        transform: scale(1.05);
-        transition: 0.5s;
+    @media screen and (min-width: 800px){
+        #projets {
+            /* si la souris passe sur un projet */
+            .blocklist:hover {
+                transform: scale(1.02);
+                transition: 0.5s;
+            }
+        }
     }
+    #projets {
+        
     .blocklist:not(:hover) {
         transition: 0.5s;
     }
@@ -413,7 +418,8 @@ footer .content {
 
 }
 
-@media screen and (max-width: 920px){
+/* Si taille de l'écran inférieure à la valeur en px, on affiche le menu en burger */
+@media screen and (max-width: 1370px){
     /*----HEADER----*/
     
     /*barre de menu*/
