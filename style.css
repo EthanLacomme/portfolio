@@ -87,11 +87,17 @@ table td img {
     padding: 2% 5%; /* Ajustez les marges en fonction de vos préférences */
 }
 
+/* centre les éléments de la liste */
+.centre {
+    justify-content: center;
+}
+
 /*Block div de liste avec flexbox*/
 .contentblock {
     display: flex;
     flex-wrap: wrap;
 }
+/* blocklist par défaut avec 2 blocs par ligne */
 .blocklist {
     width: 48%; /* Deux blocs par ligne par défaut */
     box-sizing: border-box; /* Pour inclure les bordures et les marges dans la largeur définie */
@@ -121,6 +127,38 @@ table td img {
     margin: 0;
 
 }
+
+/* blocklist en auto */
+.blocklist-auto {
+    width: auto;
+    min-width: 5%;
+    min-height: 5%;
+    max-width: 20%;
+    max-height: 20%;
+    margin: 1%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--BleuFonce);
+    border-radius: 10px;
+}
+/* image adaptée à la taille de son conteneur */
+.blocklist-auto > img {
+    max-width: 100%;
+}
+.blocklist-auto a {
+    padding: 5px;
+    font-size: auto;
+}
+.blocklist-auto p {
+    font-size: calc(10px + 1vw);
+    text-align: center;
+    padding: calc(5px + 0.5vw);
+    margin: 0;
+}
+
 .lien {
     cursor: pointer;
 }
