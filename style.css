@@ -166,6 +166,22 @@ table td img {
     cursor: help;
 }
 
+.veille p {
+    font-size: 2em;
+    text-align: center;
+    padding: 5px;
+    margin: 0;
+}
+.veille li {
+    font-size: 1.5em;
+    text-align: center;
+    padding: 5px;
+    margin: 0;
+    /* cacher les points */
+    list-style-type: none;
+    color: var(--BleuClair);
+}
+
 @media screen and (max-width: 1000px) {
     .blocklist > img {
         max-height: 100px;
