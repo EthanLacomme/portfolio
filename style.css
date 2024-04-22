@@ -171,15 +171,27 @@ table td img {
     text-align: center;
     padding: 5px;
     margin: 0;
+    /* style d'écriture */
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .veille li {
     font-size: 1.5em;
     text-align: center;
+    /* reste au centre mais aligne le texte sur la gauche */
     padding: 5px;
     margin: 0;
     /* cacher les points */
     list-style-type: none;
     color: var(--BleuClair);
+}
+.veille img {
+    /* image centrée avec une taille normalisée */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    /* taille max 1/3 de la hauteur de l'écran */
+    height: 33vh;
 }
 
 @media screen and (max-width: 1000px) {
