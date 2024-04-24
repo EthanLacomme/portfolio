@@ -168,7 +168,7 @@ table td img {
 
 .veille p {
     font-size: 2em;
-    text-align: center;
+    text-align: left;
     padding: 5px;
     margin: 0;
     /* style d'écriture */
@@ -177,7 +177,6 @@ table td img {
 .veille li {
     font-size: 1.5em;
     text-align: center;
-    /* reste au centre mais aligne le texte sur la gauche */
     padding: 5px;
     margin: 0;
     /* cacher les points */

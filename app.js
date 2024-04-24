@@ -68,5 +68,9 @@ document.addEventListener("DOMContentLoaded", function () {//DOM = Document Obje
 
 function toggleMenu() {
     const menu = document.querySelector('.menu ul');
-    menu.classList.toggle('show');
+    menu.classList.toggle('show');//va m'alterner entre show et hide
+}
+function closeMenu() {
+    const menu = document.querySelector('.menu ul');
+    menu.classList.remove('show');//seulement pour fermer le menu
 }
