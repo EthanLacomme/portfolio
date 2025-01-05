@@ -17,7 +17,7 @@
 
 /* par défaut */
 body {
-    background: var(--Noir);
+    background: var(--BleuFonceSeparateur);
 }
 body h2 {
     color: var(--BleuClair);
@@ -97,6 +97,90 @@ table td img {
     display: flex;
     flex-wrap: wrap;
 }
+
+
+
+
+.btn-box {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.btn-box button {
+    margin: 0.5em;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 0.3em;
+    background-color: var(--Jaune);
+    color: var(--Noir);
+    cursor: pointer;
+    font-size: 1.2em;
+    white-space: nowrap;
+    width: auto;
+    min-width: max-content;
+}
+
+
+.btn-box button:hover {
+    background-color: var(--JauneVif);
+}
+
+
+.titre-avec-lignes {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.titre-avec-lignes::before,
+.titre-avec-lignes::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid var(--Jaune);
+}
+
+.titre-avec-lignes::before {
+    margin-right: 0.5em;
+}
+
+.titre-avec-lignes::after {
+    margin-left: 0.5em;
+}
+
+
+
+/* détail d'un élément après le titre indiqué */
+.btn-afficher {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 15px;
+    padding: 8px 12px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-afficher:hover {
+    background-color: #2980b9;
+}
+
+.icon-toggle {
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+}
+
+.icon-toggle.rotated {
+    transform: rotate(180deg);
+}
+
+
+
+
 /* blocklist par défaut avec 2 blocs par ligne */
 .blocklist {
     width: 48%; /* Deux blocs par ligne par défaut */
@@ -159,6 +243,36 @@ table td img {
     margin: 0;
 }
 
+/* taille des blocs égale */
+.blocklist-1{
+    width: 20rem;
+    height: 20rem;
+    margin: 1%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--BleuFonce);
+    border-radius: 10px;
+
+    /* réduction de la taille des blocs si l'écran est trop petit en réduisant la largeur et la hauteur */
+    min-width: 10rem;
+    max-width: 20%;
+}
+.blocklist-1 > img {
+    /* image adaptée à la taille de son conteneur */
+    max-width: 100%;
+}
+/* .blocklist-1 a {
+    padding: 5px;
+    font-size: auto;
+} */
+.blocklist-1 p {
+    /* S'aligne sur la hauteur des autres textes des blocs */
+    font-size: calc(1em + 1vw);
+}
+
 .lien {
     cursor: pointer;
 }
@@ -208,12 +322,12 @@ table td img {
 
 @media screen and (min-width: 800px){
     body p {
-    font-size: 2.5vw;
+    font-size: 2vw;
     }
 
     body .section h1, h2{
         white-space: nowrap;
-        font-size: 5vw;
+        font-size: 3vw;
         padding-top: 15px;
         padding-bottom: 15px;
     }
@@ -297,6 +411,10 @@ table td img {
 
 /*---------HEADER---------*/
 header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -317,6 +435,7 @@ header .nom {
 /* Burger menu */
 .burger-menu {
     display: none;
+    margin-right: 0.5rem;
 }
 /* Fin burger menu */
 
@@ -355,7 +474,7 @@ header a:hover {color: var(--JauneVif);transition: 0.2s;}   header a:not(:hover)
     padding-bottom: 2em;
 
     /*taille en hauteur minimum*/
-    min-height: 100vh;
+    /* min-height: 100vh; */
     
     
 }
@@ -484,7 +603,7 @@ footer .content {
 }
 
 /* Si taille de l'écran inférieure à la valeur en px, on affiche le menu en burger */
-@media screen and (max-width: 1370px){
+@media screen and (max-width: 1000px){
     /*----HEADER----*/
     
     /*barre de menu*/
