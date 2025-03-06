@@ -18,6 +18,35 @@ window.addEventListener('load', function () {
     // Affiche l'année actuelle dans le footer
     const anneeActuelle = new Date().getFullYear();
     document.querySelector('.anneeActuelle').innerHTML = anneeActuelle;
+
+
+    //Récupération de la dernière update du projet sur GitHub
+    async function fetchLastUpdated() {
+        const url = "https://api.github.com/repos/EthanLacomme/portfolio";
+        
+        try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`GitHub API error: ${response.status}`);
+    
+            const data = await response.json();
+            const lastUpdated = new Date(data.pushed_at); // Convertir en objet Date
+            
+            return lastUpdated.toLocaleDateString("fr-FR", { 
+                year: "numeric", 
+                month: "long", 
+                day: "numeric" 
+            });
+        } catch (error) {
+            console.error("Erreur lors de la récupération des données :", error);
+            return "Impossible de récupérer la date de la dernière mise à jour du portfolio";
+        }
+    }
+    
+    // Mettre à jour le contenu de l'élément HTML
+    fetchLastUpdated().then(date => {
+        document.getElementById("last-update").textContent = `Dernière mise à jour publié le ${date}`;
+    });
+    
 });
 
 // Fonction pour afficher/fermer le menu sur mobile
