@@ -66,7 +66,7 @@
         <div class="content">
             <h2>Mes compétences</h2>
 
-            <h3 class="titre-avec-lignes">Languages de programmation pratiqués<button class="btn-afficher" onclick="toggleContent('programmation')"><span class="icon-toggle">▲</span></button></h3>
+            <h3 class="titre-avec-lignes">Languages de programmation, déjà pratiqués<button class="btn-afficher" onclick="toggleContent('programmation')"><span class="icon-toggle">▲</span></button></h3>
             
             <div class="contentblock centre" id="programmation">
                 <div class="blocklist-1 info">
@@ -111,9 +111,11 @@
                         <p>Python</p>
                     </a>
                 </div>
+
+
             </div>
 
-            <h3 class="titre-avec-lignes">Environnements de développement - Logiciels <button class="btn-afficher" onclick="toggleContent('environnementDev')"><span class="icon-toggle">▲</span></button></h3>
+            <h3 class="titre-avec-lignes">Environnements de développement - Logiciels, déjà pratiqués<button class="btn-afficher" onclick="toggleContent('environnementDev')"><span class="icon-toggle">▲</span></button></h3>
 
             <div class="contentblock centre" id="environnementDev">
 
@@ -121,6 +123,12 @@
                     <img src="img/unrealEngine.jpg" alt="Unreal Engine Logo">
                     <a href="https://fr.wikipedia.org/wiki/Unreal_Engine" target="_blank">
                         <p>Unreal Engine</p>
+                    </a>
+                </div>
+                <div class="blocklist-1 info">
+                    <img src="img/Unity.jpg" alt="Unity Logo">
+                    <a href="https://fr.wikipedia.org/wiki/Unity_(moteur_de_jeu)" target="_blank">
+                        <p>Unity</p>
                     </a>
                 </div>
                 <div class="blocklist-1 info">
@@ -162,12 +170,13 @@
         <div class="content">
             <h2>Mes projets</h2>
         </div>
-        <div class="btn-box">
-            <p>Filtres :</p>
+        <!-- doit se scale par rapport a 80% de l'écran max -->
+        <div class="btn-box" style="margin-left: auto; margin-right: auto;">
             <button onclick="filterProjects('all')">Tout</button>
             <button onclick="filterProjects('general')">Général</button>
             <button onclick="filterProjects('redaction')">Rédaction</button>
             <button onclick="filterProjects('jeux')">Jeux</button>
+            <button onclick="filterProjects('musique')">Musique</button>
         </div>
 
         <div class="content">
@@ -183,10 +192,16 @@
             </div>
 
             <div class="blocklist couleur-projet info jeux" style="margin-left: auto; margin-right: auto;">
-                <h3>Projet de stage sur kinect</h3>
-                <!-- <iframe src="A REMPLIR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
-                <p>Un projet sur kinect qui va être réalisé à mon stage</p>
-                <!-- <div class="btn-box"><a href="https://github.com/Ethanific/" target="_blank" class="btn">Voir sur github</a></div> -->
+                <h3>Avoiding Space - kinect</h3>
+                <iframe src="https://www.youtube-nocookie.com/embed/8i7QenSZCpA?si=NSR06fKMRgVWxxAi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <p>Un projet sur kinect réalisé à un stage avec un camarade sur Unity, le but est de contrôler un vaisseau et d'esquiver le plus possible d'obstacle pour survivre le plus longtemps et avoir un bon score de temps.</p>
+            </div>
+
+            <div class="blocklist couleur-projet info jeux" style="margin-left: auto; margin-right: auto;">
+                <h3>Combat d'la mort</h3>
+                <iframe src="https://www.youtube-nocookie.com/embed/c5ezRQF-AtQ?si=KNejult0PJ7SGlST" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <p>Un projet que j'ai réalisé avec un camarade sur Unreal Engine 5, le but est d'affronter un boss en 4 phases qui vont être de plus en plus compliqué.</p>
+                <div class="btn-box"><a href="https://github.com/Ethanific/CombatDlaMort/releases/tag/1.0.0" target="_blank" class="btn">Voir sur github</a></div>
             </div>
 
             <div class="blocklist couleur-projet info jeux" style="margin-left: auto; margin-right: auto;">
