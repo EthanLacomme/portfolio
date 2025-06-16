@@ -148,6 +148,18 @@ table td img {
     margin-left: 0.5em;
 }
 
+/* box qui va se scale à max 80% de la taille de l'écran et min 20 % */
+.boxScaled {
+    width: 80vw; /* Largeur maximale de 80% de la largeur de la fenêtre */
+    max-width: 800px; /* Largeur maximale de 800px */
+    min-width: 300px; /* Largeur minimale de 300px */
+    height: auto; /* Hauteur automatique pour s'adapter au contenu */
+    margin: 0 auto; /* Centrer horizontalement */
+    padding: 20px; /* Espacement interne */
+    background-color: var(--BleuFonce);
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
 
 
 /* détail d'un élément après le titre indiqué */
