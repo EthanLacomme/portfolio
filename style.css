@@ -148,19 +148,30 @@ table td img {
     margin-left: 0.5em;
 }
 
-/* box qui va se scale à max 80% de la taille de l'écran et min 20 % */
+/* box qui va prendre maximum 80% de la largeur de l'écran */
 .boxScaled {
-    width: 80vw; /* Largeur maximale de 80% de la largeur de la fenêtre */
-    max-width: 800px; /* Largeur maximale de 800px */
-    min-width: 300px; /* Largeur minimale de 300px */
-    height: auto; /* Hauteur automatique pour s'adapter au contenu */
-    margin: 0 auto; /* Centrer horizontalement */
-    padding: 20px; /* Espacement interne */
+    max-width: 80%;
+    margin: auto;
+    padding: 20px;
     background-color: var(--BleuFonce);
-    border-radius: 10px; /* Coins arrondis */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
 }
-
+/* les boutons de la boxScaled qui devrons changer de taille*/
+.boxScaled button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2em;
+    border: none;
+    margin-top: 10px;
+}
+.boxScaled button, .boxScaled a {
+    font-size: calc(1em + 0.5vw);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* les boutons devrons passez à la ligne si l'écran est trop petit */
+.boxScaled button {
+    width: 100%;
+    font-size: calc(1em + 0.5vw);
+}
 
 /* détail d'un élément après le titre indiqué */
 .btn-afficher {
