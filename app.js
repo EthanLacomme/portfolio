@@ -44,7 +44,7 @@ window.addEventListener('load', function () {
     
     // Mettre à jour le contenu de l'élément HTML
     fetchLastUpdated().then(date => {
-        document.getElementById("last-update").textContent = `Dernière mise à jour publié le ${date}`;
+        document.getElementById("last-update").textContent = `Dernière mise à jour publiée le ${date}`;
     });
     
 });
