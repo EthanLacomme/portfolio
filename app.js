@@ -47,6 +47,8 @@ window.addEventListener('load', function () {
         document.getElementById("last-update").textContent = `Dernière mise à jour publié le ${date}`;
     });
     
+
+    // vérification ouverture onglets
 });
 
 // Fonction pour afficher/fermer le menu sur mobile
@@ -93,3 +95,7 @@ function filterProjects(category) {
         }
     });
 }
+
+//fonction pour ouvrir et fermer un onglet en fonction de ▼ ou ▲
+
+//animation de la class="btn-afficher" zoom in, zoom out pour indiquer le click pour les détails
