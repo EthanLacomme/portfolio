@@ -6,31 +6,15 @@
     <title>Portfolio | Ethan Lacomme</title>
     <link rel="icon" type="image/png" href="img/portfolio.jpg" />
     <link rel="stylesheet" href="style.css">
-    <script src="app.js"></script>
+    <script src="projets-data.js" defer></script>
+    <script src="competences-data.js" defer></script>
+    <script src="app.js" defer></script>
     <!-- balise descriptif -->
     <meta name="description" content="Portfolio de Ethan Lacomme">
 </head>
 <body>
     
-    <header>
-        <div class="nom"><h1>Ethan Lacomme</h1></div>
-        
-        <div class="menu">
-            <ul>
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#informations">A propos de moi</a></li>
-                <li><a href="#competences">Mes compétences</a></li>
-                <li><a href="#projets">Mes projets</a></li>
-                <li><a href="#contact">Me contacter</a></li>
-            </ul>
-        </div>
-        <div class="burger-menu" onclick="toggleMenu()">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-    </header>
-
+    <div id="site-header"></div>
     
     <div class="section" id="accueil">
         <div class="content">
@@ -60,108 +44,31 @@
         <div class="btn-box"><a href="documents/CV LACOMME Ethan.pdf" target="_blank" class="btn">Mon CV</a></div>
     </div>
 
-    <p class="section-divider"></p>
-
     <div class="section" id="competences">
         <div class="content">
             <h2>Mes compétences</h2>
 
-            <h3 class="titre-avec-lignes">Languages de programmation, déjà pratiqués<button class="btn-afficher" onclick="toggleContent('programmation')"><span class="icon-toggle">▲</span></button></h3>
+            <h3 class="titre-avec-lignes">Languages de programmation, déjà pratiqués</h3>
             
             <div class="contentblock centre" id="programmation">
-                <div class="blocklist-1 info">
-                    <img src="img/html.jpg" alt="HTML Logo">
-                    <a href="https://fr.wikipedia.org/wiki/Hypertext_Markup_Language" target="_blank">
-                        <p>HTML</p>
-                    </a>
-                </div>
-                <div class="blocklist-1 info">
-                    <img src="img/css.jpg" alt="CSS Logo">
-                    <a href="https://fr.wikipedia.org/wiki/Feuilles_de_style_en_cascade" target="_blank">
-                        <p>CSS</p>
-                    </a>
-                </div>
-                <div class="blocklist-1 info">
-                    <img src="img/javascript.jpg" alt="JavaScript Logo">
-                    <a href="https://fr.wikipedia.org/wiki/JavaScript" target="_blank">
-                        <p>JavaScript</p>
-                    </a>
-                </div>
-                <div class="blocklist-1 info">
-                    <img src="img/php.jpg" alt="PHP Logo">
-                    <a href="https://fr.wikipedia.org/wiki/PHP" target="_blank">
-                        <p>PHP</p>
-                    </a>
-                </div>
-                <div class="blocklist-1 info">
-                    <img src="img/sql.jpg" alt="SQL Logo">
-                    <a href="https://fr.wikipedia.org/wiki/Structured_Query_Language" target="_blank">
-                        <p>SQL</p>
-                    </a>
-                </div>
-                <div class="blocklist-1 info">
-                    <img src="img/java.jpg" alt="Java Logo">
-                    <a href="https://fr.wikipedia.org/wiki/Java_(langage)" target="_blank">
-                        <p>Java</p>
-                    </a>
-                </div>
-                <div class="blocklist-1 info">
-                    <img src="img/python.jpg" alt="Python Logo">
-                    <a href="https://fr.wikipedia.org/wiki/Python_(langage)" target="_blank">
-                        <p>Python</p>
-                    </a>
-                </div>
-
-
+                <!-- Chargé dynamiquement depuis competences-data.js -->
             </div>
 
-            <h3 class="titre-avec-lignes">Environnements de développement - Logiciels, déjà pratiqués<button class="btn-afficher" onclick="toggleContent('environnementDev')"><span class="icon-toggle">▲</span></button></h3>
+            <!-- Bouton "Voir plus" pour programmation -->
+            <div class="btn-box" id="loadMoreProgrammationContainer">
+                <button id="loadMoreProgrammationBtn" onclick="loadMoreCompetences('programmation')" class="btn" style="display: none;">Voir plus</button>
+            </div>
+
+            <h3 class="titre-avec-lignes">Environnements de développement - Logiciels, déjà pratiqués</h3>
 
             <div class="contentblock centre" id="environnementDev">
-
-                <div class="blocklist-1 info">
-                    <img src="img/unrealEngine.jpg" alt="Unreal Engine Logo">
-                    <a href="https://fr.wikipedia.org/wiki/Unreal_Engine" target="_blank">
-                        <p>Unreal Engine</p>
-                    </a>
-                </div>
-                <div class="blocklist-1 info">
-                    <img src="img/Unity.jpg" alt="Unity Logo">
-                    <a href="https://fr.wikipedia.org/wiki/Unity_(moteur_de_jeu)" target="_blank">
-                        <p>Unity</p>
-                    </a>
-                </div>
-                <div class="blocklist-1 info">
-                    <img src="img/blender.jpg" alt="Blender Logo">
-                    <a href="https://fr.wikipedia.org/wiki/Blender" target="_blank">
-                        <p>Blender</p>
-                    </a>
-                </div>
-                <div class="blocklist-1 info">
-                    <img src="img/visualStudio.jpg" alt="Visual Studio Logo">
-                    <a href="https://fr.wikipedia.org/wiki/Microsoft_Visual_Studio" target="_blank">
-                        <p>Visual Studio</p>
-                    </a>
-                </div>
-                <div class="blocklist-1 info">
-                    <img src="img/vscode.jpg" alt="Visual Studio Code Logo">
-                    <a href="https://fr.wikipedia.org/wiki/Visual_Studio_Code" target="_blank">
-                        <p>VS Code</p>
-                    </a>
-                </div>
-                <div class="blocklist-1 info">
-                    <img src="img/windows.jpg" alt="Windows Logo">
-                    <a href="https://fr.wikipedia.org/wiki/Microsoft_Windows" target="_blank">
-                        <p>Windows</p>
-                    </a>
-                </div>
-                <div class="blocklist-1 info">
-                    <img src="img/linux.jpg" alt="Linux Logo">
-                    <a href="https://fr.wikipedia.org/wiki/Linux" target="_blank">
-                        <p>Linux</p>
-                    </a>
-                </div>
-            </div>    
+                <!-- Chargé dynamiquement depuis competences-data.js -->
+            </div>
+            
+            <!-- Bouton "Voir plus" pour environnement -->
+            <div class="btn-box" id="loadMoreEnvironnementContainer">
+                <button id="loadMoreEnvironnementBtn" onclick="loadMoreCompetences('environnement')" class="btn" style="display: none;">Voir plus</button>
+            </div>
         </div>
     </div>
     
@@ -170,162 +77,47 @@
         <div class="content">
             <h2>Mes projets</h2>
         </div>
-        <!-- doit se scale par rapport a 80% de l'écran max -->
-        <div class="btn-box boxScaled" style="margin-left: auto; margin-right: auto;">
-            <button onclick="filterProjects('all')">Tout</button>
-            <button onclick="filterProjects('general')">Général</button>
-            <button onclick="filterProjects('redaction')">Rédaction</button>
-            <button onclick="filterProjects('jeux')">Jeux</button>
-            <button onclick="filterProjects('musique')">Musique</button>
+        <!-- Filtres et affichage -->
+        <div class="btn-box boxScaled" style="margin-left: auto; margin-right: auto; display: flex; align-items: center; gap: 2em; flex-wrap: wrap; justify-content: center;">
+            <div style="display: flex; align-items: center; gap: 0.5em;">
+                <label for="filterSelect" style="font-size: 1.2em; color: var(--Orange);">Tag :</label>
+                <select id="filterSelect" onchange="filterProjects(this.value)">
+                    <option value="all" selected="selected">Tout</option>
+                    <option value="jeux">Jeux</option>
+                    <option value="general">Autres</option>
+                    <!-- <option value="redaction">Rédactions</option> -->
+                    <!-- <option value="musique">Musique</option> -->
+                </select>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5em;">
+                <label for="projectsPerLineSelect" style="font-size: 1.2em; color: var(--Orange);">Colonnes :</label>
+                <select id="projectsPerLineSelect" onchange="setProjectsPerLine(this.value)">
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2" selected="selected">2</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5em;">
+                <label for="itemsPerPageSelect" style="font-size: 1.2em; color: var(--Orange);">Éléments :</label>
+                <select id="itemsPerPageSelect" onchange="setItemsPerPage(this.value)">
+                    <option value="4" selected="selected">4</option>
+                    <option value="8">8</option>
+                    <option value="12">12</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="-1">Maximum</option>
+                </select>
+            </div>
         </div>
 
-        <div class="content">
-            <h3 class="titre-avec-lignes" style="color: white;">2025<button class="btn-afficher" onclick="toggleContent('2025')"><span class="icon-toggle">▲</span></button></h3>
+        <div class="contentblock" id="all-projects">
+            <!-- Les projets seront chargés dynamiquement depuis projets.json -->
         </div>
 
-        <div class="contentblock" id="2025">
-            <div class="blocklist couleur-projet info jeux" style="margin-left: auto; margin-right: auto;">
-                <h3>Vr Lab</h3>
-                <iframe src="https://www.youtube-nocookie.com/embed/95kro0N5KEk?si=S_ZUcBYvfcV4FMJ6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>Un projet de réalité virtuel de fin d'année fait sur Unreal Engine, avec 4 salles comportant différentes mécaniques.</p>
-                <div class="btn-box"><a href="https://github.com/Ethanific/VrLab/releases/tag/1.0.0" target="_blank" class="btn">Voir sur github</a></div>
-            </div>
-
-            <div class="blocklist couleur-projet info jeux" style="margin-left: auto; margin-right: auto;">
-                <h3>Avoiding Space</h3>
-                <iframe src="https://www.youtube-nocookie.com/embed/8i7QenSZCpA?si=NSR06fKMRgVWxxAi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>Un projet sur kinect réalisé à un stage avec un camarade sur Unity, le but est de contrôler un vaisseau et d'esquiver le plus possible d'obstacle pour survivre le plus longtemps et avoir un bon score de temps.</p>
-                <div class="btn-box"><a href="https://ouki13.itch.io/avoiding-space" target="_blank" class="btn">Voir sur itch</a></div>
-            </div>
-
-            <div class="blocklist couleur-projet info jeux" style="margin-left: auto; margin-right: auto;">
-                <h3>Combat d'la mort</h3>
-                <iframe src="https://www.youtube-nocookie.com/embed/c5ezRQF-AtQ?si=KNejult0PJ7SGlST" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>Un projet que j'ai réalisé avec un camarade sur Unreal Engine, le but est d'affronter un boss en 4 phases qui vont être de plus en plus compliqué.</p>
-                <div class="btn-box"><a href="https://github.com/Ethanific/CombatDlaMort/releases/tag/1.0.0" target="_blank" class="btn">Voir sur github</a></div>
-                <div class="btn-box"><a href="https://ethanific.itch.io/combat-dla-mort" target="_blank" class="btn">Voir sur itch</a></div>
-            </div>
-
-            <div class="blocklist couleur-projet info jeux" style="margin-left: auto; margin-right: auto;">
-                <h3>LeProf</h3>
-                <iframe src="https://www.youtube-nocookie.com/embed/qsk46R2fxNU?si=7gpR78ZRvdfVbMR1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>Un projet que j'ai réalisé sur Unreal Engine, le but est de répondre au questions des tableaux avec une réaction adéquate du professeur en fonction d'une bonne ou mauvaise réponse.</p>
-                <div class="btn-box"><a href="https://github.com/Ethanific/LeProf/releases/tag/1.0.0" target="_blank" class="btn">Voir sur github</a></div>
-            </div>
-
-            <div class="blocklist couleur-projet info jeux" style="margin-left: auto; margin-right: auto;">
-                <h3>RechercheEnNature</h3>
-                <iframe src="https://www.youtube-nocookie.com/embed/xb1uXeVCSaw?si=yspRiBUd8IMXw5rW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>Un projet que j'ai réalisé sur Unreal Engine 5, le but est de collectez des objets pour passez les différentes zone et récupérer le coffre au trésor.</p>
-                <div class="btn-box"><a href="https://github.com/Ethanific/RechercheEnNature/releases/tag/v1.0" target="_blank" class="btn">Voir sur github</a></div>
-            </div>
-
-            <div class="blocklist couleur-projet info jeux" style="margin-left: auto; margin-right: auto;">
-                <h3>Escape Game VR</h3>
-                <iframe src="https://www.youtube-nocookie.com/embed/QWWXDLYKvv8?si=WBSWRbes3CtIDiBZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>Un projet d'escape game que j'ai réalisé pour de la réalité virtuel sur Unreal Engine 5, le but est de résoudre les différentes énigmes pour s'échapper de la zone.</p>
-                <div class="btn-box"><a href="https://github.com/Ethanific/EscapeGameVR/releases/tag/Game" target="_blank" class="btn">Voir sur github</a></div>
-            </div>
-
-        </div>
-
-        <div class="content">
-            <h3 class="titre-avec-lignes" style="color: white;">2024<button class="btn-afficher" onclick="toggleContent('2024')"><span class="icon-toggle">▲</span></button></h3>
-        </div>
-        <div class="contentblock" id="2024">
-
-            <div class="blocklist couleur-projet info jeux" style="margin-left: auto; margin-right: auto;">
-                <h3>Jeux de tower defense</h3>
-                <iframe src="https://www.youtube-nocookie.com/embed/4IIcq8GGi2E?si=N9s6AnU_JdgucopC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>Un projet de jeux Tower Defense, réalisé sur unreal engine 5, le but est de défendre sa base contre des vagues d'ennemis en plaçant des tours à des enplacements stratégiques.</p>
-                <div class="btn-box"><a href="https://github.com/Ethanific/TowerDefense" target="_blank" class="btn">Voir sur github</a></div>
-            </div>
-
-            <div class="blocklist couleur-projet info jeux" style="margin-left: auto; margin-right: auto;">
-                <h3>Jeux de cible</h3>
-                <iframe src="https://www.youtube-nocookie.com/embed/dJzHHtEbLH8?si=BBP1qBX7dkkg1irQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>Un projet de jeux de cible, réalisé sur unreal engine 5, le but est de toucher toutes les cibles placé dans le niveau pour terminer le niveau.</p>
-                <div class="btn-box"><a href="https://github.com/Ethanific/Cibles" target="_blank" class="btn">Voir sur github</a></div>
-            </div>
-
-            <div class="blocklist couleur-projet info jeux" style="margin-left: auto; margin-right: auto;">
-                <h3>Jeux de plateforme</h3>
-                <iframe src="https://www.youtube-nocookie.com/embed/sjP64E0JVOI?si=OvYiXru62Pv62DT0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>Un projet de jeux de plateforme, réalisé sur unreal engine 5, le but est de finir les niveau en évitant les obstacles.</p>
-                <div class="btn-box"><a href="https://github.com/Ethanific/ParcoursObstacle" target="_blank" class="btn">Voir sur github</a></div>
-            </div>
-
-            <div class="blocklist couleur-projet info general" style="margin-left: auto; margin-right: auto;">
-                <h3>Gestion des véhicules (GVH)</h3>
-                <img src="img/miniature_projets/logoCNFPT_GVH.jpg" alt="Miniature_GVH" class="miniature">
-                <p>GVH est une application permettant de gérer et réserver des véhicules. J'y ai développé un système d'images et de statistiques.</p>
-                <div class="btn-box"><a href="documents/projets/Documentation_GVH.pdf" target="_blank" class="btn">Voir sa documentation</a></div>
-            </div>
-
-            <div class="blocklist couleur-projet info general" style="margin-left: auto; margin-right: auto;">
-                <h3>Mamoot</h3>
-                <img src="img/miniature_projets/logoMamoot.jpg" alt="Miniature_Mamoot" class="miniature">
-                <p>Mamoot est un site pour créer et jouer à des quiz, conçu avec le framework Symfony. J'ai pu réaliser la mise en forme de la maquette vers le css, backend administrateur, animation du podium en javascript...</p> 
-                <div class="btn-box"><a href="documents/projets/Documentation_mamoot.pdf" target="_blank" class="btn">Voir sa documentation</a></div>
-            </div>
-
-            <div class="blocklist couleur-projet info general" style="margin-left: auto; margin-right: auto;">
-                <h3>GLPI</h3>
-                <img src="img/miniature_projets/logoGLPI.jpg" alt="Miniature_GLPI" class="miniature">
-                <p>GLPI est une application permettant de gérer un parc informatique. J'ai réalisé son installation sur un environnement linux, un exemple de remontée de poste et de gestion de tickets</p>
-                <div class="btn-box"><a href="documents/projets/Documentation_GLPI.pdf" target="_blank" class="btn">Voir sa documentation</a></div>
-                <!-- Manuel utilisateur -->
-                <div class="btn-box"><a href="documents/projets/Documentation_GLPI_Manuel.pdf" target="_blank" class="btn">Manuel utilisateur</a></div>
-            </div>
-
-            <div class="blocklist couleur-projet info redaction" style="margin-left: auto; margin-right: auto;">
-                <h3>Veille sur les IA et l'usurpation d'identité</h3>
-                <img src="img/miniature_veilles/IAetUsurpationDidentité.jpg" alt="IAetUsurpationDidentité" class="miniature">
-                <p>Les IA sont de plus en plus présentes dans notre quotidien, malgré les avantages qu'elles apportent, elles sont néanmoins aussi utilisées pour des raison contestables.</p>
-                <div class="btn-box"><a href="documents/veilles/IAetUsurpationDidentité/index.html" class="btn" target="_blank">En savoir plus</a></div>
-            </div>
-
-        </div>
-
-        <div class="content">
-            <h3 class="titre-avec-lignes" style="color: white;">2023<button class="btn-afficher" onclick="toggleContent('2023')"><span class="icon-toggle">▲</span></button></h3>
-        </div>
-        <div class="contentblock" id="2023">
-
-            <div class="blocklist couleur-projet info general" style="margin-left: auto; margin-right: auto;">
-                <h3>Snipe IT</h3>
-                <img src="img/miniature_projets/logoSnipeIT.jpg" alt="Miniature_SnipeIT" class="miniature" style="width: 80%;">
-                <p>Snipe IT est une application permettant de gérer un parc informatique. J'ai réalisé son installation sur un environnement linux et un exemple de remontée de poste</p>
-                <div class="btn-box"><a href="documents/projets/Documentation_snipe_IT.pdf" target="_blank" class="btn">Voir sa documentation</a></div>
-                <!-- Manuel utilisateur -->
-                <div class="btn-box"><a href="documents/projets/Documentation_snipe_IT_Manuel.pdf" target="_blank" class="btn">Manuel utilisateur</a></div>
-            </div>
-
-            <div class="blocklist couleur-projet info general" style="margin-left: auto; margin-right: auto;">
-                <h3>OCS Inventory</h3>
-                <img src="img/miniature_projets/logoOCS.jpg" alt="Miniature OCS" class="miniature">
-                <p>OCS Inventory est une application permettant de gérer un parc informatique. J'ai réalisé son installation sur un environnement linux, un exemple de remontée de poste et d'installation de plugins</p>
-                <div class="btn-box"><a href="documents/projets/Documentation_OCS_inventory.pdf" target="_blank" class="btn">Voir sa documentation</a></div>
-                <!-- Manuel utilisateur -->
-                <div class="btn-box"><a href="documents/projets/Documentation_OCS_inventory_Manuel.pdf" target="_blank" class="btn">Manuel utilisateur</a></div>
-            </div>
-
-            <div class="blocklist couleur-projet info general" style="margin-left: auto; margin-right: auto;">
-                <h3>Site vitrine</h3>
-                <img src="img/miniature_projets/logoCI_site_vitrine.jpg" alt="logoCI" class="miniature" style="width: 80%;">
-                <p>Une base de site vitrine fait de zéro en htlm, css, php et javascript. Réalisé pour une entreprise de prestation informatique.</p>
-                <div class="btn-box"><a href="documents/projets/Documentation_site_vitrine_CI.pdf" target="_blank" class="btn">Voir sa documentation</a></div>
-            </div>
-
-            <div class="blocklist couleur-projet info general" style="margin-left: auto; margin-right: auto;">
-                <h3>Adminer</h3>
-                <img src="img/miniature_projets/logoAdminer.jpg" alt="Miniature Adminer" class="miniature">
-                <p>Adminer est une application permettant de gérer des bases de données avec une interface web. J'ai réalisé son installation sur un environnement linux et effectué des test sur des données.</p>
-                <div class="btn-box"><a href="documents/projets/Documentation_adminer.pdf" target="_blank" class="btn">Voir sa documentation</a></div>
-                <!-- Manuel utilisateur -->
-                <div class="btn-box"><a href="documents/projets/Documentation_adminer_Manuel.pdf" target="_blank" class="btn">Manuel utilisateur</a></div>
-            </div>
-
+        <!-- Bouton "Voir plus" -->
+        <div class="btn-box" id="loadMoreContainer">
+            <button id="loadMoreBtn" onclick="loadMore()" class="btn" style="display: none;">Voir plus</button>
         </div>
     </div>
 
@@ -357,13 +149,7 @@
         </div>
     </div>
 
-    <footer>
-        <div class="content">
-            <div class="left"><p>© <span class="anneeActuelle">copyright-année</span> Ethan Lacomme</p></div>
-            <p id="last-update" style="color: antiquewhite;"></p>
-            <div class="right"><p>Site réalisé par Ethan Lacomme</p></div>
-        </div>
-    </footer>
+    <div id="site-footer"></div>
 
 </body>
 </html>

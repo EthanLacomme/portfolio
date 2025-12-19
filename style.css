@@ -17,7 +17,14 @@
 
 /* par défaut */
 body {
-    background: var(--BleuFonceSeparateur);
+    background: linear-gradient(
+        180deg,
+        rgba(8,45,85,1) 0%,          /* départ plus sombre */
+        rgba(6,40,76,1) 25%,         /* transition rapide vers sombre */
+        rgba(5,34,64,1) 80%,         /* transition plus lente vers très sombre */
+        var(--BleuFonce2) 100%       /* très sombre en bas */
+    );
+    padding-top: 10vh; /* Compense la hauteur du header fixe */
 }
 body h2 {
     color: var(--BleuClair);
@@ -98,6 +105,16 @@ table td img {
     flex-wrap: wrap;
 }
 
+/* Grille 4 colonnes pour les compétences */
+#programmation,
+#environnementDev {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    padding: 1rem 0;
+}
+
 
 
 
@@ -124,6 +141,60 @@ table td img {
 
 .btn-box button:hover {
     background-color: var(--JauneVif);
+}
+
+/* Style des selects pour filtres et colonnes */
+#projectsPerLineSelect, #filterSelect, #itemsPerPageSelect {
+    width: auto;
+    min-width: max-content;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 0.3em;
+    background-color: var(--Jaune);
+    color: var(--Noir);
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#projectsPerLineSelect:hover, #filterSelect:hover, #itemsPerPageSelect:hover {
+    background-color: var(--JauneVif);
+}
+
+#projectsPerLineSelect option, #filterSelect option, #itemsPerPageSelect option {
+    background-color: var(--BleuFonce);
+    color: var(--Blanc);
+}
+
+/* Style du bouton Voir plus */
+#loadMoreBtn {
+    background-color: var(--Jaune);
+    color: var(--Noir);
+    border: none;
+    padding: 0.8em 2em;
+    font-size: 1.2em;
+    border-radius: 0.3em;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    min-width: max-content;
+    line-height: 1.2;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+#loadMoreBtn:hover {
+    background-color: var(--JauneVif);
+    transform: scale(1.05);
+}
+
+#loadMoreContainer {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -213,14 +284,21 @@ table td img {
     
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* contenu aligné en haut */
     flex-direction: column;
 
     background-color: var(--BleuFonce);
     border-radius: 10px;
+    container-type: inline-size;
 }
 .blocklist > img {
     max-height: calc(150px + 1vw);
+}
+.blocklist iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    max-width: clamp(55%, 50% + 1.5cqi, 80%);
 }
 .blocklist a {
     padding: 5px;
@@ -233,6 +311,76 @@ table td img {
     padding: calc(5px + 0.5vw);
     margin: 0;
 
+}
+
+/* Améliorations intérieures des cartes projets (sans changer la taille globale) */
+.blocklist .project-card__title {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.3em;
+}
+.blocklist .project-card__title h3 {
+    margin: 0;
+}
+.blocklist .project-card__media {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.4em 0;
+}
+/* Les images ne sont plus enfant direct, on réplique la règle */
+.blocklist .project-card__media img {
+    max-height: clamp(170px, 150px + 3cqi, 280px);
+    height: auto;
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+.blocklist .project-card__media iframe {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+.blocklist .project-card__desc {
+    line-height: 1.4;
+    margin-top: 0.2em;
+}
+.blocklist .project-card__actions {
+    display: flex;
+    gap: 0.6em;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.6em;
+    margin-bottom: 0.6em; /* espace avec le bord bas de la carte */
+}
+.btn.btn--sm {
+    padding: 6px 12px;
+    font-size: 1em;
+    border-width: 2px;
+}
+
+/* Mise à l'échelle interne des cards selon leur largeur */
+.blocklist .project-card__title h3 {
+    font-size: clamp(1.1rem, 1rem + 1.6cqi, 1.8rem);
+}
+.blocklist .project-card__desc {
+    font-size: clamp(1.05rem, 0.95rem + 1.3cqi, 1.35rem);
+}
+.blocklist .project-card__actions .btn.btn--sm {
+    font-size: clamp(1rem, 0.9rem + 1cqi, 1.25rem);
+    padding: clamp(0.5rem, 0.45rem + 0.8cqi, 0.8rem) clamp(1rem, 0.9rem + 1.2cqi, 1.4rem);
+}
+
+/* Mode une colonne: tailles plus généreuses dans les cards */
+#all-projects.cols-1 .blocklist .project-card__title h3 {
+    font-size: clamp(1.25rem, 1.1rem + 2cqi, 2.2rem);
+}
+#all-projects.cols-1 .blocklist .project-card__desc {
+    font-size: clamp(1.1rem, 1rem + 1.6cqi, 1.5rem);
+}
+#all-projects.cols-1 .blocklist .project-card__actions .btn.btn--sm {
+    font-size: clamp(1.05rem, 0.95rem + 1.4cqi, 1.3rem);
+    padding: clamp(0.5rem, 0.45rem + 0.8cqi, 0.8rem) clamp(1rem, 0.9rem + 1.4cqi, 1.4rem);
 }
 
 /* blocklist en auto */
@@ -268,32 +416,37 @@ table td img {
 
 /* taille des blocs égale */
 .blocklist-1{
-    width: 20rem;
-    height: 20rem;
-    margin: 1%;
-    padding: 5px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    margin: 0;
+    padding: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     background-color: var(--BleuFonce);
-    border-radius: 10px;
-
-    /* réduction de la taille des blocs si l'écran est trop petit en réduisant la largeur et la hauteur */
-    min-width: 10rem;
-    max-width: 20%;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.blocklist-1:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
 }
 .blocklist-1 > img {
     /* image adaptée à la taille de son conteneur */
-    max-width: 100%;
+    max-width: 75%;
+    max-height: 60%;
+    object-fit: contain;
+    margin-bottom: 0.8rem;
 }
-/* .blocklist-1 a {
-    padding: 5px;
-    font-size: auto;
-} */
 .blocklist-1 p {
     /* S'aligne sur la hauteur des autres textes des blocs */
-    font-size: calc(1em + 1vw);
+    font-size: calc(0.95em + 0.5vw);
+    margin: 0;
+    text-align: center;
+    line-height: 1.3;
 }
 
 .lien {
@@ -434,8 +587,10 @@ table td img {
 
 /*---------HEADER---------*/
 header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
 
     display: flex;
@@ -490,7 +645,7 @@ header a:hover {color: var(--JauneVif);transition: 0.2s;}   header a:not(:hover)
 /*PARAMETRE PAR DEFAULT DE TOUTES LES SECTIONS*/
 .section {
     /*arrière plan*/
-    background: radial-gradient(circle, var(--BleuFonce) 0%, var(--BleuFonce2) 100%);
+    background: transparent;
 
     /*TAILLES*/
     padding-top: 2em;
@@ -540,8 +695,8 @@ header a:hover {color: var(--JauneVif);transition: 0.2s;}   header a:not(:hover)
             /* MES PROJETS */
     @media screen and (min-width: 800px){
         #projets {
-            /* si la souris passe sur un projet */
-            .blocklist:hover {
+            /* si la souris passe sur un projet (sauf en mode 1 colonne) */
+            #all-projects:not(.cols-1) .blocklist:hover {
                 transform: scale(1.02);
                 transition: 0.5s;
             }
