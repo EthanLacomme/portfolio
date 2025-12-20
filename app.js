@@ -1,14 +1,31 @@
-// Modèles communs injectés par JS (pas de fetch nécessaire)
+// ===========================
+// TEMPLATES HTML
+// ===========================
+
+/**
+ * Template du header contenant :
+ * - Nom du portfolio
+ * - Bouton de changement de langue (drapeau + texte)
+ * - Menu de navigation avec attributs data-i18n pour traduction
+ * - Menu burger pour mobile
+ */
 const headerTemplate = `
 <header>
-    <div class="nom"><h1>Ethan Lacomme</h1></div>
+    <div class="nom">
+        <h1>Ethan Lacomme</h1>
+        <div class="language-switcher">
+            <button id="lang-toggle-btn" class="lang-btn" onclick="toggleLanguage()">
+                <span id="lang-icon">🇺🇸</span> <span id="lang-text">EN</span>
+            </button>
+        </div>
+    </div>
     <div class="menu">
         <ul>
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#informations">A propos de moi</a></li>
-            <li><a href="#competences">Mes compétences</a></li>
-            <li><a href="#projets">Mes projets</a></li>
-            <li><a href="#contact">Me contacter</a></li>
+            <li><a href="#accueil" data-i18n="nav.accueil">Accueil</a></li>
+            <li><a href="#informations" data-i18n="nav.aPropos">A propos de moi</a></li>
+            <li><a href="#competences" data-i18n="nav.competences">Mes compétences</a></li>
+            <li><a href="#projets" data-i18n="nav.projets">Mes projets</a></li>
+            <li><a href="#contact" data-i18n="nav.contact">Me contacter</a></li>
         </ul>
     </div>
     <div class="burger-menu" onclick="toggleMenu()">
@@ -19,36 +36,62 @@ const headerTemplate = `
 </header>
 `;
 
+/**
+ * Template du footer contenant :
+ * - Copyright avec année dynamique
+ * - Date de dernière mise à jour (récupérée depuis GitHub API)
+ * - Crédit du site avec traduction
+ */
 const footerTemplate = `
 <footer>
     <div class="content">
-        <div class="left"><p>© <span class="anneeActuelle">copyright-année</span> Ethan Lacomme</p></div>
+        <div class="left"><p>© <span class="anneeActuelle"></span> Ethan Lacomme</p></div>
         <p id="last-update" style="color: antiquewhite;"></p>
-        <div class="right"><p>Site réalisé par Ethan Lacomme</p></div>
+        <div class="right"><p data-i18n="footer.credit">Site réalisé par Ethan Lacomme</p></div>
     </div>
 </footer>
 `;
 
+/**
+ * Injecte les templates header et footer dans le DOM
+ * Appelle ensuite les fonctions de traduction pour initialiser la langue
+ */
 function injectSharedParts() {
+    // Injection du header
     const headerTarget = document.getElementById('site-header');
     if (headerTarget) headerTarget.innerHTML = headerTemplate;
 
+    // Injection du footer
     const footerTarget = document.getElementById('site-footer');
     if (footerTarget) footerTarget.innerHTML = footerTemplate;
+    
+    // Initialisation du bouton de langue (drapeau + texte)
+    if (typeof updateLanguageButton === 'function') {
+        updateLanguageButton();
+    }
+    
+    // Application des traductions à tous les éléments [data-i18n]
+    if (typeof updateAllTranslations === 'function') {
+        updateAllTranslations();
+    }
 }
 
-// Variables globales pour la gestion des projets
-let allProjects = [];
-let filteredProjects = [];
-let currentCategory = 'all';
-let currentColumns = 2;
-let itemsPerPage = 4;
-let displayedItems = 0;
+// ===========================
+// VARIABLES GLOBALES
+// ===========================
 
-// Variables globales pour la gestion des compétences
-let competencesItemsPerPage = 8;
-let displayedProgrammation = 0;
-let displayedEnvironnement = 0;
+// --- Gestion des projets ---
+let allProjects = [];          // Tous les projets chargés depuis projets-data.js
+let filteredProjects = [];     // Projets après application du filtre de catégorie
+let currentCategory = 'all';   // Catégorie active : 'all', 'jeux', 'general'
+let currentColumns = 2;        // Nombre de colonnes d'affichage (1-4, max 2 sur mobile)
+let itemsPerPage = 4;          // Nombre de projets à afficher par page
+let displayedItems = 0;        // Nombre de projets actuellement affichés
+
+// --- Gestion des compétences ---
+let competencesItemsPerPage = 8;  // Nombre de compétences à charger par clic "Voir plus"
+let displayedProgrammation = 0;   // Nombre de compétences programmation affichées
+let displayedEnvironnement = 0;   // Nombre de compétences environnement affichées
 
 // Réinitialise l'état visuel des sélecteurs sur les valeurs par défaut
 function resetControlsToDefaults() {
@@ -82,25 +125,49 @@ async function loadProjects() {
     }
 }
 
-// Créer le HTML d'un projet
+/**
+ * Crée le HTML d'une carte de projet avec traduction
+ * @param {Object} project - Objet projet depuis projets-data.js
+ * @returns {string} - Code HTML de la carte projet
+ */
 function createProjectHTML(project) {
+    // Récupérer la langue actuelle depuis translations.js
+    const lang = window.currentLanguage || 'fr';
+    
+    // Utiliser les traductions si disponibles pour ce projet
+    const projectData = window.TRANSLATIONS && window.TRANSLATIONS[lang]?.projetsData?.[project.id];
+    const titre = projectData?.titre || project.titre;
+    const description = projectData?.description || project.description;
+    
     let mediaHTML = '';
     if (project.type === 'video') {
         mediaHTML = `<iframe src="${project.media}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
     } else {
         const style = project.mediaStyle || '';
-        mediaHTML = `<img src="${project.media}" alt="${project.titre}" class="miniature" style="${style}">`;
+        mediaHTML = `<img src="${project.media}" alt="${titre}" class="miniature" style="${style}">`;
     }
 
-    let liensHTML = project.liens.map(lien => 
-        `<a href="${lien.url}" target="_blank" class="btn btn--sm">${lien.texte}</a>`
-    ).join('');
+    // Traduire les textes des liens
+    let liensHTML = project.liens.map(lien => {
+        let texteTranslate = lien.texte;
+        const liensTranslations = window.TRANSLATIONS?.[lang]?.projetsData?.liens;
+        
+        if (liensTranslations) {
+            if (lien.texte.includes('documentation')) texteTranslate = liensTranslations.documentation;
+            else if (lien.texte.includes('Manuel') || lien.texte.includes('utilisateur')) texteTranslate = liensTranslations.manuel;
+            else if (lien.texte.includes('github')) texteTranslate = liensTranslations.github;
+            else if (lien.texte.includes('itch')) texteTranslate = liensTranslations.itch;
+            else if (lien.texte.includes('savoir plus')) texteTranslate = liensTranslations.savoirPlus;
+        }
+        
+        return `<a href="${lien.url}" target="_blank" class="btn btn--sm">${texteTranslate}</a>`;
+    }).join('');
 
     return `
         <div class="blocklist couleur-projet info ${project.categorie}" style="margin-left: auto; margin-right: auto;">
-            <div class="project-card__title"><h3>${project.titre}</h3></div>
+            <div class="project-card__title"><h3>${titre}</h3></div>
             <div class="project-card__media">${mediaHTML}</div>
-            <p class="project-card__desc">${project.description}</p>
+            <p class="project-card__desc">${description}</p>
             <div class="project-card__actions">${liensHTML}</div>
         </div>
     `;
@@ -167,11 +234,77 @@ function filterProjects(category) {
     renderProjects(true);
 }
 
+/**
+ * Recharge l'affichage des projets lors du changement de langue
+ * Conserve le nombre d'items affichés pour ne pas réinitialiser la pagination
+ */
+function refreshProjectsDisplay() {
+    const container = document.getElementById('all-projects');
+    if (!container) return;
+    
+    // Sauvegarder le nombre d'items affichés
+    const previousDisplayedItems = displayedItems;
+    
+    // Vider le conteneur
+    container.innerHTML = '';
+    
+    // Réinitialiser le compteur
+    displayedItems = 0;
+    
+    // Afficher le même nombre d'items qu'avant
+    const itemsToShow = Math.min(previousDisplayedItems, filteredProjects.length);
+    for (let i = 0; i < itemsToShow; i++) {
+        container.innerHTML += createProjectHTML(filteredProjects[i]);
+    }
+    
+    displayedItems = itemsToShow;
+    updateColumnsWidth();
+    
+    // Mettre à jour la visibilité du bouton "Voir plus"
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    if (loadMoreBtn) {
+        if (itemsPerPage === -1 || displayedItems >= filteredProjects.length) {
+            loadMoreBtn.style.display = 'none';
+        } else {
+            loadMoreBtn.style.display = 'block';
+        }
+    }
+}
+
 // Affiche les projets avec X colonnes (1, 2, 3 ou 4)
+// Affiche les projets avec X colonnes (1, 2, 3 ou 4)
+// Force maximum 2 colonnes sur petits écrans
 function setProjectsPerLine(numColumns) {
-    currentColumns = parseInt(numColumns);
+    let columns = parseInt(numColumns);
+    // Limiter à 2 colonnes max sur petits écrans
+    if (window.innerWidth <= 1000) {
+        columns = Math.min(columns, 2);
+    }
+    currentColumns = columns;
     updateColumnsWidth();
 }
+
+// Gérer le responsive des colonnes au redimensionnement
+function handleWindowResize() {
+    const columnSelect = document.getElementById('projectsPerLineSelect');
+    if (window.innerWidth <= 1000) {
+        // Forcer maximum 2 colonnes
+        currentColumns = Math.min(currentColumns, 2);
+        if (columnSelect) {
+            columnSelect.value = String(Math.min(parseInt(columnSelect.value), 2));
+            columnSelect.disabled = true;
+        }
+    } else {
+        // Réactiver la sélection sur grands écrans
+        if (columnSelect) {
+            columnSelect.disabled = false;
+        }
+    }
+    updateColumnsWidth();
+}
+
+// Ajouter l'event listener au redimensionnement
+window.addEventListener('resize', handleWindowResize);
 
 // Changer le nombre d'éléments par page
 function setItemsPerPage(items) {
@@ -271,10 +404,29 @@ function loadMoreCompetences(type) {
     renderCompetences(type, false);
 }
 
+// ===========================
+// INITIALISATION AU CHARGEMENT
+// ===========================
+
+/**
+ * Événement déclenché quand le DOM est prêt (mais avant les images)
+ * Initialise tous les composants du portfolio
+ */
 document.addEventListener('DOMContentLoaded', function() {
+    // Injection du header et footer avec traductions
     injectSharedParts();
+    
+    // Réinitialisation des contrôles à leurs valeurs par défaut
     resetControlsToDefaults();
+    
+    // Chargement et affichage des projets
     loadProjects();
+    
+    // Chargement et affichage des compétences
+    loadCompetences();
+    
+    // Application du mode responsive
+    handleWindowResize();
 });
 
 // Quand la page est entièrement chargée
@@ -358,10 +510,4 @@ function toggleContent(id) {
         : '<span class="icon-toggle">▲</span>';
 }
 
-// Initialiser le chargement des projets au démarrage
-document.addEventListener('DOMContentLoaded', function() {
-    injectSharedParts();
-    resetControlsToDefaults();
-    loadProjects();
-    loadCompetences();
-});
+// Note : L'initialisation est gérée par le DOMContentLoaded déclaré plus haut (ligne ~340)

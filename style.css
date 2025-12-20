@@ -608,6 +608,47 @@ header .nom {
     font-size: 1rem;
     margin-left: 1rem;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.language-switcher {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.lang-btn {
+    padding: 0.6rem 1.2rem;
+    background-color: transparent;
+    color: var(--Orange);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: auto;
+    height: auto;
+    min-width: fit-content;
+}
+
+.lang-btn:hover {
+    background-color: rgba(255, 210, 75, 0.2);
+    transform: scale(1.05);
+}
+
+#lang-icon {
+    font-size: 1.2rem;
+}
+
+#lang-text {
+    font-size: 0.9rem;
 }
 
 /* Burger menu */
@@ -782,6 +823,16 @@ footer .content {
 
 /* Si taille de l'écran inférieure à la valeur en px, on affiche le menu en burger */
 @media screen and (max-width: 1000px){
+    /* Force maximum 2 colonnes sur petits écrans */
+    #all-projects {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    #all-projects.cols-1 .blocklist,
+    #all-projects.cols-3 .blocklist,
+    #all-projects.cols-4 .blocklist {
+        width: calc(50% - 2%) !important;
+    }
+
     /*----HEADER----*/
     
     /*barre de menu*/
