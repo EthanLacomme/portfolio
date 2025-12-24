@@ -1,10 +1,9 @@
-// Données des projets disponibles en local sans fetch (file://)
 // Exposées via une variable globale pour app.js
 window.PROJETS = [
     {
         "id": 1,
         "titre": "Adminer",
-        "categorie": "general",
+        "categories": ["programmation"],
         "type": "image",
         "media": "img/miniature_projets/logoAdminer.jpg",
         "description": "Adminer est une application permettant de gérer des bases de données avec une interface web. J'ai réalisé son installation sur un environnement linux et effectué des test sur des données.",
@@ -16,7 +15,7 @@ window.PROJETS = [
     {
         "id": 2,
         "titre": "Site vitrine",
-        "categorie": "general",
+        "categories": ["programmation"],
         "type": "image",
         "media": "img/miniature_projets/logoCI_site_vitrine.jpg",
         "mediaStyle": "width: 80%;",
@@ -28,7 +27,7 @@ window.PROJETS = [
     {
         "id": 3,
         "titre": "OCS Inventory",
-        "categorie": "general",
+        "categories": ["programmation"],
         "type": "image",
         "media": "img/miniature_projets/logoOCS.jpg",
         "description": "OCS Inventory est une application permettant de gérer un parc informatique. J'ai réalisé son installation sur un environnement linux, un exemple de remontée de poste et d'installation de plugins",
@@ -40,7 +39,7 @@ window.PROJETS = [
     {
         "id": 4,
         "titre": "Snipe IT",
-        "categorie": "general",
+        "categories": ["programmation"],
         "type": "image",
         "media": "img/miniature_projets/logoSnipeIT.jpg",
         "mediaStyle": "width: 80%;",
@@ -53,7 +52,7 @@ window.PROJETS = [
     {
         "id": 5,
         "titre": "Veille sur les IA et l'usurpation d'identité",
-        "categorie": "redaction",
+        "categories": ["other"],
         "type": "image",
         "media": "img/miniature_veilles/IAetUsurpationDidentité.jpg",
         "description": "Les IA sont de plus en plus présentes dans notre quotidien, malgré les avantages qu'elles apportent, elles sont néanmoins aussi utilisées pour des raison contestables.",
@@ -64,7 +63,7 @@ window.PROJETS = [
     {
         "id": 6,
         "titre": "GLPI",
-        "categorie": "general",
+        "categories": ["programmation"],
         "type": "image",
         "media": "img/miniature_projets/logoGLPI.jpg",
         "description": "GLPI est une application permettant de gérer un parc informatique. J'ai réalisé son installation sur un environnement linux, un exemple de remontée de poste et de gestion de tickets",
@@ -76,7 +75,7 @@ window.PROJETS = [
     {
         "id": 7,
         "titre": "Mamoot",
-        "categorie": "general",
+        "categories": ["programmation"],
         "type": "image",
         "media": "img/miniature_projets/logoMamoot.jpg",
         "description": "Mamoot est un site pour créer et jouer à des quiz, conçu avec le framework Symfony. J'ai pu réaliser la mise en forme de la maquette vers le css, backend administrateur, animation du podium en javascript...",
@@ -87,7 +86,7 @@ window.PROJETS = [
     {
         "id": 8,
         "titre": "Gestion des véhicules (GVH)",
-        "categorie": "general",
+        "categories": ["programmation"],
         "type": "image",
         "media": "img/miniature_projets/logoCNFPT_GVH.jpg",
         "description": "GVH est une application permettant de gérer et réserver des véhicules. J'y ai développé un système d'images et de statistiques.",
@@ -98,7 +97,7 @@ window.PROJETS = [
     {
         "id": 9,
         "titre": "Jeux de plateforme",
-        "categorie": "jeux",
+        "categories": ["jeux"],
         "type": "video",
         "media": "https://www.youtube-nocookie.com/embed/sjP64E0JVOI?si=OvYiXru62Pv62DT0",
         "description": "Un projet de jeux de plateforme, réalisé sur unreal engine 5, le but est de finir les niveau en évitant les obstacles.",
@@ -109,7 +108,7 @@ window.PROJETS = [
     {
         "id": 10,
         "titre": "Jeux de cible",
-        "categorie": "jeux",
+        "categories": ["jeux"],
         "type": "video",
         "media": "https://www.youtube-nocookie.com/embed/dJzHHtEbLH8?si=BBP1qBX7dkkg1irQ",
         "description": "Un projet de jeux de cible, réalisé sur unreal engine 5, le but est de toucher toutes les cibles placé dans le niveau pour terminer le niveau.",
@@ -120,7 +119,7 @@ window.PROJETS = [
     {
         "id": 11,
         "titre": "Jeux de tower defense",
-        "categorie": "jeux",
+        "categories": ["jeux"],
         "type": "video",
         "media": "https://www.youtube-nocookie.com/embed/4IIcq8GGi2E?si=N9s6AnU_JdgucopC",
         "description": "Un projet de jeux Tower Defense, réalisé sur unreal engine 5, le but est de défendre sa base contre des vagues d'ennemis en plaçant des tours à des enplacements stratégiques.",
@@ -131,7 +130,7 @@ window.PROJETS = [
     {
         "id": 12,
         "titre": "Escape Game VR",
-        "categorie": "jeux",
+        "categories": ["jeux", "levelDesign"],
         "type": "video",
         "media": "https://www.youtube-nocookie.com/embed/QWWXDLYKvv8?si=WBSWRbes3CtIDiBZ",
         "description": "Un projet d'escape game que j'ai réalisé pour de la réalité virtuel sur Unreal Engine 5, le but est de résoudre les différentes énigmes pour s'échapper de la zone.",
@@ -142,7 +141,7 @@ window.PROJETS = [
     {
         "id": 13,
         "titre": "RechercheEnNature",
-        "categorie": "jeux",
+        "categories": ["jeux"],
         "type": "video",
         "media": "https://www.youtube-nocookie.com/embed/xb1uXeVCSaw?si=yspRiBUd8IMXw5rW",
         "description": "Un projet que j'ai réalisé sur Unreal Engine 5, le but est de collectez des objets pour passez les différentes zone et récupérer le coffre au trésor.",
@@ -153,7 +152,7 @@ window.PROJETS = [
     {
         "id": 14,
         "titre": "LeProf",
-        "categorie": "jeux",
+        "categories": ["jeux"],
         "type": "video",
         "media": "https://www.youtube-nocookie.com/embed/qsk46R2fxNU?si=7gpR78ZRvdfVbMR1",
         "description": "Un projet que j'ai réalisé sur Unreal Engine, le but est de répondre au questions des tableaux avec une réaction adéquate du professeur en fonction d'une bonne ou mauvaise réponse.",
@@ -164,7 +163,7 @@ window.PROJETS = [
     {
         "id": 15,
         "titre": "Combat d'la mort",
-        "categorie": "jeux",
+        "categories": ["jeux"],
         "type": "video",
         "media": "https://www.youtube-nocookie.com/embed/c5ezRQF-AtQ?si=KNejult0PJ7SGlST",
         "description": "Un projet que j'ai réalisé avec un camarade sur Unreal Engine, le but est d'affronter un boss en 4 phases qui vont être de plus en plus compliqué.",
@@ -176,7 +175,7 @@ window.PROJETS = [
     {
         "id": 16,
         "titre": "Avoiding Space",
-        "categorie": "jeux",
+        "categories": ["jeux", "programmation"],
         "type": "video",
         "media": "https://www.youtube-nocookie.com/embed/8i7QenSZCpA?si=NSR06fKMRgVWxxAi",
         "description": "Un projet sur kinect réalisé à un stage avec un camarade sur Unity, le but est de contrôler un vaisseau et d'esquiver le plus possible d'obstacle pour survivre le plus longtemps et avoir un bon score de temps.",
@@ -187,7 +186,7 @@ window.PROJETS = [
     {
         "id": 17,
         "titre": "Vr Lab",
-        "categorie": "jeux",
+        "categories": ["jeux", "levelDesign"],
         "type": "video",
         "media": "https://www.youtube-nocookie.com/embed/95kro0N5KEk?si=S_ZUcBYvfcV4FMJ6",
         "description": "Un projet de réalité virtuel de fin d'année fait sur Unreal Engine, avec 4 salles comportant différentes mécaniques.",

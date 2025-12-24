@@ -93,6 +93,32 @@ let competencesItemsPerPage = 8;  // Nombre de compétences à charger par clic 
 let displayedProgrammation = 0;   // Nombre de compétences programmation affichées
 let displayedEnvironnement = 0;   // Nombre de compétences environnement affichées
 
+// Met à jour les options visibles du sélecteur de colonnes selon la contrainte courante
+function updateColumnSelectOptions(maxAllowed) {
+    const columnSelect = document.getElementById('projectsPerLineSelect');
+    if (!columnSelect) return;
+
+    Array.from(columnSelect.options).forEach(opt => {
+        const val = parseInt(opt.value);
+        // Cache les options au-dessus de la limite (maxAllowed peut être null pour aucune limite)
+        opt.hidden = maxAllowed !== null && val > maxAllowed;
+    });
+
+    // Si la valeur actuelle dépasse la limite, on la rabaisse
+    if (maxAllowed !== null && parseInt(columnSelect.value) > maxAllowed) {
+        columnSelect.value = String(maxAllowed);
+    }
+}
+
+// Calcule le nombre maximum de colonnes autorisé en fonction de la largeur de fenêtre
+function getMaxColumnsForWidth() {
+    const w = window.innerWidth;
+    if (w <= 600) return 1;      // Mobile étroit
+    if (w <= 900) return 2;      // Petit/moyen écran
+    if (w <= 1200) return 3;     // Tablette / laptop
+    return 4;                    // Grand écran
+}
+
 // Réinitialise l'état visuel des sélecteurs sur les valeurs par défaut
 function resetControlsToDefaults() {
     const filter = document.getElementById('filterSelect');
@@ -163,8 +189,11 @@ function createProjectHTML(project) {
         return `<a href="${lien.url}" target="_blank" class="btn btn--sm">${texteTranslate}</a>`;
     }).join('');
 
+    // Générer les classes CSS depuis les catégories
+    const categoriesClasses = project.categories ? project.categories.join(' ') : '';
+    
     return `
-        <div class="blocklist couleur-projet info ${project.categorie}" style="margin-left: auto; margin-right: auto;">
+        <div class="blocklist couleur-projet info ${categoriesClasses}" style="margin-left: auto; margin-right: auto;">
             <div class="project-card__title"><h3>${titre}</h3></div>
             <div class="project-card__media">${mediaHTML}</div>
             <p class="project-card__desc">${description}</p>
@@ -215,10 +244,6 @@ function updateColumnsWidth() {
     container.classList.remove('cols-1', 'cols-2', 'cols-3', 'cols-4');
     // Ajouter la nouvelle classe
     container.classList.add('cols-' + currentColumns);
-    
-    projects.forEach(project => {
-        project.style.width = (100 / currentColumns) - 2 + '%'; // 2% pour les marges
-    });
 }
 
 // Filtrer les projets par catégorie
@@ -228,7 +253,9 @@ function filterProjects(category) {
     if (category === 'all') {
         filteredProjects = allProjects;
     } else {
-        filteredProjects = allProjects.filter(project => project.categorie === category);
+        filteredProjects = allProjects.filter(project => 
+            project.categories && project.categories.includes(category)
+        );
     }
     
     renderProjects(true);
@@ -273,12 +300,14 @@ function refreshProjectsDisplay() {
 
 // Affiche les projets avec X colonnes (1, 2, 3 ou 4)
 // Affiche les projets avec X colonnes (1, 2, 3 ou 4)
-// Force maximum 2 colonnes sur petits écrans
 function setProjectsPerLine(numColumns) {
     let columns = parseInt(numColumns);
-    // Limiter à 2 colonnes max sur petits écrans
-    if (window.innerWidth <= 1000) {
-        columns = Math.min(columns, 2);
+    const maxAllowed = getMaxColumnsForWidth();
+    columns = Math.min(columns, maxAllowed);
+    updateColumnSelectOptions(maxAllowed);
+    const columnSelect = document.getElementById('projectsPerLineSelect');
+    if (columnSelect && columnSelect.value !== String(columns)) {
+        columnSelect.value = String(columns); // refléter la valeur réellement appliquée
     }
     currentColumns = columns;
     updateColumnsWidth();
@@ -287,24 +316,24 @@ function setProjectsPerLine(numColumns) {
 // Gérer le responsive des colonnes au redimensionnement
 function handleWindowResize() {
     const columnSelect = document.getElementById('projectsPerLineSelect');
-    if (window.innerWidth <= 1000) {
-        // Forcer maximum 2 colonnes
-        currentColumns = Math.min(currentColumns, 2);
-        if (columnSelect) {
-            columnSelect.value = String(Math.min(parseInt(columnSelect.value), 2));
-            columnSelect.disabled = true;
-        }
-    } else {
-        // Réactiver la sélection sur grands écrans
-        if (columnSelect) {
-            columnSelect.disabled = false;
-        }
+    const maxAllowed = getMaxColumnsForWidth();
+    updateColumnSelectOptions(maxAllowed);
+
+    // Ajuster le nombre de colonnes courant si supérieur à la limite actuelle
+    currentColumns = Math.min(currentColumns, maxAllowed);
+
+    if (columnSelect) {
+        const clampedValue = String(Math.min(parseInt(columnSelect.value) || maxAllowed, maxAllowed));
+        columnSelect.value = clampedValue;
+        columnSelect.disabled = false;
     }
     updateColumnsWidth();
 }
 
 // Ajouter l'event listener au redimensionnement
 window.addEventListener('resize', handleWindowResize);
+// Appliquer une première fois au chargement pour aligner le sélecteur avec la taille actuelle
+handleWindowResize();
 
 // Changer le nombre d'éléments par page
 function setItemsPerPage(items) {

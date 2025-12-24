@@ -105,14 +105,59 @@ table td img {
     flex-wrap: wrap;
 }
 
-/* Grille 4 colonnes pour les compétences */
+/* Grille responsive pour la section Contact (similaire aux compétences) */
+#contact .contentblock {
+    display: grid;
+    gap: 1rem;
+    padding: 0 clamp(0.5rem, 3vw, 2rem);
+    grid-template-columns: repeat(2, minmax(240px, 1fr)); /* 2 colonnes par défaut */
+    align-items: stretch;
+    justify-content: center;
+}
+#contact .blocklist.info {
+    width: 100%;
+    margin: 0;
+    justify-content: center;
+}
+
+@media screen and (max-width: 900px) {
+    #contact .contentblock {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #contact .contentblock {
+        grid-template-columns: 1fr; /* 1 colonne sur mobile étroit */
+    }
+}
+
+/* Grille responsive pour les compétences */
 #programmation,
 #environnementDev {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* 4 colonnes par défaut */
     gap: 1.5rem;
     width: 100%;
     padding: 1rem 0;
+}
+
+/* Tablette : 3 colonnes */
+@media screen and (max-width: 900px) {
+    #programmation,
+    #environnementDev {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+    }
+}
+
+/* Mobile : 2 colonnes */
+@media screen and (max-width: 600px) {
+    #programmation,
+    #environnementDev {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
 }
 
 
@@ -275,11 +320,11 @@ table td img {
 
 
 
-/* blocklist par défaut avec 2 blocs par ligne */
+/* Cards projets : largeur pilotée par la grille (plus de width fixe) */
 .blocklist {
-    width: 48%; /* Deux blocs par ligne par défaut */
-    box-sizing: border-box; /* Pour inclure les bordures et les marges dans la largeur définie */
-    margin: 1%;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
     padding: 5px;
     
     display: flex;
@@ -821,18 +866,42 @@ footer .content {
 
 }
 
-/* Si taille de l'écran inférieure à la valeur en px, on affiche le menu en burger */
-@media screen and (max-width: 1000px){
-    /* Force maximum 2 colonnes sur petits écrans */
-    #all-projects {
-        grid-template-columns: repeat(2, 1fr) !important;
-    }
-    #all-projects.cols-1 .blocklist,
-    #all-projects.cols-3 .blocklist,
-    #all-projects.cols-4 .blocklist {
-        width: calc(50% - 2%) !important;
+/* Grille projets pilotée par JS (cols-1 à cols-4) avec espacements latéraux conservés */
+#all-projects {
+    display: grid;
+    gap: 1.5rem;
+    padding: 1rem clamp(1rem, 4vw, 3rem);
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    justify-content: center;
+}
+#all-projects.cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
+#all-projects.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+#all-projects.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+#all-projects.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+
+@media screen and (max-width: 1200px) {
+    header .menu ul li a {
+        font-size: calc(10px + 0.5vw);
+        padding: 5px 10px;
     }
 
+    header .nom {
+        font-size: calc(10px + 0.6vw);
+    }
+
+    #all-projects {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+}
+
+@media screen and (max-width: 900px){
+    #all-projects {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+}
+
+/* Si taille de l'écran inférieure à la valeur en px, on affiche le menu en burger */
+@media screen and (max-width: 1000px){
     /*----HEADER----*/
     
     /*barre de menu*/
@@ -857,21 +926,143 @@ footer .content {
         padding: 10px 0;
     }
 
+    /* Si taille de l'écran inférieure à la valeur en px, on affiche le menu en burger */
+    @media screen and (max-width: 1000px){
+        /*----HEADER----*/
+    
+        /*barre de menu*/
+        header .menu ul.show {
+            display: flex;
+        }
+        header .menu ul {
+            display: none;
+            flex-direction: column;
+            /*position en dessous du header*/
+            position: fixed;
+            top: clamp(3rem, 5vh + 1rem, 5rem);
+            left: 0;
+            width: 100%;
+            height: auto;
+            /* arrière plan avec transparence */
+            background-color: rgba(51, 51, 51,0.9);
+            z-index: 19;
+            padding: 0.5rem 0;
+        }
+        header .menu li {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .burger-menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            /* On le place à droite et on le fait sortir des bloc de la droite */
+            position: fixed;
+            top: 5%;
+            right: 5%;
+        }
+        /* espace entre chaque barre du menu burger */
+        .burger-menu .bar {
+            height: 4px;
+            width: 100%;
+            background-color: var(--Blanc);
+            margin: 4px 0;
+            border-radius: 10px;
+        }
+
+        /* Animation du burger menu désactivée */
+    }
+/* Header responsive mobile : éviter les débordements */
+@media screen and (max-width: 1000px){
+    header {
+        height: auto;
+        padding: 0.5rem clamp(0.5rem, 2vw, 1rem);
+        gap: 0.5rem;
+        flex-wrap: nowrap;
+    }
+    
+    header .nom { 
+        gap: 0.5rem; 
+        font-size: clamp(0.75rem, 3vw, 0.95rem);
+        margin-left: 0;
+        flex-shrink: 1;
+        min-width: 0;
+    }
+    
+    header .nom h1 { 
+        font-size: clamp(0.7rem, 4vw, 1.2rem);
+        white-space: nowrap;
+    }
+    
+    .language-switcher { 
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+    
+    .lang-btn { 
+        padding: 0.4rem 0.7rem; 
+        font-size: clamp(0.8rem, 3vw, 0.95rem);
+        white-space: nowrap;
+    }
+    
+    #lang-icon {
+        font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+    }
+    
+    #lang-text {
+        font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+    }
+
+    .burger-menu { 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        width: 35px; 
+        height: 35px; 
+        cursor: pointer; 
+        position: relative; 
+        margin-left: 0.5rem;
+        flex-shrink: 0;
+    }
+    
+    .burger-menu .bar { 
+        height: 3px; 
+        width: 100%; 
+        background-color: var(--Blanc); 
+        margin: 3px 0; 
+        border-radius: 10px; 
+    }
+
+    header a { 
+        font-size: clamp(0.9rem, 3.5vw, 1.1rem); 
+        padding: 8px 12px; 
+        margin-left: 0; 
+    }
+}
+
+/* Très petit écran : encore plus compact */
+@media screen and (max-width: 400px){
+    header {
+        padding: 0.4rem 0.5rem;
+    }
+    
+    header .nom h1 {
+        font-size: clamp(0.8rem, 5vw, 1rem);
+    }
+    
+    .lang-btn {
+        padding: 0.3rem 0.5rem;
+    }
+    
     .burger-menu {
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        padding: 10px;
-
-    }
-
-    .burger-menu > div {
         width: 30px;
-        height: 3px;
-        background-color: var(--Jaune);
-        margin: 6px 0;
-        align-self: flex-end;
+        height: 30px;
+        margin-left: 0.3rem;
     }
-    /*----------------------------------*/            
-
 }
