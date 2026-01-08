@@ -193,5 +193,68 @@ window.PROJETS = [
         "liens": [
             {"texte": "Voir sur github", "url": "https://github.com/Ethanific/VrLab/releases/tag/1.0.0"}
         ]
-    }
+    },
+    {
+        "id": 19,
+        "titre": "Layout - The Crew San Antonio",
+        "categories": ["levelDesign"],
+        "type": "image",
+        "media": "img/miniature_projets/LogoSanAntonio.jpg",
+        "description": "Un layout de niveau créé par rapport au centre-ville de San Antonio en prenant en compte une taille réduite, 3 points d'intérêt et les mécaniques du jeu The Crew. Dans ce document j'y montre plusieurs version de ce layout en fonction de son avancement.",
+        "liens": [
+            {"texte": "Voir le document", "url": "documents/jeux/The Crew - San Antonio.pdf"}
+        ]
+    },
+    {
+        "id": 18,
+        "titre": "Blockout Babble",
+        "categories": ["jeux", "levelDesign"],
+        "type": "video",
+        "media": "https://www.youtube-nocookie.com/embed/IaW3MqSHqPM?si=rCUKoMxTcmMnTsCE",
+        "description": "J'ai travaillé sur ce blockout de niveau sur un projet unity qui nous a été fournit en prenant en compte les élément de gameplay et de level design pour guider le joueur à travers les environs et de traverser les obstacles.",
+    },
+    // {
+    //     "id": 20,
+    //     "titre": "Layout - Blockout Médiéval (TP_FDGD)",
+    //     "categories": ["jeux", "levelDesign"],
+    //     "type": "image",
+    //     "media": "img/miniature_projets/layout_medieval.jpg",
+    //     "description": "Un layout médiéval créé dans le cadre d'un travail pratique, explorant la composition spatiale en environnement fantasy.",
+    //     "liens": [
+    //         {"texte": "En savoir plus", "url": "redaction_projet/layout_medieval/index.html"}
+    //     ]
+    // },
+    // {
+    //     "id": 21,
+    //     "titre": "Gamagoramon",
+    //     "categories": ["jeux", "programmation"],
+    //     "type": "image",
+    //     "media": "img/miniature_projets/gamagoramon.jpg",
+    //     "description": "Un jeux de type Pokémon like simplifié, Le but est remporter le plus de combats possible avec son équipe de monstre généré aléatoirement tout comme celle de chaque équipe adverse. Le jeux a été réalisé sur Unity avec un camarade.",
+    //     "liens": [
+    //         {"texte": "En savoir plus", "url": "redaction_projet/gamagoramon/index.html"}
+    //     ]
+    // },
+    // {
+    //     "id": 22,
+    //     "titre": "RollABall",
+    //     "categories": ["jeux", "programmation"],
+    //     "type": "video",
+    //     "media": "",
+    //     "description": "Un jeu de plateforme basé sur le contrôle d'une balle avec des mécaniques de physique sur Unity.",
+    //     "liens": [
+    //         {"texte": "Voir sur github", "url": "https://github.com"}
+    //     ]
+    // },
+    // {
+    //     "id": 23,
+    //     "titre": "Projet du GGS",
+    //     "categories": ["other"],
+    //     "type": "image",
+    //     "media": "img/miniature_projets/projet_ggs.jpg",
+    //     "description": "Un projet réalisé au GGS",
+    //     "liens": [
+    //         {"texte": "Voir sur github", "url": "https://github.com"}
+    //     ]
+    // }
 ];

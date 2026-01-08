@@ -1,0 +1,356 @@
+/* ============================
+   REDACTION DE PROJET - CSS
+   Responsive et minimaliste
+   ============================ */
+
+:root {
+    --max-width: 900px;
+    --padding-mobile: 1.5rem;
+    --padding-desktop: 2rem;
+    --Jaune: rgb(225, 255, 106);
+    --JauneVif: rgb(255, 255, 0);
+    --BleuClair: rgb(147, 226, 255);
+    --Orange: rgb(255, 210, 75);
+    --BleuFonce: rgba(10,50,92,1);
+    --BleuFonce2: rgba(5,28,52,1);
+    --Blanc: #fff;
+    --Noir: #000;
+    --text-color: var(--Blanc);
+    --light-bg: var(--BleuFonce);
+    --border-color: var(--Orange);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: linear-gradient(
+        180deg,
+        rgba(8,45,85,1) 0%,
+        rgba(6,40,76,1) 25%,
+        rgba(5,34,64,1) 80%,
+        var(--BleuFonce2) 100%
+    );
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================
+   HEADER ET NAVIGATION
+   ============================ */
+
+#redaction-header {
+    background: linear-gradient(135deg, var(--BleuFonce2), var(--BleuFonce));
+    color: var(--Blanc);
+    padding: 2rem var(--padding-mobile);
+    text-align: center;
+    margin-bottom: 3rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+#redaction-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: var(--BleuClair);
+}
+
+#redaction-header .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 300;
+    color: var(--Jaune);
+}
+
+.redaction-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.redaction-nav a {
+    color: var(--Jaune);
+    text-decoration: none;
+    transition: opacity 0.3s;
+    font-size: 0.95rem;
+}
+
+.redaction-nav a:hover {
+    color: var(--JauneVif);
+}
+
+.btn-close {
+    background: transparent;
+    color: var(--Jaune);
+    border: 1px solid var(--Orange);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.btn-close:hover {
+    background: var(--Orange);
+    color: var(--Noir);
+}
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lang-btn {
+    background: var(--Orange);
+    color: var(--Blanc);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.lang-btn:hover {
+    background: var(--JauneVif);
+    color: var(--Noir);
+}
+
+/* ============================
+   CONTENU PRINCIPAL
+   ============================ */
+
+.redaction-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--padding-mobile);
+    flex: 1;
+}
+
+.redaction-content {
+    background: rgba(10, 50, 92, 0.5);
+    padding: var(--padding-desktop);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================
+   TITRES ET TEXTE
+   ============================ */
+
+.redaction-content h2 {
+    font-size: 2rem;
+    color: var(--BleuClair);
+    margin: 2.5rem 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--Orange);
+}
+
+.redaction-content h2:first-of-type {
+    margin-top: 0;
+}
+
+.redaction-content h3 {
+    font-size: 1.4rem;
+    color: var(--Orange);
+    margin: 2rem 0 1rem 0;
+}
+
+.redaction-content p {
+    margin: 1rem 0;
+    text-align: justify;
+    line-height: 1.8;
+    color: var(--Blanc);
+}
+
+.redaction-content ul,
+.redaction-content ol {
+    margin: 1.5rem 0 1.5rem 2rem;
+}
+
+.redaction-content li {
+    margin: 0.5rem 0;
+    line-height: 1.8;
+    color: var(--Blanc);
+}
+
+/* ============================
+   MEDIA (IMAGES ET VIDEOS)
+   ============================ */
+
+.redaction-media {
+    margin: 2.5rem 0;
+    text-align: center;
+}
+
+.redaction-media img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+}
+
+.redaction-media-caption {
+    font-size: 0.9rem;
+    color: var(--Jaune);
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+.redaction-video {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    margin: 2.5rem 0;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.redaction-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+}
+
+/* ============================
+   SECTIONS HIGHLIGHTS
+   ============================ */
+
+.highlight-box {
+    background: var(--BleuFonce);
+    border-left: 4px solid var(--Orange);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 4px;
+}
+
+.highlight-box h4 {
+    color: var(--Jaune);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.highlight-box p {
+    margin: 0;
+    color: var(--Blanc);
+}
+
+/* ============================
+   BOUTONS
+   ============================ */
+
+.redaction-btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--Orange);
+    color: var(--Blanc);
+    text-decoration: none;
+    border-radius: 4px;
+    margin: 1rem 0.5rem 1rem 0;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.redaction-btn:hover {
+    background-color: var(--JauneVif);
+    color: var(--Noir);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 210, 75, 0.3);
+}
+
+.redaction-btn--secondary {
+    background-color: var(--BleuFonce);
+    color: var(--Jaune);
+    border: 1px solid var(--Orange);
+}
+
+.redaction-btn--secondary:hover {
+    background-color: var(--Orange);
+    color: var(--Noir);
+}
+
+/* ============================
+   RESPONSIVE DESIGN
+   ============================ */
+
+@media (max-width: 768px) {
+    :root {
+        --padding-mobile: 1rem;
+        --padding-desktop: 1.5rem;
+    }
+
+    #redaction-header {
+        padding: 1.5rem var(--padding-mobile);
+        margin-bottom: 2rem;
+    }
+
+    #redaction-header h1 {
+        font-size: 1.8rem;
+    }
+
+    #redaction-header .subtitle {
+        font-size: 1rem;
+    }
+
+    .redaction-nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .redaction-content h2 {
+        font-size: 1.6rem;
+    }
+
+    .redaction-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .redaction-content {
+        padding: var(--padding-mobile);
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --padding-mobile: 0.8rem;
+    }
+
+    #redaction-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .redaction-content h2 {
+        font-size: 1.4rem;
+    }
+
+    .redaction-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .redaction-btn {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .redaction-media img {
+        width: 100%;
+    }
+}

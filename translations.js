@@ -65,7 +65,8 @@ window.TRANSLATIONS = {
                 manuel: "Manuel utilisateur",
                 github: "Voir sur github",
                 itch: "Voir sur itch",
-                savoirPlus: "En savoir plus"
+                savoirPlus: "En savoir plus",
+                redaction: "En savoir plus"
             },
             1: {
                 titre: "Adminer",
@@ -203,7 +204,8 @@ window.TRANSLATIONS = {
                 manuel: "User manual",
                 github: "View on github",
                 itch: "View on itch",
-                savoirPlus: "Learn more"
+                savoirPlus: "Learn more",
+                redaction: "Learn more"
             },
             1: {
                 titre: "Adminer",
@@ -277,8 +279,13 @@ window.TRANSLATIONS = {
     }
 };
 
-// Langue actuelle (par défaut français) - Variable globale
-window.currentLanguage = localStorage.getItem('portfolio-language') || 'fr';
+// Langue actuelle (par défaut anglais) - Variable globale
+window.currentLanguage = localStorage.getItem('portfolio-language') || 'en';
+
+// Initialise le localStorage à 'en' si pas déjà défini
+if (!localStorage.getItem('portfolio-language')) {
+    localStorage.setItem('portfolio-language', 'en');
+}
 
 // Fonction pour obtenir une traduction
 function t(key) {
@@ -309,6 +316,11 @@ function setLanguage(lang) {
     // Mettre à jour tous les éléments traduits
     updateAllTranslations();
     
+    // Mettre à jour les traductions de rédaction si on est sur une page de rédaction
+    if (typeof updateRedactionTranslations === 'function') {
+        updateRedactionTranslations();
+    }
+    
     // Recharger l'affichage des projets pour appliquer les traductions
     if (typeof refreshProjectsDisplay === 'function') {
         refreshProjectsDisplay();
@@ -327,13 +339,13 @@ function updateLanguageButton() {
     const langIcon = document.getElementById('lang-icon');
     
     if (langText) {
-        // Affiche la langue actuelle
-        langText.textContent = window.currentLanguage === 'fr' ? 'FR' : 'EN';
+        // Affiche la langue vers laquelle on peut aller (l'inverse de la langue actuelle)
+        langText.textContent = window.currentLanguage === 'fr' ? 'EN' : 'FR';
     }
     
     if (langIcon) {
-        // Affiche le drapeau de la langue actuelle
-        langIcon.textContent = window.currentLanguage === 'fr' ? '🇫🇷' : '🇺🇸';
+        // Affiche le drapeau de la langue vers laquelle on peut aller
+        langIcon.textContent = window.currentLanguage === 'fr' ? '🇺🇸' : '🇫🇷';
     }
 }
 

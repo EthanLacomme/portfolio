@@ -15,7 +15,7 @@ const headerTemplate = `
         <h1>Ethan Lacomme</h1>
         <div class="language-switcher">
             <button id="lang-toggle-btn" class="lang-btn" onclick="toggleLanguage()">
-                <span id="lang-icon">🇺🇸</span> <span id="lang-text">EN</span>
+                <span id="lang-icon">🇫🇷</span> <span id="lang-text">FR</span>
             </button>
         </div>
     </div>
@@ -85,7 +85,7 @@ let allProjects = [];          // Tous les projets chargés depuis projets-data.
 let filteredProjects = [];     // Projets après application du filtre de catégorie
 let currentCategory = 'all';   // Catégorie active : 'all', 'jeux', 'general'
 let currentColumns = 2;        // Nombre de colonnes d'affichage (1-4, max 2 sur mobile)
-let itemsPerPage = 4;          // Nombre de projets à afficher par page
+let itemsPerPage = 8;          // Nombre de projets à afficher par page
 let displayedItems = 0;        // Nombre de projets actuellement affichés
 
 // --- Gestion des compétences ---
@@ -174,20 +174,34 @@ function createProjectHTML(project) {
     }
 
     // Traduire les textes des liens
-    let liensHTML = project.liens.map(lien => {
-        let texteTranslate = lien.texte;
-        const liensTranslations = window.TRANSLATIONS?.[lang]?.projetsData?.liens;
+    let liensHTML = '';
+    let actionsHTML = '';
+    
+    if (project.liens && project.liens.length > 0) {
+        liensHTML = project.liens.map(lien => {
+            let texteTranslate = lien.texte;
+            const liensTranslations = window.TRANSLATIONS?.[lang]?.projetsData?.liens;
+            
+            if (liensTranslations) {
+                if (lien.texte.includes('documentation')) texteTranslate = liensTranslations.documentation;
+                else if (lien.texte.includes('Manuel') || lien.texte.includes('utilisateur')) texteTranslate = liensTranslations.manuel;
+                else if (lien.texte.includes('github')) texteTranslate = liensTranslations.github;
+                else if (lien.texte.includes('itch')) texteTranslate = liensTranslations.itch;
+                else if (lien.texte.includes('savoir plus')) texteTranslate = liensTranslations.savoirPlus;
+            }
+            
+            // Ajouter le paramètre langue pour les rédactions (projets avec redaction_projet)
+            let href = lien.url;
+            if (lien.url.includes('redaction_projet')) {
+                const separator = lien.url.includes('?') ? '&' : '?';
+                href = `${lien.url}${separator}lang=${lang}`;
+            }
+            
+            return `<a href="${href}" target="_blank" class="btn btn--sm">${texteTranslate}</a>`;
+        }).join('');
         
-        if (liensTranslations) {
-            if (lien.texte.includes('documentation')) texteTranslate = liensTranslations.documentation;
-            else if (lien.texte.includes('Manuel') || lien.texte.includes('utilisateur')) texteTranslate = liensTranslations.manuel;
-            else if (lien.texte.includes('github')) texteTranslate = liensTranslations.github;
-            else if (lien.texte.includes('itch')) texteTranslate = liensTranslations.itch;
-            else if (lien.texte.includes('savoir plus')) texteTranslate = liensTranslations.savoirPlus;
-        }
-        
-        return `<a href="${lien.url}" target="_blank" class="btn btn--sm">${texteTranslate}</a>`;
-    }).join('');
+        actionsHTML = `<div class="project-card__actions">${liensHTML}</div>`;
+    }
 
     // Générer les classes CSS depuis les catégories
     const categoriesClasses = project.categories ? project.categories.join(' ') : '';
@@ -197,7 +211,7 @@ function createProjectHTML(project) {
             <div class="project-card__title"><h3>${titre}</h3></div>
             <div class="project-card__media">${mediaHTML}</div>
             <p class="project-card__desc">${description}</p>
-            <div class="project-card__actions">${liensHTML}</div>
+            ${actionsHTML}
         </div>
     `;
 }
