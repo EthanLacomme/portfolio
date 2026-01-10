@@ -1,65 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n-r="gamagoramon.titre">Gamagoramon - Creative Game Project</title>
+    <title data-i18n-r="gamagoramon.titre">Gamagoramon</title>
     <link rel="stylesheet" href="../redaction.css">
     <script src="../redaction-translations.js" defer></script>
-    <script src="../../translations.js" defer></script>
 </head>
 <body>
     <!-- Header avec bouton fermer -->
     <div id="redaction-header">
         <div class="redaction-nav">
-            <button type="button" class="btn-close" data-i18n-r="nav.retourPortfolio">← Retour</button>
+            <button type="button" class="btn-close" data-i18n-r="nav.retourPortfolio">← Retour au portfolio</button>
+            <button id="lang-toggle-btn" class="lang-btn" onclick="toggleLanguage()">
+                <span id="lang-icon">🇫🇷</span> <span id="lang-text">EN</span>
+            </button>
         </div>
-        <h1 data-i18n-r="gamagoramon.titre">Gamagoramon - Creative Game Project</h1>
-        <p class="subtitle" data-i18n-r="gamagoramon.sousTitre">A unique blend of gameplay and visual design</p>
+        <h1 data-i18n-r="gamagoramon.titre">Gamagoramon</h1>
+        <p class="subtitle" data-i18n-r="gamagoramon.sousTitre">Présentation du projet et spécificité travaillée</p>
     </div>
 
     <!-- Contenu principal -->
     <div class="redaction-container">
         <div class="redaction-content">
-            
+
+            <!-- Bannière -->
+            <div class="redaction-media" style="margin-top:0;">
+                <img src="images/Gamagoramon_BannerFull.jpg" alt="Gamagoramon banner">
+            </div>
+
             <!-- Introduction -->
             <section>
                 <h2 data-i18n-r="gamagoramon.introduction.titre">Introduction</h2>
-                <p data-i18n-r="gamagoramon.introduction.contenu">Gamagoramon is a creative game project that explores the intersection of innovative gameplay mechanics and distinctive visual design. This project showcases experimentation with game design principles and artistic vision.</p>
+                <p data-i18n-r="gamagoramon.introduction.contenu">Gamagoramon est un jeux de type Pokémon like simplifié, Le but est remporter le plus de combats possible avec son équipe de monstre généré aléatoirement tout comme celle de chaque équipe adverse.</p>
             </section>
 
-            <!-- Concept -->
+            <!-- Features -->
             <section>
-                <h2 data-i18n-r="gamagoramon.concept.titre">Game Concept</h2>
-                <p data-i18n-r="gamagoramon.concept.contenu">The project combines strategic gameplay elements with a visually unique aesthetic, creating an engaging experience that stands out through its distinctive art direction and creative mechanics.</p>
-            </section>
-
-            <!-- Objectifs -->
-            <section>
-                <h2 data-i18n-r="gamagoramon.objectifs.titre">Project Objectives</h2>
-                <p data-i18n-r="gamagoramon.objectifs.contenu">The main objectives were:</p>
-                <ul id="objectifs-list">
-                    <!-- Rempli dynamiquement en JS -->
+                <h2 data-i18n-r="gamagoramon.gameplay.titre">Fonctionnalités de base</h2>
+                <p data-i18n-r="gamagoramon.gameplay.contenu">Le jeu va se baser sur une boucle de combat simple. dans pokémon les monstre ont 6 type de stats différentes 
+                </p>
+                <ul id="stat-list"><!-- liste 6 stats -->
+                    <li>PV</li>
+                    <li>Attaque</li>
+                    <li>Défense</li>
+                    <li>Attaque Spéciale</li>
+                    <li>Défense Spéciale</li>
+                    <li>Vitesse</li>
                 </ul>
+                <p data-i18n-r="gamagoramon.gameplay.contenu2">
+                    Ici j'ai réduit cela à seulement 3 stats principales 
+                </p>
+                <ul id="reduced-stat-list"><!-- liste 3 stats -->
+                    <li>PV</li>
+                    <li>Attaque</li>
+                    <li>Défense</li>
+                </ul>
+                <p data-i18n-r="gamagoramon.gameplay.contenu2b">
+                    Cela permet de simplifier les calculs lors des combats tout en gardant une certaine profondeur stratégique notament avec l'affinité des types.
+                </p>
+                <ul id="type-list"><!-- liste types -->
+                    <li>Feu > Plante | Feu < Eau</li>
+                    <li>Eau > Feu | Eau < Plante</li>
+                    <li>Plante > Eau | Plante < Feu</li>
+                    <li>Normal = neutre pour les 3 types</li>
+                </ul>
+                <p data-i18n-r="gamagoramon.gameplay.contenu3">
+                    Chaque monstre possède 3 attaques différentes, à savoir l'attaque normal, l'attaque élémentaire de son type (sauf pour le type normal) et une attaque spéciale entre ces 3 choix.
+                </p>
+                <ul id="attack-list"><!-- liste attaques -->
+                    <li>Soin (récupère des PV)</li>
+                    <li>Parade (bloque l'attaque adverse)</li>
+                    <li>Switch (change de monstre sans finir son tour)</li>
+                </ul>
+                <p data-i18n-r="gamagoramon.gameplay.contenu4">
+                    Le joueur dois donc utiliser son équipe de monstre qui étant généré aléatoirement aura des avantages ou non contre les équipes adverses.</p>
+                <p data-i18n-r="gamagoramon.gameplay.contenu5">
+                    Dans le code j'ai créer une classe global Trainer qui gère les équipes de monstre du joueur et des ennemies, ces équipes sont générées aléatoirement en créant des objets dans la liste provenant de la classe Monster qui contient les différentes informations du monstre selon son préfab (sprite, type, nom...). Les statistiques sont défini en fonction du niveau, si par exemple la vie par niveau est de 4 et que le monstre est niveau 5 alors il aura 20 PV, de même pour les autres stats.
+                </p>
+                <p data-i18n-r="gamagoramon.gameplay.contenu6">
+                    La génération aléatoire pour l'équipe ennemie va aussi passer par une fonction qui va définir le niveau en fonction du nombre de combats déjà gagné par le joueur et par rapport au niveau de chaque monstre de sa liste pour que l'équipe ennemie soit généré de manière cohérente.
+                </p>
+                <p data-i18n-r="gamagoramon.gameplay.contenu7">
+                    Le système de combat se base sur une boucle qui va alterner entre le tour du joueur et celui de l'ennemie jusqu'à ce que tous les monstres d'une équipe soient mis K.O. Chaque action (attaque, soin, parade, switch) est géré par des fonctions spécifiques qui mettent à jour les statistiques en conséquence et vérifient l'état des équipes après chaque action. A chaque KO d'un monstre ennemie le monstre du joueur actuellement sur le terrain gagne un niveau pour renforcer ces statistiques.
+                </p>
+                <p data-i18n-r="gamagoramon.gameplay.contenu8">
+                    Il y a également un menu pour changer de monstre, pour utiliser des objets de soin ou pour fuir le combat et retourner sur le menu principale.
+                </p>
+
             </section>
 
-            <!-- Résultats -->
+            <!-- Galerie d'images -->
             <section>
-                <h2 data-i18n-r="gamagoramon.resultats.titre">Results and Experience</h2>
-                <p data-i18n-r="gamagoramon.resultats.contenu">This project deepened my understanding of game design principles, visual cohesion, and how to balance creative vision with technical implementation. It demonstrated the importance of iterative design and maintaining a clear artistic direction throughout development.</p>
+                <h2 data-i18n-r="gamagoramon.galerie.titre">Galerie</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <figure style="text-align:center;">
+                        <img src="images/mainMenu.jpg" alt="Menu Principal" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/Capture1.jpg" alt="Capture 1" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/Capture2.jpg" alt="Capture 2" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/Capture3.jpg" alt="Capture 3" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/Capture4.jpg" alt="Capture 4" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/Fuite.jpg" alt="Fuite" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/Attaque.jpg" alt="Attaque" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/Objects.jpg" alt="Objects" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/Switch.jpg" alt="Switch" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                </div>
             </section>
 
-            <!-- Appel à l'action -->
-            <section style="text-align: center; margin-top: 3rem;">
-                <a href="https://github.com" target="_blank" class="redaction-btn" data-i18n-r="gamagoramon.github">View on GitHub</a>
+            <!-- Résultats / Retours -->
+            <section>
+                <h2 data-i18n-r="gamagoramon.resultats.titre">Résultats et Apprentissages</h2>
+                <p data-i18n-r="gamagoramon.resultats.contenu">Le jeu dans l'ensemble permet d'enchainer des combats aléatoires par le biais de la génération d'équipe, ce qui offre de la rejouabilité malgré la simplicité du gameplay. Le système de combat est fonctionnel avec des stratégies simple à mettre en place et d'objets utilisable afin de remporter le plus de combats possible.</p>
+                <p data-i18n-r="gamagoramon.resultats.conclusion">Ce projet m'a permis de renforcer mes aquis sur le C# et Unity, notament sur la gestion des classes et de l'orienté objet. J'ai aussi pu approfondir mes compétences en conception de systèmes de jeu, nottament sur la gestion des données des monstres et des dresseurs pour que toutes les fonctions soit fonctionnelles lors de la lecture et de la modification de ces données. Cela m'a également permis de bien travailler en groupe sur la gestions des branche Git et de la répartition des tâches.</p>
             </section>
 
+            <div class="redaction-actions">
+                <a href="https://callhector.itch.io/gamagoramon" target="_blank" class="redaction-btn redaction-btn--secondary" data-i18n-r="gamagoramon.playBtn">Voir sur itch</a>
+            </div>
         </div>
     </div>
 
-    <!-- Scripts de traduction dynamique optionnel -->
-    <script>
-        // La liste des objectifs sera remplie par redaction-translations.js après init de la langue
-    </script>
 </body>
 </html>

@@ -7,6 +7,7 @@
     --max-width: 900px;
     --padding-mobile: 1.5rem;
     --padding-desktop: 2rem;
+    --nav-height: 64px;
     --Jaune: rgb(225, 255, 106);
     --JauneVif: rgb(255, 255, 0);
     --BleuClair: rgb(147, 226, 255);
@@ -49,7 +50,7 @@ body {
 #redaction-header {
     background: linear-gradient(135deg, var(--BleuFonce2), var(--BleuFonce));
     color: var(--Blanc);
-    padding: 2rem var(--padding-mobile);
+    padding: calc(2rem + var(--nav-height)) var(--padding-mobile) 2rem var(--padding-mobile);
     text-align: center;
     margin-bottom: 3rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -74,6 +75,16 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    padding: 0.9rem 1.25rem;
+    background: rgba(5, 28, 52, 0.94);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 210, 75, 0.35);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .redaction-nav a {
@@ -110,19 +121,22 @@ body {
 }
 
 .lang-btn {
-    background: var(--Orange);
-    color: var(--Blanc);
+    background: transparent;
+    color: var(--Orange);
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.9rem;
     transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 .lang-btn:hover {
-    background: var(--JauneVif);
-    color: var(--Noir);
+    background: rgba(255, 210, 75, 0.2);
+    color: var(--Orange);
 }
 
 /* ============================
@@ -284,6 +298,11 @@ body {
 .redaction-btn--secondary:hover {
     background-color: var(--Orange);
     color: var(--Noir);
+}
+
+.redaction-actions {
+    text-align: center;
+    margin: 2rem 0;
 }
 
 /* ============================

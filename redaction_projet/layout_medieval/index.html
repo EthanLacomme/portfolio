@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n-r="ldmedieval.titre">Level design médiéval</title>
+    <link rel="stylesheet" href="../redaction.css">
+    <script src="../redaction-translations.js" defer></script>
+</head>
+<body>
+    <!-- Header avec bouton fermer -->
+    <div id="redaction-header">
+        <div class="redaction-nav">
+            <button type="button" class="btn-close" data-i18n-r="nav.retourPortfolio">← Retour au portfolio</button>
+            <button id="lang-toggle-btn" class="lang-btn" onclick="toggleLanguage()">
+                <span id="lang-icon">🇫🇷</span> <span id="lang-text">EN</span>
+            </button>
+        </div>
+        <h1 data-i18n-r="ldmedieval.titre">Level design médiéval</h1>
+        <p class="subtitle" data-i18n-r="ldmedieval.sousTitre">Layout et blockout sur un environnement donné</p>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="redaction-container">
+        <div class="redaction-content">
+            
+            <!-- Introduction -->
+            <section>
+                <h2 data-i18n-r="ldmedieval.introduction.titre">Introduction</h2>
+                <p data-i18n-r="ldmedieval.introduction.contenu">Ce projet de level design propose de répondre aux exigences d'un exercice de parcours dans une ville médiévale. Par rapport à ces 2 images ci-dessous, le but est de faire traverser au joueur une rue marchande, entrer dans un bâtiment spécifique pour y récupérer un objet et resortir par l'arrière pour revenir au point de départ.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                    <figure style="text-align: center;">
+                        <img src="images/layout_medieval_ref1.jpg" alt="Reference - Medieval merchant street" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align: center;">
+                        <img src="images/layout_medieval_ref2.jpg" alt="Reference - Medieval building interior" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                </div>
+            </section>
+
+            <!-- Level Brief -->
+            <section>
+                <h2 data-i18n-r="ldmedieval.brief.titre">Brief du Niveau</h2>
+                
+                <h3 data-i18n-r="ldmedieval.brief.sousTitre">Le Contexte</h3>
+                <p data-i18n-r="ldmedieval.brief.contenu">Le jeu commence après que notre maître écrivain, en pleine discussion avec un herboriste devant le pas de porte de ce dernier, demande au joueur apprenti de lui rapporter un ouvrage sur les plantes pour leur permettre de faire des recherches.</p>
+                
+                <h3 data-i18n-r="ldmedieval.brief.objectifJoueur">Objectif du Joueur</h3>
+                <p data-i18n-r="ldmedieval.brief.objectifTexte">Notre personnage va devoir aller dans la rue marchande à côté afin de trouver tout au bout le bâtiment de l'écrivain et de trouver le livre recherché à l'intérieur. Après avoir terminé, il sortira du bâtiment via la seconde porte pour aller dans la rue adjacente et revenir au point de départ.</p>
+                
+                <div style="margin: 2rem 0; text-align: center;">
+                    <img src="images/layout_medieval_schema_simple.jpg" alt="Simplified player path" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                </div>
+            </section>
+
+            <!-- Gameplay & Mechanics -->
+            <section>
+                <h2 data-i18n-r="ldmedieval.gameplay.titre">Gameplay & Mécaniques</h2>
+                
+                <h3 data-i18n-r="ldmedieval.gameplay.phase1Titre">Phase 1 : Navigation</h3>
+                <p data-i18n-r="ldmedieval.gameplay.phase1">La première phase sera la recherche du bâtiment qui aura plusieurs landmarks tel qu'une pancarte, une statue en face et des fenêtres assez grande et transparente dans le long étendu du marché.</p>
+                <div style="margin: 1.5rem 0; text-align: center;">
+                    <img src="images/layout_medieval_landmarks.jpg" alt="Navigation landmarks" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                </div>
+                
+                <h3 data-i18n-r="ldmedieval.gameplay.phase2Titre">Phase 2 : Recherche</h3>
+                <p data-i18n-r="ldmedieval.gameplay.phase2">Dans le bâtiment, le joueur doit rechercher un livre qui aura un logo par rapport aux autres livres qu'il faudra prendre.</p>
+                <div style="margin: 1.5rem 0; text-align: center;">
+                    <img src="images/layout_medieval_livre_cible.jpg" alt="Target book to pick" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                </div>
+                
+                <h3 data-i18n-r="ldmedieval.gameplay.phase3Titre">Phase 3 : Retour</h3>
+                <p data-i18n-r="ldmedieval.gameplay.phase3">Une fois le livre récupéré, une porte de sortie s'ouvre sur la rue adjacente menant au lieu du début pour donner ce livre au maître écrivain.</p>
+            </section>
+
+            <!-- Layout & Blockout -->
+            <section>
+                <h2 data-i18n-r="ldmedieval.layout.titre">Layout & Blockout</h2>
+                <p data-i18n-r="ldmedieval.layout.contenu1">Voici le layout qui sert de base pour le blockout du niveau. Il comporte les 3 différentes zones, à savoir la rue marchande, l'intérieur du bâtiment et l'arrière-cour dans la ruelle.</p>
+
+                <div style="margin: 2rem 0; text-align: center;">
+                    <img src="images/layout_medieval_layout.jpg" alt="Level layout overview" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                </div>
+
+                <p data-i18n-r="ldmedieval.layout.contenu2">Le niveau est composé d'une série de rues avec des obstacles qui vont permettre au joueur de se frayer un chemin jusqu'au bâtiment en passant par la rue marchande. Il y a également le bâtiment de l'écrivain avec son intérieur et une arrière-cour pour sortir dans la ruelle adjacente. Ce blockout a du être revu en terme de taille et a donc bénéficié d'une ouverture sur de rue pour faire un détour plus long vers le bâtiment.</p>
+
+                <h3 style="margin-top: 1.5rem;">Blockout</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <figure style="text-align: center;">
+                        <img src="images/layout_medieval_extension.jpg" alt="Blockout extension" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align: center;">
+                        <img src="images/layout_medieval_rue_marchande.jpg" alt="Blockout merchant street" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align: center;">
+                        <img src="images/layout_medieval_interieur_batiment.jpg" alt="Blockout building interior" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align: center;">
+                        <img src="images/layout_medieval_arriere_cour.jpg" alt="Blockout backyard" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                </div>
+            </section>
+
+            <!-- Results -->
+            <section>
+                <h2 data-i18n-r="ldmedieval.resultats.titre">Résultats et Apprentissages</h2>
+                <p data-i18n-r="ldmedieval.resultats.conclusion">Le blockout final montre une logique cohérence face au brief initial et au layout créé. Le joueur peut facilement naviguer dans l'environnement durant sa progression vers son objectif. Ce blockout m'a permis de renforcer mes compétences en level design afin de mieux concevoir un niveau en fonction des contraintes d'assets et d'objectif de jeu.</p>
+                
+                <p data-i18n-r="ldmedieval.resultats.contenu">Ce projet m'a permis de travailler sur plusieurs aspects essentiels du level design :</p>
+                <ul id="resultats-list">
+                    <li>Création d'un parcours guidé par des landmarks visuels</li>
+                    <li>Conception d'un layout détaillé pour servir de modèle au blockout</li>
+                    <li>Gestion d'un kit d'assets complet et organisé selon les images de référence</li>
+                    <li>Adaptation du blockout aux contraintes de gameplay tel que de pas bloquer la vue du joueur, créer des limites naturelles et étendre l'espace de jeu pour pas que le blockout soit trop rapide à traverser en sprintant</li>
+                </ul>
+                
+            </section>
+
+            <div class="redaction-actions">
+                <a href="https://github.com/Ethanific/Layout-Medieval/releases/tag/Game" target="_blank" class="redaction-btn redaction-btn--secondary" data-i18n-r="ldmedieval.playBtn">Voir sur github</a>
+                <a href="../../documents/jeux/LDMedieval.pdf" target="_blank" class="redaction-btn redaction-btn--secondary" data-i18n-r="ldmedieval.documentBtn">Voir le document du layout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mise à jour automatique des traductions -->
+    <script>
+        // Ce script est maintenant géré directement dans redaction-translations.js
+    </script>
+</body>
+</html>

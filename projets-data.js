@@ -195,7 +195,7 @@ window.PROJETS = [
         ]
     },
     {
-        "id": 19,
+        "id": 18,
         "titre": "Layout - The Crew San Antonio",
         "categories": ["levelDesign"],
         "type": "image",
@@ -206,35 +206,37 @@ window.PROJETS = [
         ]
     },
     {
-        "id": 18,
+        "id": 19,
         "titre": "Blockout Babble",
         "categories": ["jeux", "levelDesign"],
         "type": "video",
         "media": "https://www.youtube-nocookie.com/embed/IaW3MqSHqPM?si=rCUKoMxTcmMnTsCE",
         "description": "J'ai travaillé sur ce blockout de niveau sur un projet unity qui nous a été fournit en prenant en compte les élément de gameplay et de level design pour guider le joueur à travers les environs et de traverser les obstacles.",
     },
-    // {
-    //     "id": 20,
-    //     "titre": "Layout - Blockout Médiéval (TP_FDGD)",
-    //     "categories": ["jeux", "levelDesign"],
-    //     "type": "image",
-    //     "media": "img/miniature_projets/layout_medieval.jpg",
-    //     "description": "Un layout médiéval créé dans le cadre d'un travail pratique, explorant la composition spatiale en environnement fantasy.",
-    //     "liens": [
-    //         {"texte": "En savoir plus", "url": "redaction_projet/layout_medieval/index.html"}
-    //     ]
-    // },
-    // {
-    //     "id": 21,
-    //     "titre": "Gamagoramon",
-    //     "categories": ["jeux", "programmation"],
-    //     "type": "image",
-    //     "media": "img/miniature_projets/gamagoramon.jpg",
-    //     "description": "Un jeux de type Pokémon like simplifié, Le but est remporter le plus de combats possible avec son équipe de monstre généré aléatoirement tout comme celle de chaque équipe adverse. Le jeux a été réalisé sur Unity avec un camarade.",
-    //     "liens": [
-    //         {"texte": "En savoir plus", "url": "redaction_projet/gamagoramon/index.html"}
-    //     ]
-    // },
+    {
+        "id": 20,
+        "titre": "Layout - Blockout Médiéval",
+        "categories": ["jeux", "levelDesign"],
+        "type": "video",
+        "media": "https://www.youtube-nocookie.com/embed/7vMDWR0kaHY?si=HTlTGYNFHGmEvHvZ",
+        "description": "Un projet sur Unreal Engine, où il fallait créer un layout et un blockout en fonction de plusieurs consignes. Une page dédiée en dessous présente le projet en détail.",
+        "liens": [
+            {"texte": "Voir sur github", "url": "https://github.com/Ethanific/Layout-Medieval/releases/tag/Game"},
+            {"texte": "En savoir plus", "url": "redaction_projet/layout_medieval/index.html"}
+        ]
+    },
+    {
+        "id": 21,
+        "titre": "Gamagoramon",
+        "categories": ["jeux", "programmation"],
+        "type": "video",
+        "media": "https://www.youtube-nocookie.com/embed/drUS_-FWE0E?si=HJWS_YwVMJPqrpXs",
+        "description": "Un jeux de type Pokémon like simplifié, Le but est remporter le plus de combats possible avec son équipe de monstre généré aléatoirement tout comme celle de chaque équipe adverse. Le jeux a été réalisé sur Unity en C# avec un camarade pour un projet.",
+        "liens": [
+            {"texte": "Voir sur itch", "url": "https://callhector.itch.io/gamagoramon"},
+            {"texte": "En savoir plus", "url": "redaction_projet/gamagoramon/index.html"}
+        ]
+    },
     // {
     //     "id": 22,
     //     "titre": "RollABall",

@@ -135,6 +135,22 @@ window.TRANSLATIONS = {
             17: {
                 titre: "Vr Lab",
                 description: "Un projet de réalité virtuel de fin d'année fait sur Unreal Engine, avec 4 salles comportant différentes mécaniques."
+            },
+            18: {
+                titre: "Layout - The Crew San Antonio",
+                description: "Un layout de niveau créé par rapport au centre-ville de San Antonio en prenant en compte une taille réduite, 3 points d'intérêt et les mécaniques du jeu The Crew. Dans ce document j'y montre plusieurs version de ce layout en fonction de son avancement."
+            },
+            19: {
+                titre: "Blockout Babble",
+                description: "J'ai travaillé sur ce blockout de niveau sur un projet unity qui nous a été fournit en prenant en compte les élément de gameplay et de level design pour guider le joueur à travers les environs et de traverser les obstacles."
+            },
+            20: {
+                titre: "Layout - Blockout Médiéval",
+                description: "Un projet sur Unreal Engine, où il fallait créer un layout et un blockout en fonction de plusieurs consignes. Une page dédiée en dessous présente le projet en détail."
+            },
+            21: {
+                titre: "Gamagoramon",
+                description: "Un jeux de type Pokémon like simplifié, Le but est remporter le plus de combats possible avec son équipe de monstre généré aléatoirement tout comme celle de chaque équipe adverse. Le jeux a été réalisé sur Unity en C# avec un camarade pour un projet."
             }
         }
     },
@@ -274,17 +290,33 @@ window.TRANSLATIONS = {
             17: {
                 titre: "Vr Lab",
                 description: "A year-end virtual reality project made on Unreal Engine, with 4 rooms featuring different mechanics."
+            },
+            18: {
+                titre: "Layout - The Crew San Antonio",
+                description: "A level layout created based on downtown San Antonio, taking into account a reduced size, 3 points of interest, and the mechanics of The Crew game. In this document I show several versions of this layout depending on its progress."
+            },
+            19: {
+                titre: "Blockout Babble",
+                description: "I worked on this level blockout on a Unity project that was provided to us, taking into account gameplay and level design elements to guide the player through the surroundings and overcome obstacles."
+            },
+            20: {
+                titre: "Layout - Medieval Blockout",
+                description: "A project on Unreal Engine, where I had to create a layout and blockout based on several guidelines. A dedicated page below presents the project in detail."
+            },
+            21: {
+                titre: "Gamagoramon",
+                description: "A simplified Pokémon-like game. The goal is to win as many battles as possible with your randomly generated monster team, just like each opposing team. The game was made on Unity in C# with a classmate for a project."
             }
         }
     }
 };
 
-// Langue actuelle (par défaut anglais) - Variable globale
-window.currentLanguage = localStorage.getItem('portfolio-language') || 'en';
+// Langue actuelle (par défaut français) - Variable globale
+window.currentLanguage = localStorage.getItem('portfolio-language') || 'fr';
 
-// Initialise le localStorage à 'en' si pas déjà défini
+// Initialise le localStorage à 'fr' si pas déjà défini
 if (!localStorage.getItem('portfolio-language')) {
-    localStorage.setItem('portfolio-language', 'en');
+    localStorage.setItem('portfolio-language', 'fr');
 }
 
 // Fonction pour obtenir une traduction
