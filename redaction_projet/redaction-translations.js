@@ -5,7 +5,7 @@ window.REDACTION_TRANSLATIONS = {
     en: {
         // General
         nav: {
-            retourPortfolio: "Back to Portfolio"
+            retourPortfolio: "← Back to Portfolio"
         },
         footer: {
             credit: "Project writeup | Ethan Lacomme"
