@@ -19,37 +19,35 @@
     
     <div class="section" id="accueil">
         <div class="content">
-            <h2 data-i18n="accueil.titre">Bonjour</h2>
-            <p data-i18n="accueil.bienvenue">Bienvenue sur mon portfolio.</p>
+            <h2 data-i18n="accueil.titre"></h2>
+            <p data-i18n="accueil.bienvenue"></p>
             <br>
-            <p data-i18n="accueil.description">Vous pouvez naviguer par les différentes sections se trouvant en haut de la page, sinon faite défiler de haut en bas.</p>
+            <p data-i18n="accueil.description"></p>
         </div>
     </div>
 
     <div class="section" id="informations">
         <div class="content">
             <div>
-                <h2 data-i18n="aPropos.titre">A propos de moi</h2>
+                <h2 data-i18n="aPropos.titre"></h2>
                 <p>
-                    <span data-i18n="aPropos.ligne1">Je m'appelle Ethan Lacomme, j'ai </span><span id="age">??</span><span data-i18n="aPropos.ans"> ans.</span>
+                    <span data-i18n="aPropos.ligne1"></span><span id="age">??</span><span data-i18n="aPropos.ans"></span>
                 </p>
-                <p data-i18n="aPropos.ligne2">
-                    Je suis un jeune développeur, curieux par les possibilités de création qu'offre ce domaine.
-                </p>
+                <p data-i18n="aPropos.ligne2"></p>
                 <p>
-                    <span data-i18n="aPropos.ligne3">Je suis actuellement dans la filière Jeu vidéo - Level design (Bac+3) à l'Université Lumière Lyon 2 </span><a href="https://icom.univ-lyon2.fr/gamagora" target="_blank" data-i18n="aPropos.programme">Gamagora</a><span data-i18n="aPropos.ligne4"> dans le but de poursuivre avec un master sur 2 ans.</span>
+                    <span data-i18n="aPropos.ligne3"></span><a href="https://icom.univ-lyon2.fr/gamagora" target="_blank" data-i18n="aPropos.programme"></a><span data-i18n="aPropos.ligne4"></span>
                 </p>
             </div>
         </div>
         <!-- inclusion du CV-->
-        <div class="btn-box"><a href="documents/CV LACOMME Ethan.pdf" target="_blank" class="btn" data-i18n="aPropos.cv">Mon CV</a></div>
+        <div class="btn-box"><a href="documents/CV LACOMME Ethan.pdf" target="_blank" class="btn" data-i18n="aPropos.cv"></a></div>
     </div>
 
     <div class="section" id="competences">
         <div class="content">
-            <h2 data-i18n="competences.titre">Mes compétences</h2>
+            <h2 data-i18n="competences.titre"></h2>
 
-            <h3 class="titre-avec-lignes" data-i18n="competences.programmation">Languages de programmation, déjà pratiqués</h3>
+            <h3 class="titre-avec-lignes" data-i18n="competences.programmation"></h3>
             
             <div class="contentblock centre" id="programmation">
                 <!-- Chargé dynamiquement depuis competences-data.js -->
@@ -60,7 +58,7 @@
                 <button id="loadMoreProgrammationBtn" onclick="loadMoreCompetences('programmation')" class="btn" style="display: none;" data-i18n="competences.voirPlus">Voir plus</button>
             </div>
 
-            <h3 class="titre-avec-lignes" data-i18n="competences.environnement">Environnements de développement - Logiciels, déjà pratiqués</h3>
+            <h3 class="titre-avec-lignes" data-i18n="competences.environnement"></h3>
 
             <div class="contentblock centre" id="environnementDev">
                 <!-- Chargé dynamiquement depuis competences-data.js -->
@@ -68,7 +66,7 @@
             
             <!-- Bouton "Voir plus" pour environnement -->
             <div class="btn-box" id="loadMoreEnvironnementContainer">
-                <button id="loadMoreEnvironnementBtn" onclick="loadMoreCompetences('environnement')" class="btn" style="display: none;" data-i18n="competences.voirPlus">Voir plus</button>
+                <button id="loadMoreEnvironnementBtn" onclick="loadMoreCompetences('environnement')" class="btn" style="display: none;" data-i18n="competences.voirPlus"></button>
             </div>
         </div>
     </div>
@@ -76,12 +74,12 @@
     <div class="section" id="projets">
         
         <div class="content">
-            <h2 data-i18n="projets.titre">Mes projets</h2>
+            <h2 data-i18n="projets.titre"></h2>
         </div>
         <!-- Filtres et affichage -->
         <div class="btn-box boxScaled" style="margin-left: auto; margin-right: auto; display: flex; align-items: center; gap: 2em; flex-wrap: wrap; justify-content: center;">
             <div style="display: flex; align-items: center; gap: 0.5em;">
-                <label for="filterSelect" style="font-size: 1.2em; color: var(--Orange);" data-i18n="projets.tag">Tag :</label>
+                <label for="filterSelect" style="font-size: 1.2em; color: var(--Orange);" data-i18n="projets.tag"></label>
                 <select id="filterSelect" onchange="filterProjects(this.value)">
                     <option value="all" selected="selected">Tout</option>
                     <option value="jeux">Jeux</option>
@@ -120,13 +118,13 @@
 
         <!-- Bouton "Voir plus" -->
         <div class="btn-box" id="loadMoreContainer">
-            <button id="loadMoreBtn" onclick="loadMore()" class="btn" style="display: none;" data-i18n="projets.voirPlus">Voir plus</button>
+            <button id="loadMoreBtn" onclick="loadMore()" class="btn" style="display: none;" data-i18n="projets.voirPlus"></button>
         </div>
     </div>
 
     <div class="section" id="contact">
         <div class="content">
-            <h2 data-i18n="contact.titre">Me contacter</h2>
+            <h2 data-i18n="contact.titre"></h2>
             <div class="contentblock">
                 <div class="blocklist info">
                     <img src="img/reseaux_sociaux/Gmail.jpg" alt="Gmail Logo">
@@ -135,16 +133,16 @@
                 <div class="blocklist info">
                     <img src="img/reseaux_sociaux/LinkedIn.jpg" alt="LinkedIn Logo">
                     <a href="https://www.linkedin.com/in/ethan-l-55aa94250/" target="_blank">
-                        <p data-i18n="contact.linkedIn">Lien LinkedIn : Ethan Lacomme</p>
+                        <p data-i18n="contact.linkedIn"></p>
                     </a>
                 </div>
                 <div class="blocklist info">
                     <img src="img/reseaux_sociaux/GitHub.jpg" alt="GitHub Logo">
                     <a href="https://github.com/Ethanific" target="_blank">
-                        <p data-i18n="contact.githubPrincipal">GitHub Principal</p>
+                        <p data-i18n="contact.githubPrincipal"></p>
                     </a>
                     <a href="https://github.com/EthanLacomme/portfolio" target="_blank">
-                        <p data-i18n="contact.githubPortfolio">GitHub du portfolio</p>
+                        <p data-i18n="contact.githubPortfolio"></p>
                     </a>
                 </div>
 
