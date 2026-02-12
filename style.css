@@ -409,7 +409,9 @@ table td img {
     font-size: clamp(1.1rem, 1rem + 1.6cqi, 1.8rem);
 }
 .blocklist .project-card__desc {
-    font-size: clamp(1.05rem, 0.95rem + 1.3cqi, 1.35rem);
+    /* font-size: clamp(1.05rem, 0.95rem + 1.3cqi, 1.35rem); */
+    /*version plus petite*/
+    font-size: clamp(0.95rem, 0.85rem + 1cqi, 1.5rem);
 }
 .blocklist .project-card__actions .btn.btn--sm {
     font-size: clamp(1rem, 0.9rem + 1cqi, 1.25rem);
@@ -543,12 +545,12 @@ table td img {
 
 @media screen and (min-width: 800px){
     body p {
-    font-size: 2vw;
+    font-size: 1.7vw;
     }
 
     body .section h1, h2{
         white-space: nowrap;
-        font-size: 3vw;
+        font-size: 2.5vw;
         padding-top: 15px;
         padding-bottom: 15px;
     }
@@ -559,7 +561,7 @@ table td img {
     }
 
     body .section h1, h2{
-        font-size: calc(30px + 2.5vw);
+        font-size: calc(30px + 1vw);
         padding-top: 10px;
         padding-bottom: 10px;
     }
