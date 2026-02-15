@@ -237,17 +237,14 @@ window.PROJETS = [
             {"texte": "En savoir plus", "url": "redaction_projet/gamagoramon/index.html"}
         ]
     },
-    // {
-    //     "id": 22,
-    //     "titre": "RollABall",
-    //     "categories": ["jeux", "programmation"],
-    //     "type": "video",
-    //     "media": "",
-    //     "description": "Un jeu de plateforme basé sur le contrôle d'une balle avec des mécaniques de physique sur Unity.",
-    //     "liens": [
-    //         {"texte": "Voir sur github", "url": "https://github.com"}
-    //     ]
-    // },
+    {
+        "id": 22,
+        "titre": "Système modulaire santé/bouclier avec régénération",
+        "categories": ["jeux", "programmation"],
+        "type": "video",
+        "media": "https://www.youtube-nocookie.com/embed/CCcmdW5Wd94?si=2nBryoOLOw35dRo7",
+        "description": "Une démonstration sur Unreal Engine, qui montre la fonctionnalité de mon composant de santé/bouclier écrit en C++, attaché au joueur et synchronisé à l'UI en temps réel. J'ai également rendu le système modulaire avec des valeurs modifiable accessible via l'éditeur et créé un système de debug via des trigger pour simuler divers évènements de changement de valeurs."
+    },
     // {
     //     "id": 23,
     //     "titre": "Projet du GGS",

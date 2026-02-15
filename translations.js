@@ -306,6 +306,10 @@ window.TRANSLATIONS = {
             21: {
                 titre: "Gamagoramon",
                 description: "A simplified Pokémon-like game. The goal is to win as many battles as possible with your randomly generated monster team, just like each opposing team. The game was made on Unity in C# with a classmate for a project."
+            },
+            22: {
+                titre: "Modular health/shield system with regeneration",
+                description: "A demonstration in Unreal Engine, showing the functionality of my health/shield component written in C++, attached to the player and synchronized with the UI in real time. I also made the system modular with editable values accessible through the editor and created a debug system with triggers to simulate many value change events."
             }
         }
     }
