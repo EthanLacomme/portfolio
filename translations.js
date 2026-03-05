@@ -30,7 +30,7 @@ window.TRANSLATIONS = {
         
         competences: {
             titre: "Mes compétences",
-            programmation: "Languages de programmation, déjà pratiqués",
+            programmation: "Langages de programmation, déjà pratiqués",
             environnement: "Environnements de développement - Logiciels, déjà pratiqués",
             voirPlus: "Voir plus"
         },
