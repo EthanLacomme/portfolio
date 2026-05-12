@@ -11,7 +11,8 @@
     <!-- Header avec bouton fermer -->
     <div id="redaction-header">
         <div class="redaction-nav">
-            <button type="button" class="btn-close" data-i18n-r="nav.retourPortfolio">← Retour au portfolio</button>
+            <a href="../../index.html" class="btn btn--sm" data-i18n-r="nav.retourPortfolio">← Retour au Portfolio</a>
+            <button type="button" class="btn-close" onclick="closeRedactionPage()" data-i18n-r="nav.fermerPage">Fermer la page</button>
             <button id="lang-toggle-btn" class="lang-btn" onclick="toggleLanguage()">
                 <span id="lang-icon">🇫🇷</span> <span id="lang-text">EN</span>
             </button>
@@ -108,7 +109,7 @@
                 <p data-i18n-r="ldmedieval.resultats.conclusion">Le blockout final montre une logique cohérence face au brief initial et au layout créé. Le joueur peut facilement naviguer dans l'environnement durant sa progression vers son objectif. Ce blockout m'a permis de renforcer mes compétences en level design afin de mieux concevoir un niveau en fonction des contraintes d'assets et d'objectif de jeu.</p>
                 
                 <p data-i18n-r="ldmedieval.resultats.contenu">Ce projet m'a permis de travailler sur plusieurs aspects essentiels du level design :</p>
-                <ul id="resultats-list">
+                <ul id="resultats-list" data-i18n-r="ldmedieval.resultats.points">
                     <li>Création d'un parcours guidé par des landmarks visuels</li>
                     <li>Conception d'un layout détaillé pour servir de modèle au blockout</li>
                     <li>Gestion d'un kit d'assets complet et organisé selon les images de référence</li>

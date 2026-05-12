@@ -245,15 +245,16 @@ window.PROJETS = [
         "media": "https://www.youtube-nocookie.com/embed/CCcmdW5Wd94?si=2nBryoOLOw35dRo7",
         "description": "Une démonstration sur Unreal Engine, qui montre la fonctionnalité de mon composant de santé/bouclier écrit en C++, attaché au joueur et synchronisé à l'UI en temps réel. J'ai également rendu le système modulaire avec des valeurs modifiable accessible via l'éditeur et créé un système de debug via des trigger pour simuler divers évènements de changement de valeurs."
     },
-    // {
-    //     "id": 23,
-    //     "titre": "Projet du GGS",
-    //     "categories": ["other"],
-    //     "type": "image",
-    //     "media": "img/miniature_projets/projet_ggs.jpg",
-    //     "description": "Un projet réalisé au GGS",
-    //     "liens": [
-    //         {"texte": "Voir sur github", "url": "https://github.com"}
-    //     ]
-    // }
+    {
+        "id": 23,
+        "titre": "Grandma's Home",
+        "categories": ["jeux", "levelDesign", "programmation"],
+        "type": "video",
+        "media": "https://www.youtube.com/embed/ezJ4JYgM4fk?si=X56vVlrDs_Z-Jku9",
+        "description": "Grandma's Home est un jeu multijoueur de type prop hunt dans une ambiance cartoon où les fantômes s'affrontent avec les enfants dans la maison de leurs grand-mère. Il a été réalisé dans le cadre du Gamagora Game Show sur une durée de 3 mois.",
+        "liens": [
+            {"texte": "Voir sur itch", "url": "https://gamagora.itch.io/grandmas-home"},
+            {"texte": "En savoir plus", "url": "redaction_projet/grandmas_home/index.html"}
+        ]
+    }
 ];

@@ -5,7 +5,8 @@ window.REDACTION_TRANSLATIONS = {
     en: {
         // General
         nav: {
-            retourPortfolio: "← Back to Portfolio"
+            retourPortfolio: "← Back to Portfolio",
+            fermerPage: "Close Page"
         },
         footer: {
             credit: "Project writeup | Ethan Lacomme"
@@ -129,7 +130,59 @@ window.REDACTION_TRANSLATIONS = {
             },
 
             playBtn: "View on itch"
+        },
+
+        // Grandma's Home
+        grandmasHome: {
+            titre: "Grandma's Home",
+            sousTitre: "Project presentation and features worked on",
+
+            introduction: {
+                titre: "Introduction",
+                contenu1: "GRANDMA'S HOME is a cartoon-style multiplayer prop hunt game in which ghosts face off against children inside their grandmother's house. It was created for the Gamagora Game Show over a 3-month period.",
+                contenu2: "The children's goal is to neutralize the ghosts with a melee weapon and slow them down with a gun before they sabotage too many objects in the house, but they must also be careful not to damage the furniture while trying to neutralize the ghosts, otherwise their maximum damage budget drops to 0 and they lose the match.",
+                contenu3: "As for the ghosts, they can win by surviving until the end of the match if they sabotage enough objects in the house. They can use several abilities such as dash to run briefly, stunt to immobilize children if they are in direct contact, and the ability to transform into certain objects found in the house to hide."
+            },
+
+            role: {
+                titre: "My role on the project",
+                contenu1: "I worked as a level designer and system programmer on the project.",
+                contenu2: "I first took part in writing the game concept and game design document to establish the foundations of the project. I also helped manage Git on the level-design side, creating branches for each person and merging the resources produced by the level designers into a shared branch for our group. I found it interesting to show the diagram I created to represent the course of the match with all its branches and outcomes.",
+                contenu3: "I also tried to make a layout for the house based on the idea that the rooms would be placed randomly in cells to make each match unique. This was an early-project idea, but it was eventually abandoned because the house would not looking good in the end.",
+                contenu4: "In order to find a good design for the house, our team used Miro to gather lots of images from various sources and get an idea of how to build the foundation of the house, which rooms to use, and how to furnish them.",
+                contenu5: "At first, the house and garden were meant to be playable, but the play space would have been too large and the exterior modeling of the house would have required too much work from the artists/3D team for the time we had, so we focused directly on the interior while still leaving a simplified visual exterior that I was able to integrate at the end.",
+                contenu6: "During the first version of the house in Unity, I was able to start placing the furniture through the blockout with placeholders. This allowed me to validate the sizes and ensure smooth player movement.",
+                contenu7: "I also contributed on the ground floor to creating room prefabs with complete furnishing according to a provided script, which is used to make the appearance of small and medium props/objects random with percentages, so that each match has a bit of variation.",
+                contenu8: "A preview of an early version of the rooms compared with the first batch of available assets.",
+                contenu9: "I set up a modular day-night system with lighting and VFX management in C#. This system has 3 phases:",
+                contenu10: "Each phase runs between X and Y percent of the play time. For example, sunset runs from 0% to 40% of the total play time, the lights gradually dim, and the sun angle slowly lowers toward the horizon.",
+                contenu11: "The transition phase, between 40% and 50%, is very important because this is when the atmosphere color shift and the activation of the lights and their VFX are handled.",
+                contenu12: "Finally, the moonrise phase, from 50% to 100%, brings back some cooler light to simulate moonlight. Note that the skybox background continuously rotates (for the clouds) and has a blend containing 3 colors that transition to fit each phase (twilight, night, purple night). Fog was also added and managed together with the rest to add depth to the house.",
+                contenu13: "Several easter eggs related to the other team's games or to other student projects were included in the final version of the game. I even had the chance to see my project Gamagoramon appear in-game in an arcade machine !",
+                list1: [
+                    "Sunset phase",
+                    "Transition phase",
+                    "Moonrise phase"
+                ]
+            },
+
+            galerie: {
+                diagramme: "Match flow diagram (in french)",
+                layout: "Temporary layout (also in french)",
+                miro: "Mood board for the house design",
+                "systeme_jour-nuit": "Day-night system",
+                salles: "All ground-floor rooms completed"
+            },
+
+            resultats: {
+                titre: "Results and Learnings",
+                contenu: "Overall, the game comes close to what we initially planned, without fully reaching it. On a short project like this, it was decided to make production trade-offs and ignore what was not essential, while still reaching the level of game quality originally intended as well as possible. The final game presented at the Gamagora Game Show managed to make a strong impression thanks to our time and resource management.",
+                conclusion: "This project helped me improve my team task organization, for example through Git management and task distribution, and also strengthened my level-design skills and the whole production process that goes with it. I was also able to further deepen my technical skills in Unity, through the importance of properly managing a large number of assets when their attributes had to be changed, which could create issues on already existing placements, for example. And in C# through the management of lights, VFX, and small components in a dynamic and modular way. I really enjoyed seeing this project take shape over the iterations of the house and room furnishing, and bringing it to life with my day-night system."
+            },
+
+            playBtn: "View on itch"
         }
+
     }
 };
 
@@ -137,7 +190,7 @@ window.REDACTION_TRANSLATIONS = {
  * Récupère une traduction anglaise
  * Retourne SEULEMENT si la langue est 'en'
  * Le français reste dans le HTML par défaut
- * @param {string} key - Clé de traduction (ex: "gamagoramon.titre")
+ * @param {string} key - Clé de4 traduction (ex: "gamagoramon.titre")
  * @returns {string|null} - Texte traduit en anglais ou null si français
  */
 function tr(key) {
@@ -279,6 +332,36 @@ function updateLanguageButton() {
  * Mets à jour tous les éléments [data-i18n-r] dans une rédaction
  * Bascule entre français et anglais dynamiquement
  */
+function getTranslationValue(key) {
+    const keys = key.split('.');
+    let value = REDACTION_TRANSLATIONS['en'];
+
+    for (const k of keys) {
+        value = value[k];
+        if (value === undefined || value === null) {
+            return null;
+        }
+    }
+
+    return value;
+}
+
+// Rend le texte ou la liste traduite dans l'élément HTML
+function renderTranslation(el, value) {
+    if (Array.isArray(value)) {
+        if (el.tagName === 'UL' || el.tagName === 'OL') {
+            el.innerHTML = value.map(item => `<li>${item}</li>`).join('');
+        }
+        return;
+    }
+
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = value;
+    } else {
+        el.textContent = value;
+    }
+}
+
 function updateAllRedactionTranslations() {
     const lang = window.currentLanguage || 'fr';
     // On n'applique les traductions que si la langue est EN;
@@ -289,85 +372,19 @@ function updateAllRedactionTranslations() {
 
     document.querySelectorAll('[data-i18n-r]').forEach(el => {
         const key = el.getAttribute('data-i18n-r');
-        const keys = key.split('.');
-        let value = REDACTION_TRANSLATIONS['en'];
-        for (let k of keys) {
-            value = value[k];
-            if (!value) break;
-        }
-        if (value) {
-            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                el.placeholder = value;
-            } else {
-                el.textContent = value;
-            }
+        const value = getTranslationValue(key);
+        if (value !== null) {
+            renderTranslation(el, value);
         }
     });
-
-    // Mettre à jour les listes de points (tableaux)
-    updateArrayTranslations();
 }
 
 /**
- * Mets à jour les traductions qui sont des tableaux
+ * Compatibilité avec l'ancien nom de fonction.
+ * La logique est maintenant entièrement gérée par updateAllRedactionTranslations().
  */
 function updateArrayTranslations() {
-    const lang = window.currentLanguage || 'fr';
-    
-    // LD Medieval - Résultats points
-    const pointsList = document.getElementById('resultats-list');
-    if (pointsList) {
-        if (lang === 'en') {
-            const points = REDACTION_TRANSLATIONS['en'].ldmedieval.resultats.points;
-            if (points && Array.isArray(points)) {
-                pointsList.innerHTML = points.map(p => `<li>${p}</li>`).join('');
-            }
-        }
-    }
-
-    // Gamagoramon - Liste des 7 stats
-    const statList = document.getElementById('stat-list');
-    if (statList) {
-        if (lang === 'en') {
-            const stats = REDACTION_TRANSLATIONS['en'].gamagoramon.gameplay.statList;
-            if (stats && Array.isArray(stats)) {
-                statList.innerHTML = stats.map(s => `<li>${s}</li>`).join('');
-            }
-        }
-    }
-
-    // Gamagoramon - Liste des 3 stats réduites
-    const reducedStatList = document.getElementById('reduced-stat-list');
-    if (reducedStatList) {
-        if (lang === 'en') {
-            const stats = REDACTION_TRANSLATIONS['en'].gamagoramon.gameplay.reducedStatList;
-            if (stats && Array.isArray(stats)) {
-                reducedStatList.innerHTML = stats.map(s => `<li>${s}</li>`).join('');
-            }
-        }
-    }
-
-    // Gamagoramon - Liste des types et affinités
-    const typeList = document.getElementById('type-list');
-    if (typeList) {
-        if (lang === 'en') {
-            const types = REDACTION_TRANSLATIONS['en'].gamagoramon.gameplay.typeList;
-            if (types && Array.isArray(types)) {
-                typeList.innerHTML = types.map(t => `<li>${t}</li>`).join('');
-            }
-        }
-    }
-
-    // Gamagoramon - Liste des attaques spéciales
-    const attackList = document.getElementById('attack-list');
-    if (attackList) {
-        if (lang === 'en') {
-            const attacks = REDACTION_TRANSLATIONS['en'].gamagoramon.gameplay.attackList;
-            if (attacks && Array.isArray(attacks)) {
-                attackList.innerHTML = attacks.map(a => `<li>${a}</li>`).join('');
-            }
-        }
-    }
+    updateAllRedactionTranslations();
 }
 
 /**

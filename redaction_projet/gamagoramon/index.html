@@ -11,7 +11,8 @@
     <!-- Header avec bouton fermer -->
     <div id="redaction-header">
         <div class="redaction-nav">
-            <button type="button" class="btn-close" data-i18n-r="nav.retourPortfolio">← Retour au portfolio</button>
+            <a href="../../index.html" class="btn btn--sm" data-i18n-r="nav.retourPortfolio">← Retour au Portfolio</a>
+            <button type="button" class="btn-close" onclick="closeRedactionPage()" data-i18n-r="nav.fermerPage">Fermer la page</button>
             <button id="lang-toggle-btn" class="lang-btn" onclick="toggleLanguage()">
                 <span id="lang-icon">🇫🇷</span> <span id="lang-text">EN</span>
             </button>
@@ -40,7 +41,7 @@
                 <h2 data-i18n-r="gamagoramon.gameplay.titre">Fonctionnalités de base</h2>
                 <p data-i18n-r="gamagoramon.gameplay.contenu">Le jeu va se baser sur une boucle de combat simple. dans pokémon les monstre ont 6 type de stats différentes 
                 </p>
-                <ul id="stat-list"><!-- liste 6 stats -->
+                <ul id="stat-list" data-i18n-r="gamagoramon.gameplay.statList"><!-- liste 6 stats -->
                     <li>PV</li>
                     <li>Attaque</li>
                     <li>Défense</li>
@@ -51,7 +52,7 @@
                 <p data-i18n-r="gamagoramon.gameplay.contenu2">
                     Ici j'ai réduit cela à seulement 3 stats principales 
                 </p>
-                <ul id="reduced-stat-list"><!-- liste 3 stats -->
+                <ul id="reduced-stat-list" data-i18n-r="gamagoramon.gameplay.reducedStatList"><!-- liste 3 stats -->
                     <li>PV</li>
                     <li>Attaque</li>
                     <li>Défense</li>
@@ -59,7 +60,7 @@
                 <p data-i18n-r="gamagoramon.gameplay.contenu2b">
                     Cela permet de simplifier les calculs lors des combats tout en gardant une certaine profondeur stratégique notament avec l'affinité des types.
                 </p>
-                <ul id="type-list"><!-- liste types -->
+                <ul id="type-list" data-i18n-r="gamagoramon.gameplay.typeList"><!-- liste types -->
                     <li>Feu > Plante | Feu < Eau</li>
                     <li>Eau > Feu | Eau < Plante</li>
                     <li>Plante > Eau | Plante < Feu</li>
@@ -68,7 +69,7 @@
                 <p data-i18n-r="gamagoramon.gameplay.contenu3">
                     Chaque monstre possède 3 attaques différentes, à savoir l'attaque normal, l'attaque élémentaire de son type (sauf pour le type normal) et une attaque spéciale entre ces 3 choix.
                 </p>
-                <ul id="attack-list"><!-- liste attaques -->
+                <ul id="attack-list" data-i18n-r="gamagoramon.gameplay.attackList"><!-- liste attaques -->
                     <li>Soin (récupère des PV)</li>
                     <li>Parade (bloque l'attaque adverse)</li>
                     <li>Switch (change de monstre sans finir son tour)</li>

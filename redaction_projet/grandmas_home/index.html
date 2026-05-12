@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n-r="grandmasHome.titre">Grandma's Home</title>
+    <link rel="stylesheet" href="../redaction.css">
+    <script src="../redaction-translations.js" defer></script>
+</head>
+<body>
+    <!-- Header avec bouton fermer -->
+    <div id="redaction-header">
+        <div class="redaction-nav">
+            <a href="../../index.html" class="btn btn--sm" data-i18n-r="nav.retourPortfolio">← Retour au Portfolio</a>
+            <button type="button" class="btn-close" onclick="closeRedactionPage()" data-i18n-r="nav.fermerPage">Fermer la page</button>
+            <button id="lang-toggle-btn" class="lang-btn" onclick="toggleLanguage()">
+                <span id="lang-icon">🇫🇷</span> <span id="lang-text">EN</span>
+            </button>
+        </div>
+        <h1 data-i18n-r="grandmasHome.titre">Grandma's Home</h1>
+        <p class="subtitle" data-i18n-r="grandmasHome.sousTitre">Présentation du projet et spécificités travaillées</p>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="redaction-container">
+        <div class="redaction-content">
+
+            <!-- Bannière -->
+            <div class="redaction-media" style="margin-top:0;">
+                <img src="images/LogoGrandmasHome.jpg" alt="Grandma's Home banner">
+            </div>
+            
+            <!-- Introduction -->
+            <section>
+                <h2 data-i18n-r="grandmasHome.introduction.titre">Introduction</h2>
+                <p data-i18n-r="grandmasHome.introduction.contenu1">GRANDMA'S HOME est un jeu multijoueur de type prop hunt dans une ambiance cartoon où les fantômes s'affrontent avec les enfants dans la maison de leurs grand-mère. Il a été réalisé dans le cadre du Gamagora Game Show sur une durée de 3 mois.</p>
+                <p data-i18n-r="grandmasHome.introduction.contenu2">Le but des enfants est de neutraliser les fantômes avec un arme rapprochée et peuvent les ralentir avec un pistolet avant qu'il ne sabote trop d'objets dans la maison, cependant, ils vont devoir faire attention à ne pas abîmer les meubles pendant qu'ils essaient de les neutraliser les fantômes sous peine de mettre leur budget de casse max à 0 et de perdre la partie.</p>
+                <p data-i18n-r="grandmasHome.introduction.contenu3">Quand aux fantômes, ils peuvent gagnez en survivant jusqu'à la fin de la partie si ils sabotent assez d'objets de la maison. Ils peuvent utiliser plusieurs compétences telles que le dash pour courir momentanément, le stunt pour immobiliser les enfants si ils sont en contact direct et la possibilité de se transformer en certains objets présent dans la maison pour se cacher.</p>
+            </section>
+
+
+            <!-- Mon rôle sur le projet -->
+            <section>
+                <h2 data-i18n-r="grandmasHome.role.titre">Mon rôle sur le projet</h2>
+                <p data-i18n-r="grandmasHome.role.contenu1">J'ai travaillé en tant que Level designer et System programmer sur le projet.</p>
+                <p data-i18n-r="grandmasHome.role.contenu2">J'ai dans un premier temps, participé à la rédaction du game concept et du game design document afin d'établir les bases du projet. J'ai aussi gérer en partie la gestion de Git coté LD, avec la création de branches pour chaque personne et la fusion des ressources produites par les level designers sur une branche commune a notre groupe. Je trouve intéressant de montrer le diagramme que j'ai pu créer pour représenter le déroulement de la partie avec tout les embranchements et finalités.</p>
+                <h2 data-i18n-r="grandmasHome.galerie.diagramme">Diagramme de déroulement de la partie</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <figure style="text-align:center;">
+                        <img src="images/DiagrammeDeroulementPartie.jpg" alt="Layout test entier" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                </div>
+            </section>
+
+            <section>    
+                <p data-i18n-r="grandmasHome.role.contenu3">J'ai également tenté de faire un layout de la maison par rapport a la particularité que les salles soit placé aléatoirement dans des cases pour rendre les parties uniques, c'était une idée voulu en début de projet mais qui finira par être abandonnée car la maison ne ressemblerait pas à grand chose</p>
+                <h2 data-i18n-r="grandmasHome.galerie.layout">Layout provisoire</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <figure style="text-align:center;">
+                        <img src="images/LayoutMaisonEntiere.jpg" alt="Layout test entier" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <figure style="text-align:center;">
+                        <img src="images/LayoutMaisonRezDeChausse.jpg" alt="Layout test rez de chausse" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/LayoutMaisonEtage.jpg" alt="Layout test étage" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure> 
+                </div>
+            </section>
+
+            <section>
+                <p data-i18n-r="grandmasHome.role.contenu4">Dans le but de trouver un bon design à la maison, notre équipe a utiliser Miro pour organiser plein d'images de divers sources pour pouvoir se faire une idée de comment construire la fondation de la maison, quels pièces utiliser et comment les meubler.</p>
+                <h2 data-i18n-r="grandmasHome.galerie.miro">Planche d'inspiration pour le design de la maison</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <figure style="text-align:center;">
+                        <img src="images/miro1.jpg" alt="images miro 1" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/miro2.jpg" alt="images miro 2" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <figure style="text-align:center;">
+                        <img src="images/miroPlan1.jpg" alt="images miro plan 1" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/miroPlan2.jpg" alt="images miro plan 2" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <figure style="text-align:center;">
+                        <img src="images/miroPlan3.jpg" alt="images miro plan 3" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/miroPlan4.jpg" alt="images miro plan 4" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                </div>
+            </section>
+
+            <section>
+                <p data-i18n-r="grandmasHome.role.contenu5">Au départ il était voulu d'avoir la maison et le jardin de jouables, mais le problème de l'espace de jeux serai trop grand et la modélisation extérieur de la maison aurait demandé trop de travaux au artistes/3d par rapport au temps que l'on avais, et on a du se focaliser sur l'intérieur directement tout en laissant un extérieur visuel simplifié que j'ai pu intégrer sur la fin.</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <figure style="text-align:center;">
+                        <img src="images/arrierePlan2.jpg" alt="images arrière plan 2" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/arrierePlan1.jpg" alt="images arrière plan" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                </div>
+            </section>
+
+            <section>
+                <p data-i18n-r="grandmasHome.role.contenu6">Lors des première version de la maison sur unity j'ai pu commencer à faire le placement des meubles via le blockout avec des placeholders. Cela m'a permis de valider les tailles et une circulation fluide du joueur</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <figure style="text-align:center;">
+                        <img src="images/imagemaisonvieille0.jpg" alt="images arrière plan 2" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/imagemaisonvieille1.jpg" alt="images arrière plan" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/imagemaisonvieille2.jpg" alt="images arrière plan" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/imagemaisonvieille3.jpg" alt="images arrière plan" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/imageTaillePropsEnfant.jpg" alt="images arrière plan" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                </div>
+            </section>
+
+            <section>
+                <p data-i18n-r="grandmasHome.role.contenu7">J'ai également contribué au rez de chaussée à la création de préfabs de salles avec un meublage complet selon un script fourni, qui sert a rendre l'apparition des petit et moyen props/objets aléatoire avec un pourcentage, afin d'avoir un peu de changement à chaque partie.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <figure style="text-align:center;">
+                        <iframe src="https://www.youtube-nocookie.com/embed/hF8YkORBrOw?si=DBeUp49EdeCPuAfl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </figure>
+                </div>
+
+                <p data-i18n-r="grandmasHome.role.contenu8">Un aperçu de première version des salles par rapport au premier lot d'assets à disposition.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <figure style="text-align:center;">
+                        <img src="images/V1bibliotheque.jpg" alt="images arrière plan" style="width:100%; border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/V1Invention.jpg" alt="images arrière plan" style="width:100%; border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                </div>
+            </section>
+
+            <section>
+                <h2 data-i18n-r="grandmasHome.galerie.systeme_jour-nuit">Système jour-nuit</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <figure style="text-align:center;">
+                        <iframe src="https://www.youtube-nocookie.com/embed/xFWRqOSpSKM?si=kxRknY99Yf-IqKbt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </figure>
+                    <figure style="text-align:center;">
+                        <iframe src="https://www.youtube-nocookie.com/embed/DEiwV_9n5e0?si=y5VG_QtIfAnLRos9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </figure>
+                </div>
+                <p data-i18n-r="grandmasHome.role.contenu9">J'ai mis en place un système jour-nuit modulaire avec gestion des lumières et des VFX en C#. Ce système comporte 3 phases :</p>
+                <ul id="list1" data-i18n-r="grandmasHome.role.list1">
+                    <li>Coucher du soleil</li>
+                    <li>Phase de transition</li>
+                    <li>Levée de la lune</li>
+                </ul>
+                <p data-i18n-r="grandmasHome.role.contenu10">Chaque phase va s'exécuter entre X et Y pourcentage de temps de jeux. Par exemple le coucher du soleil s'exécute entre 0% à 40% du temps de jeu total, les lumières vont s'assombrir progressivement et l'angle du soleil va peu à peu s'abaisser sur l'horizon.</p>
+                <p data-i18n-r="grandmasHome.role.contenu11">La phase de transition entre 40% et 50% est très importante car c'est à ce moment que le changement de couleur de l'atmosphère et l'allumage des lumières avec leur vfx sont gérés.</p>
+                <p data-i18n-r="grandmasHome.role.contenu12">Enfin la levée de la lune entre 50% et 100% va remettre un peu de luminosité plutôt froide pour simuler la lumière de la lune, à noter que l'arrière plan de la skybox tourne en continue (pour les nuages) et a un blend qui contient 3 couleurs qui s'enchaineront pour s'adapter à chaque phase (crépuscule, nuit, nuit violette), un brouillard à également été inclus et géré avec le reste pour rajouter de la profondeur dans la maison</p>
+            </section>
+
+            <!-- Galerie d'images -->
+            <section>
+                <h2 data-i18n-r="grandmasHome.galerie.salles">Toutes les salles du rez de chaussée terminées</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <figure style="text-align:center;">
+                        <img src="images/salleFinal0.jpg" alt="Menu Principal" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/salleFinal1_1.jpg" alt="Image salle finie" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/salleFinal1_2.jpg" alt="Image salle finie" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/salleFinal1_3.jpg" alt="Image salle finie" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/salleFinal2.jpg" alt="Image salle finie" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/salleFinal3.jpg" alt="Image salle finie" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/salleFinal4.jpg" alt="Image salle finie" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/salleFinal5.jpg" alt="Image salle finie" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/salleFinal6.jpg" alt="Image salle finie" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/salleFinal7.jpg" alt="Image salle finie" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/salleFinal8.jpg" alt="Image salle finie" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/salleFinal9.jpg" alt="Image salle finie" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/salleFinal10.jpg" alt="Image salle finie" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/salleFinal11.jpg" alt="Image salle finie" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/salleFinal12.jpg" alt="Image salle finie" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                </div>
+            </section>
+            
+            <section>
+                <p data-i18n-r="grandmasHome.role.contenu13">Plusieurs easter eggs lié au jeux des autres équipes ou d'autre projets d'étudiants ont été intégrés à la version finale du jeu. J'ai nottament eu l'occasion d'avoir eu mon projet <a href="../gamagoramon/index.html" target="_blank">Gamagoramon</a> qui est apparu sur une borne d'arcade en jeu !</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <figure style="text-align:center;">
+                        <img src="images/easterEgg1.jpg" alt="Menu Principal" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                    <figure style="text-align:center;">
+                        <img src="images/Gamagoramon.jpg" alt="Menu Principal" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </figure>
+                </div>
+            </section>
+
+            <!-- Résultats / Retours -->
+            <section>
+                <h2 data-i18n-r="grandmasHome.resultats.titre">Résultats et Apprentissages</h2>
+                <p data-i18n-r="grandmasHome.resultats.contenu">Le jeu dans l'ensemble se rapproche de ce que l'on avait prévu à la base, sans pour autant l'atteindre complètement. Sur un projet court comme celui-ci, il a été décider de faire des compromis sur la production pour ignorer ce qui n'était pas essentiel, tout en atteignant au mieux la qualité de jeux qui était prévu initialement. Le jeu final présenté au Gamagora Game Show a réussi à se montrer sous une bonne figure grâce à notre gestion du temps et de nos ressources à disposition.</p>
+                <p data-i18n-r="grandmasHome.resultats.conclusion">Ce projet m'a permis de renforcer mon organisation sur les tâches en équipe, par exemple avec la gestion de git et la répartition des tâches, mais aussi de renforcer mes compétences sur le level design et tout le processus de création qui va avec. J'ai également encore pu approfondir mes compétences techniques sur Unity, via l'importance d'une bonne gestion d'un gros nombre d'assets quand il s'agissait de changer leur attributs pouvant générer des problèmes sur des placement déjà existants par exemple. Et en C# par la gestion des lumières, vfx, et petits composant de manière dynamiques et modulaires. J'ai beaucoup aimé voir ce projet prendre forme au fur et à mesure des itérations de la maison et du meublage des salles et d'y donner vie avec mon système jour-nuit.</p>
+            </section>
+
+            <div class="redaction-actions">
+                <a href="https://gamagora.itch.io/grandmas-home" target="_blank" class="redaction-btn redaction-btn--secondary" data-i18n-r="grandmasHome.playBtn">Voir sur itch</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
