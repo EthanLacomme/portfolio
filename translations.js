@@ -22,9 +22,9 @@ window.TRANSLATIONS = {
             ligne1: "Je m'appelle Ethan Lacomme, j'ai ",
             ans: " ans.",
             ligne2: "Je suis un développeur, toujours prêt à progresser en compétences sur de nouveaux projets.",
-            ligne3: "Je suis actuellement dans la filière Jeu vidéo - Level design (Bac+3) à l'Université Lumière Lyon 2 ",
-            programme: "Gamagora",
-            ligne4: " dans le but de poursuivre avec un master sur 2 ans.",
+            ligne3: " Je suis actuellement en recherche de poursuite d'études",//a rajouter dès que j'aurai quelque chose - vieux (Je suis actuellement dans la filière Jeu vidéo - Level design (Bac+3) à l'Université Lumière Lyon 2)
+            programme: " ", // (Gamagora)
+            ligne4: " ", // (dans le but de poursuivre avec un master sur 2 ans)
             cv: "Mon CV"
         },
         
@@ -178,9 +178,9 @@ window.TRANSLATIONS = {
             ligne1: "My name is Ethan Lacomme, I am ",
             ans: " years old.",
             ligne2: "I am a developer, always ready to improve my skills on new projects.",
-            ligne3: "I am currently in the Video Game - Level Design program (Bachelor's degree) at Université Lumière Lyon 2 ",
-            programme: "Gamagora",
-            ligne4: " with the goal of continuing with a 2-year master's degree.",
+            ligne3: " I am currently looking for studies",
+            programme: " ",
+            ligne4: " ",
             cv: "My Resume"
         },
         
