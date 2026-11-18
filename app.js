@@ -20,8 +20,10 @@ const headerTemplate = `
             <li><a href="#outils" data-i18n="nav.outils">Mes outils</a></li>
             <li><a href="#projets" data-i18n="nav.projets">Mes projets</a></li>
             <li><a href="#contact" data-i18n="nav.contact">Me contacter</a></li>
+            <li class="menu-indicateur" id="menu-indicateur" aria-hidden="true"></li>
         </ul>
     </div>
+    <div class="progression" id="progression" aria-hidden="true"></div>
     <button class="burger-menu" onclick="toggleMenu(event)" aria-label="Menu" aria-expanded="false">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -377,13 +379,33 @@ function updateNavigation() {
     if (window.scrollY < 10) actif = links[0];      // tout en haut : Accueil
     else if (enBas) actif = links.at(-1);           // tout en bas : dernière section (trop courte pour atteindre le seuil)
     links.forEach(a => a.classList.toggle('actif', a === actif));
+    placerIndicateur(actif);
+
+    // Barre de lecture sous le menu : avance avec le défilement (0 → 100 %)
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    $('progression').style.transform = `scaleX(${max > 0 ? Math.min(window.scrollY / max, 1) : 0})`;
+
+    // Titres de section : le trait jaune se dessine quand on y arrive
+    document.querySelectorAll('.section h2:not(.vu)').forEach(h2 => {
+        if (h2.getBoundingClientRect().top < window.innerHeight * 0.85) h2.classList.add('vu');
+    });
 
     // Bouton "retour en haut" visible après un écran de défilement
     $('retourHaut').hidden = window.scrollY < window.innerHeight;
 }
 
+// Le soulignement jaune du menu glisse jusqu'au lien de la section active
+function placerIndicateur(lien) {
+    const indicateur = $('menu-indicateur');
+    if (!lien) { indicateur.style.opacity = 0; return; }
+    indicateur.style.opacity = 1;
+    indicateur.style.left = lien.offsetLeft + 'px';
+    indicateur.style.width = lien.offsetWidth + 'px';
+}
+
 function watchSections() {
     window.addEventListener('scroll', updateNavigation, { passive: true });
+    window.addEventListener('resize', updateNavigation);
     updateNavigation();
 }
 

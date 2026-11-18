@@ -369,9 +369,20 @@ function addBackToTop() {
     button.innerHTML = '<span aria-hidden="true">↑</span>';
     button.addEventListener('click', () => window.scrollTo({ top: 0 }));
     document.body.appendChild(button);
-    window.addEventListener('scroll', () => {
+
+    // Barre de lecture : fin trait jaune sous la barre de navigation
+    const barre = document.createElement('div');
+    barre.className = 'progression';
+    barre.setAttribute('aria-hidden', 'true');
+    document.querySelector('.redaction-nav')?.appendChild(barre);
+
+    const majDefilement = () => {
         button.hidden = window.scrollY < window.innerHeight;
-    }, { passive: true });
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        barre.style.transform = `scaleX(${max > 0 ? Math.min(window.scrollY / max, 1) : 0})`;
+    };
+    window.addEventListener('scroll', majDefilement, { passive: true });
+    majDefilement();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

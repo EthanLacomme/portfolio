@@ -36,16 +36,21 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background: linear-gradient(
-        180deg,
-        rgba(8,45,85,1) 0%,
-        rgba(6,40,76,1) 25%,
-        rgba(5,34,64,1) 80%,
-        var(--BleuFonce2) 100%
-    );
+    background: rgb(4,22,42);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+/* Fond "spot central" : une lumière douce tombe du haut de l'écran.
+   Il reste fixé pendant le défilement (calque fixe derrière tout le contenu). */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(ellipse 120% 90% at 50% 0%, rgb(14,62,110) 0%, rgb(7,40,75) 45%, rgb(4,22,42) 100%);
 }
 
 /* ============================
@@ -488,4 +493,20 @@ img {
     .projet-nav__lien--suiv {
         grid-column: 1;
     }
+}
+
+/* ============================
+   BARRE DE LECTURE (sous la barre de navigation)
+   ============================ */
+
+.progression {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 3px;
+    background: var(--Jaune);
+    transform: scaleX(0);
+    transform-origin: left;
+    pointer-events: none;
 }
