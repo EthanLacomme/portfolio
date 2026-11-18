@@ -1,14 +1,7 @@
 // ===========================
-// TEMPLATES HTML
+// TEMPLATES HTML (header / footer)
 // ===========================
 
-/**
- * Template du header contenant :
- * - Nom du portfolio
- * - Bouton de changement de langue (drapeau + texte)
- * - Menu de navigation avec attributs data-i18n pour traduction
- * - Menu burger pour mobile
- */
 const headerTemplate = `
 <header>
     <div class="nom">
@@ -23,534 +16,400 @@ const headerTemplate = `
         <ul>
             <li><a href="#accueil" data-i18n="nav.accueil">Accueil</a></li>
             <li><a href="#informations" data-i18n="nav.aPropos">A propos de moi</a></li>
-            <li><a href="#competences" data-i18n="nav.competences">Mes compétences</a></li>
+            <li><a href="#experiences" data-i18n="nav.experiences">Mes expériences</a></li>
+            <li><a href="#outils" data-i18n="nav.outils">Mes outils</a></li>
             <li><a href="#projets" data-i18n="nav.projets">Mes projets</a></li>
             <li><a href="#contact" data-i18n="nav.contact">Me contacter</a></li>
         </ul>
     </div>
-    <div class="burger-menu" onclick="toggleMenu()">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
+    <button class="burger-menu" onclick="toggleMenu(event)" aria-label="Menu" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
 </header>
 `;
 
-/**
- * Template du footer contenant :
- * - Copyright avec année dynamique
- * - Date de dernière mise à jour (récupérée depuis GitHub API)
- * - Crédit du site avec traduction
- */
 const footerTemplate = `
 <footer>
     <div class="content">
-        <div class="left"><p>© <span class="anneeActuelle"></span> Ethan Lacomme</p></div>
-        <p id="last-update" style="color: antiquewhite;"></p>
+        <div class="left"><p>© <span class="anneeActuelle">${new Date().getFullYear()}</span> Ethan Lacomme</p></div>
+        <p id="last-update"></p>
         <div class="right"><p data-i18n="footer.credit">Site réalisé par Ethan Lacomme</p></div>
     </div>
 </footer>
 `;
 
-/**
- * Injecte les templates header et footer dans le DOM
- * Appelle ensuite les fonctions de traduction pour initialiser la langue
- */
-function injectSharedParts() {
-    // Injection du header
-    const headerTarget = document.getElementById('site-header');
-    if (headerTarget) headerTarget.innerHTML = headerTemplate;
+// ===========================
+// ÉTAT
+// ===========================
 
-    // Injection du footer
-    const footerTarget = document.getElementById('site-footer');
-    if (footerTarget) footerTarget.innerHTML = footerTemplate;
-    
-    // Initialisation du bouton de langue (drapeau + texte)
-    if (typeof updateLanguageButton === 'function') {
-        updateLanguageButton();
-    }
-    
-    // Application des traductions à tous les éléments [data-i18n]
-    if (typeof updateAllTranslations === 'function') {
-        updateAllTranslations();
-    }
+let currentCategory = 'all'; // Catégorie (domaine ou sous-tag) choisie dans les filtres
+let currentOutil = null;     // Outil choisi (null = tous)
+let filteredProjects = [];  // Projets après filtres
+const itemsPerPage = 8;     // projets affichés par clic sur "Voir plus"
+let displayedItems = 0;     // Nombre de projets affichés
+
+const $ = id => document.getElementById(id);
+
+// Texte dans la langue actuelle : accepte "texte" ou { fr: "...", en: "..." }
+const txt = value => (typeof value === 'object' ? value[window.currentLanguage] ?? value.fr : value) ?? '';
+
+// Extrait l'identifiant de n'importe quel lien YouTube (youtu.be, watch?v=, embed, shorts)
+const youtubeId = url => url.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/)?.[1];
+
+// Vidéo légère : on affiche seulement la miniature YouTube.
+// Le vrai lecteur (lourd) n'est chargé qu'au clic.
+function videoHTML(url, titre) {
+    const id = youtubeId(url);
+    return `
+        <button type="button" class="video-lite" onclick="playVideo(this)" data-id="${id}" data-title="${titre}" aria-label="${t('projets.lireVideo')} : ${titre}">
+            <img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy">
+            <span class="video-lite__play" aria-hidden="true"></span>
+        </button>`;
+}
+
+function playVideo(button) {
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${button.dataset.id}?autoplay=1`;
+    iframe.title = button.dataset.title;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.allowFullscreen = true;
+    button.replaceWith(iframe);
 }
 
 // ===========================
-// VARIABLES GLOBALES
+// PROJETS
 // ===========================
 
-// --- Gestion des projets ---
-let allProjects = [];          // Tous les projets chargés depuis projets-data.js
-let filteredProjects = [];     // Projets après application du filtre de catégorie
-let currentCategory = 'all';   // Catégorie active : 'all', 'jeux', 'general'
-let currentColumns = 2;        // Nombre de colonnes d'affichage (1-4, max 2 sur mobile)
-let itemsPerPage = 8;          // Nombre de projets à afficher par page
-let displayedItems = 0;        // Nombre de projets actuellement affichés
-
-// --- Gestion des compétences ---
-let competencesItemsPerPage = 8;  // Nombre de compétences à charger par clic "Voir plus"
-let displayedProgrammation = 0;   // Nombre de compétences programmation affichées
-let displayedEnvironnement = 0;   // Nombre de compétences environnement affichées
-
-// Met à jour les options visibles du sélecteur de colonnes selon la contrainte courante
-function updateColumnSelectOptions(maxAllowed) {
-    const columnSelect = document.getElementById('projectsPerLineSelect');
-    if (!columnSelect) return;
-
-    Array.from(columnSelect.options).forEach(opt => {
-        const val = parseInt(opt.value);
-        // Cache les options au-dessus de la limite (maxAllowed peut être null pour aucune limite)
-        opt.hidden = maxAllowed !== null && val > maxAllowed;
-    });
-
-    // Si la valeur actuelle dépasse la limite, on la rabaisse
-    if (maxAllowed !== null && parseInt(columnSelect.value) > maxAllowed) {
-        columnSelect.value = String(maxAllowed);
-    }
-}
-
-// Calcule le nombre maximum de colonnes autorisé en fonction de la largeur de fenêtre
-function getMaxColumnsForWidth() {
-    const w = window.innerWidth;
-    if (w <= 600) return 1;      // Mobile étroit
-    if (w <= 900) return 2;      // Petit/moyen écran
-    if (w <= 1200) return 3;     // Tablette / laptop
-    return 4;                    // Grand écran
-}
-
-// Réinitialise l'état visuel des sélecteurs sur les valeurs par défaut
-function resetControlsToDefaults() {
-    const filter = document.getElementById('filterSelect');
-    const columns = document.getElementById('projectsPerLineSelect');
-    const items = document.getElementById('itemsPerPageSelect');
-
-    if (filter) filter.value = 'all';
-    if (columns) columns.value = String(currentColumns); // 2 par défaut
-    if (items) items.value = String(itemsPerPage); // 4 par défaut
-}
-
-// Charger les projets depuis la variable globale (projets-data.js), sans fetch
-async function loadProjects() {
-    try {
-        const source = typeof window.PROJETS !== 'undefined' ? window.PROJETS : null;
-        if (!source || !Array.isArray(source)) {
-            throw new Error('Données de projets introuvables');
-        }
-        // Tri décroissant par id (plus récents en haut)
-        allProjects = source.slice().sort((a, b) => b.id - a.id);
-        filteredProjects = [...allProjects];
-        displayedItems = 0;
-        renderProjects(true);
-    } catch (error) {
-        console.error('Erreur lors du chargement des projets:', error);
-        const container = document.getElementById('all-projects');
-        if (container) {
-            container.innerHTML = '<p style="color: red; text-align: center;">Impossible de charger les projets en local. Vérifiez le fichier projets-data.js.</p>';
-        }
-    }
-}
-
-/**
- * Crée le HTML d'une carte de projet avec traduction
- * @param {Object} project - Objet projet depuis projets-data.js
- * @returns {string} - Code HTML de la carte projet
- */
 function createProjectHTML(project) {
-    // Récupérer la langue actuelle depuis translations.js
-    const lang = window.currentLanguage || 'fr';
-    
-    // Utiliser les traductions si disponibles pour ce projet
-    const projectData = window.TRANSLATIONS && window.TRANSLATIONS[lang]?.projetsData?.[project.id];
-    const titre = projectData?.titre || project.titre;
-    const description = projectData?.description || project.description;
-    
-    let mediaHTML = '';
-    if (project.type === 'video') {
-        mediaHTML = `<iframe src="${project.media}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
-    } else {
-        const style = project.mediaStyle || '';
-        mediaHTML = `<img src="${project.media}" alt="${titre}" class="miniature" style="${style}">`;
-    }
+    const titre = txt(project.titre);
 
-    // Traduire les textes des liens
-    let liensHTML = '';
-    let actionsHTML = '';
-    
-    if (project.liens && project.liens.length > 0) {
-        liensHTML = project.liens.map(lien => {
-            let texteTranslate = lien.texte;
-            const liensTranslations = window.TRANSLATIONS?.[lang]?.projetsData?.liens;
-            
-            if (liensTranslations) {
-                if (lien.texte.includes('documentation')) texteTranslate = liensTranslations.documentation;
-                else if (lien.texte.includes('Manuel') || lien.texte.includes('utilisateur')) texteTranslate = liensTranslations.manuel;
-                else if (lien.texte.includes('github')) texteTranslate = liensTranslations.github;
-                else if (lien.texte.includes('itch')) texteTranslate = liensTranslations.itch;
-                else if (lien.texte.includes('savoir plus')) texteTranslate = liensTranslations.savoirPlus;
-            }
-            
-            // Ajouter le paramètre langue pour les rédactions (projets avec redaction_projet)
-            let href = lien.url;
-            if (lien.url.includes('redaction_projet')) {
-                const separator = lien.url.includes('?') ? '&' : '?';
-                href = `${lien.url}${separator}lang=${lang}`;
-            }
-            
-            return `<a href="${href}" target="_blank" class="btn btn--sm">${texteTranslate}</a>`;
-        }).join('');
-        
-        actionsHTML = `<div class="project-card__actions">${liensHTML}</div>`;
-    }
+    const mediaHTML = project.video
+        ? videoHTML(project.video, titre)
+        : `<img src="${project.image}" alt="${titre}" loading="lazy" style="${project.imageStyle || ''}">`;
 
-    // Générer les classes CSS depuis les catégories
-    const categoriesClasses = project.categories ? project.categories.join(' ') : '';
-    
+    const liens = (project.liens || []).map(lien => {
+        const texte = txt(window.TYPES_LIENS[lien.type]) || lien.type;
+        return `<a href="${lien.url}" target="_blank" class="btn">${texte}</a>`;
+    }).join('');
+
+    const outils = (project.outils || []).map(id =>
+        `<button type="button" class="tag-outil" aria-pressed="${id === currentOutil}" onclick="selectOutil('${id}', false)">${outilTitre(id)}</button>`
+    ).join('');
+
     return `
-        <div class="blocklist couleur-projet info ${categoriesClasses}" style="margin-left: auto; margin-right: auto;">
+        <div class="blocklist couleur-projet">
             <div class="project-card__title"><h3>${titre}</h3></div>
-            <div class="project-card__media">${mediaHTML}</div>
-            <p class="project-card__desc">${description}</p>
-            ${actionsHTML}
+            ${outils ? `<div class="project-card__outils">${outils}</div>` : ''}
+            <div class="project-card__media${project.video ? '' : ' project-card__media--image'}">${mediaHTML}</div>
+            <p class="project-card__desc">${txt(project.description)}</p>
+            <button type="button" class="lire-suite" onclick="toggleDescription(this)" hidden>${t('projets.lireSuite')}</button>
+            ${liens ? `<div class="project-card__actions">${liens}</div>` : ''}
         </div>
     `;
 }
 
-// Afficher les projets
-function renderProjects(reset = false) {
-    const container = document.getElementById('all-projects');
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    
-    if (reset) {
-        displayedItems = 0;
-        container.innerHTML = '';
-    }
+// ===========================
+// FILTRES (domaines, sous-tags, outil)
+// ===========================
 
-    // Calculer combien d'éléments afficher
-    const itemsToShow = itemsPerPage === -1 ? filteredProjects.length : Math.min(displayedItems + itemsPerPage, filteredProjects.length);
-    
-    // Ajouter les nouveaux projets
-    for (let i = displayedItems; i < itemsToShow; i++) {
-        container.innerHTML += createProjectHTML(filteredProjects[i]);
-    }
-    
-    displayedItems = itemsToShow;
-    
-    // Mettre à jour la largeur des colonnes
-    updateColumnsWidth();
-    
-    // Afficher/masquer le bouton "Voir plus"
-    if (loadMoreBtn) {
-        if (itemsPerPage === -1 || displayedItems >= filteredProjects.length) {
-            loadMoreBtn.style.display = 'none';
-        } else {
-            loadMoreBtn.style.display = 'block';
-        }
-    }
+const categorie = id => window.CATEGORIES.find(c => c.id === id);
+const sousTags = id => window.CATEGORIES.filter(c => c.parent === id);
+const outilTitre = id => window.OUTILS.find(o => o.id === id)?.titre || id;
+
+// Un projet appartient à une catégorie s'il a ce tag, ou un de ses sous-tags
+function dansCategorie(project, id) {
+    if (id === 'all') return true;
+    const ids = [id, ...sousTags(id).map(c => c.id)];
+    return project.categories?.some(c => ids.includes(c));
+}
+const avecOutil = (project, id) => !id || project.outils?.includes(id);
+
+// Boutons créés à partir de CATEGORIES (projets-data.js).
+// 1re rangée : domaines. 2e rangée : sous-tags du domaine choisi.
+// Une catégorie sans aucun projet n'est pas affichée.
+function renderFilters() {
+    const count = id => window.PROJETS.filter(p => dansCategorie(p, id) && avecOutil(p, currentOutil)).length;
+    const bouton = (cat, actif, label = txt(cat)) => count(cat.id) === 0 ? '' : `
+        <button type="button" class="filtre" aria-pressed="${actif}" onclick="filterProjects('${cat.id}')">
+            ${label} <span class="filtre-nombre">${count(cat.id)}</span>
+        </button>`;
+
+    // Domaine actif = la catégorie choisie, ou son parent si c'est un sous-tag
+    const domaine = categorie(currentCategory)?.parent || currentCategory;
+
+    $('filtres').innerHTML = [{ id: 'all' }, ...window.CATEGORIES.filter(c => !c.parent)]
+        .map(cat => bouton(cat, cat.id === domaine, cat.id === 'all' ? t('projets.tout') : txt(cat)))
+        .join('');
+
+    const enfants = domaine === 'all' ? [] : sousTags(domaine);
+    $('sous-filtres').hidden = enfants.length === 0;
+    $('sous-filtres').innerHTML = enfants.length === 0 ? '' :
+        bouton(categorie(domaine), currentCategory === domaine, t('projets.tous')) +
+        enfants.map(cat => bouton(cat, cat.id === currentCategory)).join('');
+
+    $('filtre-outil').hidden = !currentOutil;
+    $('filtre-outil').innerHTML = currentOutil ? `
+        ${t('projets.outil')} : <strong>${outilTitre(currentOutil)}</strong>
+        <button type="button" onclick="selectOutil(null, false)" aria-label="${t('projets.retirerFiltre')}">✕</button>` : '';
 }
 
-// Mettre à jour la largeur des colonnes
-function updateColumnsWidth() {
-    const projects = document.querySelectorAll('#all-projects .blocklist');
-    const container = document.getElementById('all-projects');
-    
-    // Supprimer les anciennes classes de colonnes
-    container.classList.remove('cols-1', 'cols-2', 'cols-3', 'cols-4');
-    // Ajouter la nouvelle classe
-    container.classList.add('cols-' + currentColumns);
-}
+/**
+ * Affiche les projets.
+ * - reset : repart de zéro (filtre / nombre par page changé)
+ * - sinon : ajoute une page de plus ("Voir plus")
+ * - keepCount : ré-affiche le même nombre (changement de langue)
+ */
+function renderProjects({ reset = false, keepCount = false } = {}) {
+    const container = $('all-projects');
+    let start = displayedItems;
+    let end;
 
-// Filtrer les projets par catégorie
-function filterProjects(category) {
-    currentCategory = category;
-    
-    if (category === 'all') {
-        filteredProjects = allProjects;
+    if (keepCount) {
+        start = 0;
+        end = displayedItems;
     } else {
-        filteredProjects = allProjects.filter(project => 
-            project.categories && project.categories.includes(category)
-        );
+        if (reset) start = 0;
+        end = start + itemsPerPage;
     }
-    
-    renderProjects(true);
+    end = Math.min(end, filteredProjects.length);
+
+    const html = filteredProjects.slice(start, end).map(createProjectHTML).join('');
+    if (start === 0) container.innerHTML = html;
+    else container.insertAdjacentHTML('beforeend', html);
+
+    displayedItems = end;
+    $('loadMoreBtn').style.display = displayedItems < filteredProjects.length ? 'block' : 'none';
+    updateReadMore();
 }
 
-/**
- * Recharge l'affichage des projets lors du changement de langue
- * Conserve le nombre d'items affichés pour ne pas réinitialiser la pagination
- */
+// Affiche "Lire la suite" seulement sous les descriptions coupées
+function updateReadMore() {
+    document.querySelectorAll('.project-card__desc:not(.ouvert)').forEach(desc => {
+        desc.nextElementSibling.hidden = desc.scrollHeight <= desc.clientHeight + 1;
+    });
+}
+
+function toggleDescription(button) {
+    const ouvert = button.previousElementSibling.classList.toggle('ouvert');
+    button.textContent = t(ouvert ? 'projets.reduire' : 'projets.lireSuite');
+}
+
+function filterProjects(category = currentCategory) {
+    currentCategory = category;
+    filteredProjects = window.PROJETS
+        .filter(p => dansCategorie(p, category) && avecOutil(p, currentOutil))
+        .reverse(); // Le dernier projet de la liste s'affiche en premier
+    renderProjects({ reset: true });
+    renderFilters();
+    renderOutils();
+}
+
+// Choisit un outil (re-cliquer le même le retire). Depuis la section "Mes outils",
+// on descend jusqu'aux projets.
+function selectOutil(id, allerAuxProjets = true) {
+    currentOutil = id === currentOutil ? null : id;
+    filterProjects();
+    if (allerAuxProjets) $('projets').scrollIntoView();
+}
+
+// Appelé par translations.js lors du changement de langue
 function refreshProjectsDisplay() {
-    const container = document.getElementById('all-projects');
-    if (!container) return;
-    
-    // Sauvegarder le nombre d'items affichés
-    const previousDisplayedItems = displayedItems;
-    
-    // Vider le conteneur
-    container.innerHTML = '';
-    
-    // Réinitialiser le compteur
-    displayedItems = 0;
-    
-    // Afficher le même nombre d'items qu'avant
-    const itemsToShow = Math.min(previousDisplayedItems, filteredProjects.length);
-    for (let i = 0; i < itemsToShow; i++) {
-        container.innerHTML += createProjectHTML(filteredProjects[i]);
-    }
-    
-    displayedItems = itemsToShow;
-    updateColumnsWidth();
-    
-    // Mettre à jour la visibilité du bouton "Voir plus"
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    if (loadMoreBtn) {
-        if (itemsPerPage === -1 || displayedItems >= filteredProjects.length) {
-            loadMoreBtn.style.display = 'none';
-        } else {
-            loadMoreBtn.style.display = 'block';
-        }
-    }
+    renderProjects({ keepCount: true });
 }
 
-// Affiche les projets avec X colonnes (1, 2, 3 ou 4)
-// Affiche les projets avec X colonnes (1, 2, 3 ou 4)
-function setProjectsPerLine(numColumns) {
-    let columns = parseInt(numColumns);
-    const maxAllowed = getMaxColumnsForWidth();
-    columns = Math.min(columns, maxAllowed);
-    updateColumnSelectOptions(maxAllowed);
-    const columnSelect = document.getElementById('projectsPerLineSelect');
-    if (columnSelect && columnSelect.value !== String(columns)) {
-        columnSelect.value = String(columns); // refléter la valeur réellement appliquée
-    }
-    currentColumns = columns;
-    updateColumnsWidth();
-}
-
-// Gérer le responsive des colonnes au redimensionnement
-function handleWindowResize() {
-    const columnSelect = document.getElementById('projectsPerLineSelect');
-    const maxAllowed = getMaxColumnsForWidth();
-    updateColumnSelectOptions(maxAllowed);
-
-    // Ajuster le nombre de colonnes courant si supérieur à la limite actuelle
-    currentColumns = Math.min(currentColumns, maxAllowed);
-
-    if (columnSelect) {
-        const clampedValue = String(Math.min(parseInt(columnSelect.value) || maxAllowed, maxAllowed));
-        columnSelect.value = clampedValue;
-        columnSelect.disabled = false;
-    }
-    updateColumnsWidth();
-}
-
-// Ajouter l'event listener au redimensionnement
-window.addEventListener('resize', handleWindowResize);
-// Appliquer une première fois au chargement pour aligner le sélecteur avec la taille actuelle
-handleWindowResize();
-
-// Changer le nombre d'éléments par page
-function setItemsPerPage(items) {
-    itemsPerPage = parseInt(items);
-    renderProjects(true);
-}
-
-// Charger plus d'éléments
 function loadMore() {
-    renderProjects(false);
-}
-
-// Charger les compétences depuis la variable globale (competences-data.js)
-function loadCompetences() {
-    try {
-        const source = typeof window.COMPETENCES !== 'undefined' ? window.COMPETENCES : null;
-        if (!source) {
-            throw new Error('Données de compétences introuvables');
-        }
-        
-        // Charger les compétences de programmation
-        renderCompetences('programmation', true);
-        
-        // Charger les compétences d'environnement
-        renderCompetences('environnement', true);
-    } catch (error) {
-        console.error('Erreur lors du chargement des compétences:', error);
-    }
-}
-
-// Créer le HTML d'une compétence
-function createCompetenceHTML(competence) {
-    return `
-        <div class="blocklist-1 info">
-            <img src="${competence.media}" alt="${competence.titre} Logo">
-            <a href="${competence.url}" target="_blank">
-                <p>${competence.titre}</p>
-            </a>
-        </div>
-    `;
-}
-
-// Charger les compétences avec pagination
-function renderCompetences(type, reset = false) {
-    try {
-        const source = typeof window.COMPETENCES !== 'undefined' ? window.COMPETENCES : null;
-        if (!source) {
-            throw new Error('Données de compétences introuvables');
-        }
-
-        const container = document.getElementById(type === 'programmation' ? 'programmation' : 'environnementDev');
-        const loadMoreBtn = document.getElementById(type === 'programmation' ? 'loadMoreProgrammationBtn' : 'loadMoreEnvironnementBtn');
-        const data = type === 'programmation' ? source.programmation : source.environnement;
-
-        if (!container || !data) return;
-
-        if (reset) {
-            if (type === 'programmation') {
-                displayedProgrammation = 0;
-            } else {
-                displayedEnvironnement = 0;
-            }
-            container.innerHTML = '';
-        }
-
-        // Déterminer combien afficher
-        const displayedCount = type === 'programmation' ? displayedProgrammation : displayedEnvironnement;
-        const itemsToShow = Math.min(displayedCount + competencesItemsPerPage, data.length);
-
-        // Ajouter les nouveaux éléments
-        for (let i = displayedCount; i < itemsToShow; i++) {
-            container.innerHTML += createCompetenceHTML(data[i]);
-        }
-
-        // Mettre à jour le compteur
-        if (type === 'programmation') {
-            displayedProgrammation = itemsToShow;
-        } else {
-            displayedEnvironnement = itemsToShow;
-        }
-
-        // Afficher/masquer le bouton "Voir plus"
-        if (loadMoreBtn) {
-            if (itemsToShow >= data.length) {
-                loadMoreBtn.style.display = 'none';
-            } else {
-                loadMoreBtn.style.display = 'block';
-            }
-        }
-    } catch (error) {
-        console.error('Erreur lors du rendu des compétences:', error);
-    }
-}
-
-// Charger plus de compétences
-function loadMoreCompetences(type) {
-    renderCompetences(type, false);
+    renderProjects();
 }
 
 // ===========================
-// INITIALISATION AU CHARGEMENT
+// EXPÉRIENCES (chronologie)
 // ===========================
 
-/**
- * Événement déclenché quand le DOM est prêt (mais avant les images)
- * Initialise tous les composants du portfolio
- */
-document.addEventListener('DOMContentLoaded', function() {
-    // Injection du header et footer avec traductions
-    injectSharedParts();
-    
-    // Réinitialisation des contrôles à leurs valeurs par défaut
-    resetControlsToDefaults();
-    
-    // Chargement et affichage des projets
-    loadProjects();
-    
-    // Chargement et affichage des compétences
-    loadCompetences();
-    
-    // Application du mode responsive
-    handleWindowResize();
-});
+const EXPERIENCES_VISIBLES = 3;    // nombre d'expériences récentes affichées
+let anciennesExperiencesVisibles = false;
 
-// Quand la page est entièrement chargée
-window.addEventListener('load', function () {
-    // Calcule mon âge en fonction de la date de naissance
-    const today = new Date(); // Date du jour
-    const anniv = "17/03/2004"; // Date de naissance
-    const [jour, mois, annee] = anniv.split('/'); // Décomposition de la date
-    const dateNaissance = new Date(annee, mois - 1, jour); // Mois commence à 0
+function renderExperiences() {
+    const experiences = window.EXPERIENCES || [];
+    // Pas d'expérience : on cache la section et son lien dans le menu
+    $('experiences').hidden = experiences.length === 0;
+    document.querySelector('.menu a[href="#experiences"]').parentElement.hidden = experiences.length === 0;
 
-    let age = today.getFullYear() - dateNaissance.getFullYear();
-    if (
-        today.getMonth() < dateNaissance.getMonth() ||
-        (today.getMonth() === dateNaissance.getMonth() && today.getDate() < dateNaissance.getDate())
-    ) {
-        age--;
+    $('timeline').innerHTML = experiences.slice().reverse().map((exp, index) => {
+        const liens = (exp.liens || []).map(lien =>
+            `<a href="${lien.url}" target="_blank" class="btn">${txt(window.TYPES_LIENS[lien.type]) || lien.type}</a>`
+        ).join('');
+        return `
+            <li class="timeline__item" ${index >= EXPERIENCES_VISIBLES && !anciennesExperiencesVisibles ? 'hidden' : ''}>
+                <p class="timeline__date">${txt(exp.periode)}</p>
+                <div class="timeline__card">
+                    <span class="timeline__type" data-type="${exp.type}">${txt(window.TYPES_EXPERIENCES[exp.type]) || exp.type}</span>
+                    <h3>${txt(exp.titre)}</h3>
+                    ${exp.lieu ? `<p class="timeline__lieu">${txt(exp.lieu)}</p>` : ''}
+                    <p>${txt(exp.description)}</p>
+                    ${liens ? `<div class="timeline__liens">${liens}</div>` : ''}
+                </div>
+            </li>`;
+    }).join('');
+
+    // Bouton "Voir les plus anciennes" seulement s'il y en a plus que EXPERIENCES_VISIBLES
+    const button = $('experiencesBtn');
+    button.hidden = experiences.length <= EXPERIENCES_VISIBLES;
+    button.textContent = t(anciennesExperiencesVisibles ? 'experiences.voirMoins' : 'experiences.voirPlus');
+}
+
+function toggleOldExperiences() {
+    anciennesExperiencesVisibles = !anciennesExperiencesVisibles;
+    renderExperiences();
+    // En repliant, on revient en haut de la section
+    if (!anciennesExperiencesVisibles) $('experiences').scrollIntoView();
+}
+
+// ===========================
+// OUTILS (section "Mes outils")
+// ===========================
+
+function renderOutils() {
+    const nombre = id => window.PROJETS.filter(p => p.outils?.includes(id)).length;
+    $('liste-outils').innerHTML = window.OUTILS.filter(o => o.section).map(o => {
+        const n = nombre(o.id);
+        const label = n ? `${n} ${t(n > 1 ? 'outils.projets' : 'outils.projet')}` : '';
+        return `
+            <button type="button" class="outil" aria-pressed="${o.id === currentOutil}" ${n ? `onclick="selectOutil('${o.id}')"` : 'disabled'}>
+                ${o.image ? `<img src="${o.image}" alt="" loading="lazy">` : `<span class="outil__initiale" aria-hidden="true">${o.titre[0]}</span>`}
+                <span class="outil__nom">${o.titre}</span>
+                ${label ? `<span class="outil__nombre">${label}</span>` : ''}
+            </button>`;
+    }).join('');
+}
+
+// ===========================
+// DIVERS
+// ===========================
+
+function computeAge(birthDate) {
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const beforeBirthday = today.getMonth() < birthDate.getMonth() ||
+        (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate());
+    return beforeBirthday ? age - 1 : age;
+}
+
+// Date du dernier push du dépôt GitHub (affichée au format de la langue choisie)
+let lastUpdate;   // Date, ou null si la récupération a échoué
+
+async function showLastUpdate() {
+    try {
+        const response = await fetch('https://api.github.com/repos/EthanLacomme/portfolio');
+        if (!response.ok) throw new Error(`GitHub API error: ${response.status}`);
+        lastUpdate = new Date((await response.json()).pushed_at);
+    } catch (error) {
+        console.error('Erreur lors de la récupération des données :', error);
+        lastUpdate = null;
     }
-    document.getElementById('age').innerHTML = age; // Affiche l'âge
+    renderLastUpdate();
+}
 
-    // Affiche l'année actuelle dans le footer
-    const anneeActuelle = new Date().getFullYear();
-    document.querySelector('.anneeActuelle').innerHTML = anneeActuelle;
+// Appelé aussi par translations.js lors du changement de langue
+function renderLastUpdate() {
+    if (lastUpdate === undefined) return; // pas encore chargée
+    $('last-update').innerHTML = lastUpdate
+        ? `${t('footer.lastUpdate')} ${lastUpdate.toLocaleDateString(window.currentLanguage === 'en' ? 'en-US' : 'fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}`
+        : t('footer.erreurMaj');
+}
 
+// Adresse mail (assemblée ici pour ne pas être lue par les robots de spam)
+const EMAIL = ['ethanlacomme316', 'gmail.com'].join('@');
 
-    //Récupération de la dernière update du projet sur GitHub
-    async function fetchLastUpdated() {
-        const url = "https://api.github.com/repos/EthanLacomme/portfolio";
-        
-        try {
-            const response = await fetch(url);
-            if (!response.ok) throw new Error(`GitHub API error: ${response.status}`);
-    
-            const data = await response.json();
-            const lastUpdated = new Date(data.pushed_at); // Convertir en objet Date
-            
-            return lastUpdated.toLocaleDateString("fr-FR", { 
-                year: "numeric", 
-                month: "long", 
-                day: "numeric" 
-            });
-        } catch (error) {
-            console.error("Erreur lors de la récupération des données :", error);
-            return "Impossible de récupérer la date de la dernière mise à jour du portfolio";
-        }
+function showEmail() {
+    $('contact-email').textContent = EMAIL;
+    $('contact-mailto').href = 'mailto:' + EMAIL;
+}
+
+async function copyEmail() {
+    const button = $('contact-copy');
+    try {
+        await navigator.clipboard.writeText(EMAIL);
+        button.textContent = t('contact.copie');
+        setTimeout(() => { button.textContent = t('contact.copier'); }, 2000);
+    } catch {
+        window.location.href = 'mailto:' + EMAIL; // si la copie est bloquée
     }
-    
-    // Mettre à jour le contenu de l'élément HTML
-    fetchLastUpdated().then(date => {
-        document.getElementById("last-update").textContent = `Dernière mise à jour publié le ${date}`;
-    });
-    
-});
+}
 
-// Fonction pour afficher/fermer le menu sur mobile
-function toggleMenu() {
-    const menu = document.querySelector('.menu ul');
-    menu.classList.toggle('show'); // Alterne entre afficher et cacher le menu
+// Menu burger (mobile)
+function setMenuOpen(open) {
+    document.querySelector('.menu ul').classList.toggle('show', open);
+    document.querySelector('.burger-menu').setAttribute('aria-expanded', open);
+}
 
-    //cache le menu si on clique en dehors
-    document.addEventListener('click', function (event) {
-        if (!menu.contains(event.target)) {
-            menu.classList.remove('show');
-        }
-    });
-    // suppression de l'event
+function toggleMenu(event) {
     event.stopPropagation();
+    setMenuOpen(!document.querySelector('.menu ul').classList.contains('show'));
 }
 
-// Fonction pour afficher ou cacher l'élément avec l'id donné
-function toggleContent(id) {
-    const content = document.getElementById(id);
-    const button = document.querySelector(`[onclick="toggleContent('${id}')"]`);
-    const icon = button.querySelector('.icon-toggle');
-    
-    content.style.display = content.style.display === 'none' ? 'flex' : 'none';
-    icon.classList.toggle('rotated');
-    
-    // Change le texte du bouton
-    button.innerHTML = content.style.display === 'none' 
-        ? '<span class="icon-toggle">▼</span>'
-        : '<span class="icon-toggle">▲</span>';
+// Ferme le menu quand on clique ailleurs ou sur un lien du menu
+document.addEventListener('click', event => {
+    const menu = document.querySelector('.menu ul');
+    if (menu?.classList.contains('show') && (!menu.contains(event.target) || event.target.closest('a'))) {
+        setMenuOpen(false);
+    }
+});
+
+// ===========================
+// NAVIGATION : section active + retour en haut
+// ===========================
+
+// Souligne dans le menu la section en cours de lecture
+// (la dernière dont le haut a dépassé le premier tiers de l'écran)
+function updateNavigation() {
+    const links = [...document.querySelectorAll('.menu a')];
+    const seuil = window.innerHeight * 0.3;
+    const enBas = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+
+    let actif = null;
+    links.forEach(a => {
+        const section = document.querySelector(a.getAttribute('href'));
+        if (section && !section.hidden && section.getBoundingClientRect().top <= seuil) actif = a;
+    });
+    if (window.scrollY < 10) actif = links[0];      // tout en haut : Accueil
+    else if (enBas) actif = links.at(-1);           // tout en bas : dernière section (trop courte pour atteindre le seuil)
+    links.forEach(a => a.classList.toggle('actif', a === actif));
+
+    // Bouton "retour en haut" visible après un écran de défilement
+    $('retourHaut').hidden = window.scrollY < window.innerHeight;
 }
 
-// Note : L'initialisation est gérée par le DOMContentLoaded déclaré plus haut (ligne ~340)
+function watchSections() {
+    window.addEventListener('scroll', updateNavigation, { passive: true });
+    updateNavigation();
+}
+
+// ===========================
+// INITIALISATION
+// ===========================
+
+document.addEventListener('DOMContentLoaded', () => {
+    $('site-header').innerHTML = headerTemplate;
+    $('site-footer').innerHTML = footerTemplate;
+    updateLanguageButton();
+    updateAllTranslations();
+
+    $('age').textContent = computeAge(new Date(2004, 2, 17)); // 17/03/2004
+
+    filterProjects('all');
+    renderExperiences();
+
+    showEmail();
+    showLastUpdate();
+    watchSections();
+
+    // La largeur des cartes change avec la fenêtre : on recalcule les "Lire la suite"
+    let resizeFrame;
+    window.addEventListener('resize', () => {
+        cancelAnimationFrame(resizeFrame);
+        resizeFrame = requestAnimationFrame(updateReadMore);
+    });
+});

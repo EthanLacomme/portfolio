@@ -5,46 +5,59 @@ window.TRANSLATIONS = {
         nav: {
             accueil: "Accueil",
             aPropos: "A propos de moi",
-            competences: "Mes compétences",
+            experiences: "Mes expériences",
+            outils: "Mes outils",
             projets: "Mes projets",
-            contact: "Me contacter"
+            contact: "Me contacter",
+            retourHaut: "Retour en haut"
         },
         
         // Sections
         accueil: {
             titre: "Bonjour",
-            bienvenue: "Bienvenue sur mon portfolio.",
-            description: "Vous pouvez naviguer par les différentes sections se trouvant en haut de la page, sinon faite défiler de haut en bas."
+            bienvenue: "Bienvenue sur mon portfolio : vous y trouverez mes projets, mon parcours et mes compétences.",
+            voirProjets: "Voir mes projets"
         },
         
         aPropos: {
             titre: "A propos de moi",
             ligne1: "Je m'appelle Ethan Lacomme, j'ai ",
             ans: " ans.",
-            ligne2: "Je suis un développeur, toujours prêt à progresser en compétences sur de nouveaux projets.",
-            ligne3: " Je suis actuellement en recherche de poursuite d'études",//a rajouter dès que j'aurai quelque chose - vieux (Je suis actuellement dans la filière Jeu vidéo - Level design (Bac+3) à l'Université Lumière Lyon 2)
-            programme: " ", // (Gamagora)
-            ligne4: " ", // (dans le but de poursuivre avec un master sur 2 ans)
+            ligne2: "Toujours prêt à progresser et à relever de nouveaux défis sur des projets variés.",
+            ligne3: "Je suis actuellement à la recherche d'un emploi.",
             cv: "Mon CV"
         },
         
-        competences: {
-            titre: "Mes compétences",
-            programmation: "Langages de programmation, déjà pratiqués",
-            environnement: "Environnements de développement - Logiciels, déjà pratiqués",
-            voirPlus: "Voir plus"
+        experiences: {
+            titre: "Mes expériences",
+            voirPlus: "Voir les plus anciennes",
+            voirMoins: "Masquer les plus anciennes"
+        },
+
+        outils: {
+            titre: "Mes outils",
+            intro: "Cliquez sur un outil pour voir les projets réalisés avec.",
+            projet: "projet",
+            projets: "projets"
         },
         
         projets: {
             titre: "Mes projets",
-            tag: "Tag",
-            colonnes: "Colonnes",
-            elements: "Éléments",
+            tout: "Tout",
+            tous: "Tous",
+            outil: "Outil",
+            retirerFiltre: "Retirer le filtre",
+            lireSuite: "Lire la suite",
+            lireVideo: "Lire la vidéo",
+            reduire: "Réduire",
             voirPlus: "Voir plus"
         },
         
         contact: {
             titre: "Me contacter",
+            ecrire: "M'écrire",
+            copier: "Copier l'adresse",
+            copie: "Adresse copiée !",
             linkedIn: "Lien LinkedIn : Ethan Lacomme",
             githubPrincipal: "GitHub Principal",
             githubPortfolio: "GitHub du portfolio"
@@ -52,108 +65,9 @@ window.TRANSLATIONS = {
         
         footer: {
             credit: "Site réalisé par Ethan Lacomme",
-            lastUpdate: "Dernière mise à jour publié le"
-        },
-        
-        // Bouton langue
-        language: "Langue",
-        
-        // hmm, ça ne sert a rien...
-        // Projets data
-        // projetsData: {
-        //     liens: {
-        //         documentation: "Voir sa documentation",
-        //         manuel: "Manuel utilisateur",
-        //         github: "Voir sur github",
-        //         itch: "Voir sur itch",
-        //         savoirPlus: "En savoir plus",
-        //         redaction: "En savoir plus"
-        //     },
-        //      1: {
-        //          titre: "Adminer",
-        //          description: "Adminer est une application permettant de gérer des bases de données avec une interface web. J'ai réalisé son installation sur un environnement linux et effectué des test sur des données."
-        //      },
-        //      2: {
-        //          titre: "Site vitrine",
-        //          description: "Une base de site vitrine fait de zéro en htlm, css, php et javascript. Réalisé pour une entreprise de prestation informatique."
-        //      },
-        //      3: {
-        //          titre: "OCS Inventory",
-        //          description: "OCS Inventory est une application permettant de gérer un parc informatique. J'ai réalisé son installation sur un environnement linux, un exemple de remontée de poste et d'installation de plugins"
-        //      },
-        //      4: {
-        //          titre: "Snipe IT",
-        //          description: "Snipe IT est une application permettant de gérer un parc informatique. J'ai réalisé son installation sur un environnement linux et un exemple de remontée de poste"
-        //      },
-        //      5: {
-        //          titre: "Veille sur les IA et l'usurpation d'identité",
-        //          description: "Les IA sont de plus en plus présentes dans notre quotidien, malgré les avantages qu'elles apportent, elles sont néanmoins aussi utilisées pour des raison contestables."
-        //      },
-        //      6: {
-        //          titre: "GLPI",
-        //          description: "GLPI est une application permettant de gérer un parc informatique. J'ai réalisé son installation sur un environnement linux, un exemple de remontée de poste et de gestion de tickets"
-        //      },
-        //      7: {
-        //          titre: "Mamoot",
-        //          description: "Mamoot est un site pour créer et jouer à des quiz, conçu avec le framework Symfony. J'ai pu réaliser la mise en forme de la maquette vers le css, backend administrateur, animation du podium en javascript..."
-        //      },
-        //      8: {
-        //          titre: "Gestion des véhicules (GVH)",
-        //          description: "GVH est une application permettant de gérer et réserver des véhicules. J'y ai développé un système d'images et de statistiques."
-        //      },
-        //      9: {
-        //          titre: "Jeux de plateforme",
-        //          description: "Un projet de jeux de plateforme, réalisé sur unreal engine 5, le but est de finir les niveau en évitant les obstacles."
-        //      },
-        //      10: {
-        //          titre: "Jeux de cible",
-        //          description: "Un projet de jeux de cible, réalisé sur unreal engine 5, le but est de toucher toutes les cibles placé dans le niveau pour terminer le niveau."
-        //      },
-        //      11: {
-        //          titre: "Jeux de tower defense",
-        //          description: "Un projet de jeux Tower Defense, réalisé sur unreal engine 5, le but est de défendre sa base contre des vagues d'ennemis en plaçant des tours à des enplacements stratégiques."
-        //      },
-        //      12: {
-        //          titre: "Escape Game VR",
-        //          description: "Un projet d'escape game que j'ai réalisé pour de la réalité virtuel sur Unreal Engine 5, le but est de résoudre les différentes énigmes pour s'échapper de la zone."
-        //      },
-        //      13: {
-        //          titre: "RechercheEnNature",
-        //          description: "Un projet que j'ai réalisé sur Unreal Engine 5, le but est de collectez des objets pour passez les différentes zone et récupérer le coffre au trésor."
-        //      },
-        //      14: {
-        //          titre: "LeProf",
-        //          description: "Un projet que j'ai réalisé sur Unreal Engine, le but est de répondre au questions des tableaux avec une réaction adéquate du professeur en fonction d'une bonne ou mauvaise réponse."
-        //      },
-        //      15: {
-        //          titre: "Combat d'la mort",
-        //          description: "Un projet que j'ai réalisé avec un camarade sur Unreal Engine, le but est d'affronter un boss en 4 phases qui vont être de plus en plus compliqué."
-        //      },
-        //      16: {
-        //          titre: "Avoiding Space",
-        //          description: "Un projet sur kinect réalisé à un stage avec un camarade sur Unity, le but est de contrôler un vaisseau et d'esquiver le plus possible d'obstacle pour survivre le plus longtemps et avoir un bon score de temps."
-        //      },
-        //      17: {
-        //          titre: "Vr Lab",
-        //          description: "Un projet de réalité virtuel de fin d'année fait sur Unreal Engine, avec 4 salles comportant différentes mécaniques."
-        //      },
-        //      18: {
-        //          titre: "Layout - The Crew San Antonio",
-        //          description: "Un layout de niveau créé par rapport au centre-ville de San Antonio en prenant en compte une taille réduite, 3 points d'intérêt et les mécaniques du jeu The Crew. Dans ce document j'y montre plusieurs version de ce layout en fonction de son avancement."
-        //      },
-        //      19: {
-        //          titre: "Blockout Babble",
-        //          description: "J'ai travaillé sur ce blockout de niveau sur un projet unity qui nous a été fournit en prenant en compte les élément de gameplay et de level design pour guider le joueur à travers les environs et de traverser les obstacles."
-        //      },
-        //      20: {
-        //          titre: "Layout - Blockout Médiéval",
-        //          description: "Un projet sur Unreal Engine, où il fallait créer un layout et un blockout en fonction de plusieurs consignes. Une page dédiée en dessous présente le projet en détail."
-        //      },
-        //      21: {
-        //          titre: "Gamagoramon",
-        //          description: "Un jeux de type Pokémon like simplifié, Le but est remporter le plus de combats possible avec son équipe de monstre généré aléatoirement tout comme celle de chaque équipe adverse. Le jeux a été réalisé sur Unity en C# avec un camarade pour un projet."
-        //      }
-        // }
+            lastUpdate: "Dernière mise à jour publiée le",
+            erreurMaj: "Impossible de récupérer la date de la dernière mise à jour du portfolio"
+        }
     },
     
     en: {
@@ -161,46 +75,59 @@ window.TRANSLATIONS = {
         nav: {
             accueil: "Home",
             aPropos: "About Me",
-            competences: "Skills",
+            experiences: "Experience",
+            outils: "My Tools",
             projets: "Projects",
-            contact: "Contact"
+            contact: "Contact",
+            retourHaut: "Back to top"
         },
         
         // Sections
         accueil: {
             titre: "Hello",
-            bienvenue: "Welcome to my portfolio.",
-            description: "You can navigate through the different sections at the top of the page, or scroll down from top to bottom."
+            bienvenue: "Welcome to my portfolio: here you will find my projects, my background and my skills.",
+            voirProjets: "See my projects"
         },
         
         aPropos: {
             titre: "About Me",
             ligne1: "My name is Ethan Lacomme, I am ",
             ans: " years old.",
-            ligne2: "I am a developer, always ready to improve my skills on new projects.",
-            ligne3: " I am currently looking for studies",
-            programme: " ",
-            ligne4: " ",
+            ligne2: "Always eager to grow and take on new challenges across a variety of projects.",
+            ligne3: "I am currently looking for a job.",
             cv: "My Resume"
         },
         
-        competences: {
-            titre: "My Skills",
-            programmation: "Programming Languages I have used",
-            environnement: "Development Environments - Software I have used",
-            voirPlus: "See more"
+        experiences: {
+            titre: "My Experience",
+            voirPlus: "Show older",
+            voirMoins: "Hide older"
+        },
+
+        outils: {
+            titre: "My Tools",
+            intro: "Click a tool to see the projects made with it.",
+            projet: "project",
+            projets: "projects"
         },
         
         projets: {
             titre: "My Projects",
-            tag: "Tag",
-            colonnes: "Columns",
-            elements: "Items",
+            tout: "All",
+            tous: "All",
+            outil: "Tool",
+            retirerFiltre: "Remove filter",
+            lireSuite: "Read more",
+            lireVideo: "Play video",
+            reduire: "Show less",
             voirPlus: "See more"
         },
         
         contact: {
             titre: "Contact Me",
+            ecrire: "Email me",
+            copier: "Copy address",
+            copie: "Address copied!",
             linkedIn: "LinkedIn: Ethan Lacomme",
             githubPrincipal: "Main GitHub",
             githubPortfolio: "Portfolio GitHub"
@@ -208,220 +135,53 @@ window.TRANSLATIONS = {
         
         footer: {
             credit: "Website created by Ethan Lacomme",
-            lastUpdate: "Last update published on"
-        },
-        
-        // Bouton langue
-        language: "Language",
-        
-        // Projets data
-        projetsData: {
-            liens: {
-                documentation: "View documentation",
-                manuel: "User manual",
-                github: "View on github",
-                itch: "View on itch",
-                savoirPlus: "Learn more",
-                redaction: "Learn more"
-            },
-            1: {
-                titre: "Adminer",
-                description: "Adminer is an application for managing databases with a web interface. I installed it on a Linux environment and performed tests on data."
-            },
-            2: {
-                titre: "Showcase Website",
-                description: "A showcase website built from scratch in HTML, CSS, PHP and JavaScript. Created for an IT services company."
-            },
-            3: {
-                titre: "OCS Inventory",
-                description: "OCS Inventory is an application for managing IT infrastructure. I installed it on a Linux environment, with an example of computer registration and plugin installation."
-            },
-            4: {
-                titre: "Snipe IT",
-                description: "Snipe IT is an application for managing IT infrastructure. I installed it on a Linux environment with an example of computer registration."
-            },
-            5: {
-                titre: "AI and Identity Theft Research",
-                description: "AI is increasingly present in our daily lives, despite the advantages they bring, they are also used for questionable reasons."
-            },
-            6: {
-                titre: "GLPI",
-                description: "GLPI is an application for managing IT infrastructure. I installed it on a Linux environment, with an example of computer registration and ticket management."
-            },
-            7: {
-                titre: "Mamoot",
-                description: "Mamoot is a website for creating and playing quizzes, designed with the Symfony framework. I worked on converting the mockup to CSS, backend administration, podium animation in JavaScript..."
-            },
-            8: {
-                titre: "Vehicle Management (GVH)",
-                description: "GVH is an application for managing and booking vehicles. I developed an image and statistics system."
-            },
-            9: {
-                titre: "Platform Game",
-                description: "A platform game project, created on Unreal Engine 5, the goal is to complete the levels by avoiding obstacles."
-            },
-            10: {
-                titre: "Target Game",
-                description: "A target game project, created on Unreal Engine 5, the goal is to hit all the targets placed in the level to complete it."
-            },
-            11: {
-                titre: "Tower Defense Game",
-                description: "A Tower Defense game project, created on Unreal Engine 5, the goal is to defend your base against waves of enemies by placing towers in strategic locations."
-            },
-            12: {
-                titre: "VR Escape Game",
-                description: "An escape game project I created for virtual reality on Unreal Engine 5, the goal is to solve various puzzles to escape the area."
-            },
-            13: {
-                titre: "RechercheEnNature",
-                description: "A project I created on Unreal Engine 5, the goal is to collect objects to pass through different areas and retrieve the treasure chest."
-            },
-            14: {
-                titre: "LeProf",
-                description: "A project I created on Unreal Engine, the goal is to answer the board questions with an appropriate reaction from the teacher based on a correct or incorrect answer."
-            },
-            15: {
-                titre: "Combat d'la mort",
-                description: "A project I created with a classmate on Unreal Engine, the goal is to face a boss in 4 phases that will become increasingly difficult."
-            },
-            16: {
-                titre: "Avoiding Space",
-                description: "A Kinect project created during an internship with a classmate on Unity, the goal is to control a spaceship and dodge as many obstacles as possible to survive as long as possible and achieve a good time score."
-            },
-            17: {
-                titre: "Vr Lab",
-                description: "A year-end virtual reality project made on Unreal Engine, with 4 rooms featuring different mechanics."
-            },
-            18: {
-                titre: "Layout - The Crew San Antonio",
-                description: "A level layout created based on downtown San Antonio, taking into account a reduced size, 3 points of interest, and the mechanics of The Crew game. In this document I show several versions of this layout depending on its progress."
-            },
-            19: {
-                titre: "Blockout Babble",
-                description: "I worked on this level blockout on a Unity project that was provided to us, taking into account gameplay and level design elements to guide the player through the surroundings and overcome obstacles."
-            },
-            20: {
-                titre: "Layout - Medieval Blockout",
-                description: "A project on Unreal Engine, where I had to create a layout and blockout based on several guidelines. A dedicated page below presents the project in detail."
-            },
-            21: {
-                titre: "Gamagoramon",
-                description: "A simplified Pokémon-like game. The goal is to win as many battles as possible with your randomly generated monster team, just like each opposing team. The game was made on Unity in C# with a classmate for a project."
-            },
-            22: {
-                titre: "Modular health/shield system with regeneration",
-                description: "A demonstration in Unreal Engine, showing the functionality of my health/shield component written in C++, attached to the player and synchronized with the UI in real time. I also made the system modular with editable values accessible through the editor and created a debug system with triggers to simulate many value change events."
-            },
-            23: {
-                titre: "Grandma's Home",
-                description: "Grandma's Home is a multiplayer prop hunt game in a cartoon atmosphere where ghosts face off against children in their grandmother's house. It was created as part of the Gamagora Game Show over a period of 3 months."
-            }
+            lastUpdate: "Last update published on",
+            erreurMaj: "Could not retrieve the date of the portfolio's last update"
         }
     }
 };
 
-// Langue actuelle (par défaut français) - Variable globale
+// Langue actuelle (par défaut français)
 window.currentLanguage = localStorage.getItem('portfolio-language') || 'fr';
 
-// Initialise le localStorage à 'fr' si pas déjà défini
-if (!localStorage.getItem('portfolio-language')) {
-    localStorage.setItem('portfolio-language', 'fr');
-}
-
-// Fonction pour obtenir une traduction
+// Retourne la traduction d'une clé du type "nav.accueil" (ou la clé si absente)
 function t(key) {
-    const keys = key.split('.');
-    let value = TRANSLATIONS[window.currentLanguage];
-    
-    for (let k of keys) {
-        value = value[k];
-        if (!value) return key; // Retour de la clé si traduction non trouvée
-    }
-    
-    return value;
+    return key.split('.').reduce((value, k) => value?.[k], TRANSLATIONS[window.currentLanguage]) || key;
 }
 
-// Fonction pour changer la langue
 function setLanguage(lang) {
-    if (!TRANSLATIONS[lang]) {
-        console.warn(`Langue ${lang} non disponible`);
-        return;
-    }
-    
+    if (!TRANSLATIONS[lang]) return;
     window.currentLanguage = lang;
     localStorage.setItem('portfolio-language', lang);
-    
-    // Mettre à jour le bouton langue
     updateLanguageButton();
-    
-    // Mettre à jour tous les éléments traduits
     updateAllTranslations();
-    
-    // Mettre à jour les traductions de rédaction si on est sur une page de rédaction
-    if (typeof updateRedactionTranslations === 'function') {
-        updateRedactionTranslations();
-    }
-    
-    // Recharger l'affichage des projets pour appliquer les traductions
-    if (typeof refreshProjectsDisplay === 'function') {
-        refreshProjectsDisplay();
-    }
+    refreshProjectsDisplay();
+    renderFilters();
+    renderExperiences();
+    renderOutils();
+    renderLastUpdate();
 }
 
-// Fonction pour toggle entre les langues
 function toggleLanguage() {
-    const newLang = window.currentLanguage === 'fr' ? 'en' : 'fr';
-    setLanguage(newLang);
+    setLanguage(window.currentLanguage === 'fr' ? 'en' : 'fr');
 }
 
-// Mettre à jour le bouton de langue active
+// Le bouton affiche la langue vers laquelle on peut basculer.
+// Son étiquette (lue par les lecteurs d'écran et affichée au survol) dit ce qu'il fait.
 function updateLanguageButton() {
-    const langText = document.getElementById('lang-text');
-    const langIcon = document.getElementById('lang-icon');
-    
-    if (langText) {
-        // Affiche la langue vers laquelle on peut aller (l'inverse de la langue actuelle)
-        langText.textContent = window.currentLanguage === 'fr' ? 'EN' : 'FR';
-    }
-    
-    if (langIcon) {
-        // Affiche le drapeau de la langue vers laquelle on peut aller
-        langIcon.textContent = window.currentLanguage === 'fr' ? '🇺🇸' : '🇫🇷';
-    }
+    const isFr = window.currentLanguage === 'fr';
+    const bouton = document.getElementById('lang-toggle-btn');
+    document.getElementById('lang-text').textContent = isFr ? 'EN' : 'FR';
+    document.getElementById('lang-icon').textContent = isFr ? '🇺🇸' : '🇫🇷';
+    document.getElementById('lang-icon').setAttribute('aria-hidden', 'true');
+    bouton.setAttribute('aria-label', isFr ? 'Passer le site en anglais' : 'Switch the site to French');
+    bouton.title = isFr ? 'Passer le site en anglais' : 'Switch the site to French';
 }
 
-// Mettre à jour toutes les traductions dans le DOM
+// Met à jour tous les éléments [data-i18n] du DOM
 function updateAllTranslations() {
-    // Mise à jour des éléments par data-i18n
+    document.documentElement.lang = window.currentLanguage;
     document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        const translated = t(key);
-        
-        // Si c'est un input/select, modifier value sinon modifier textContent
-        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-            el.placeholder = translated;
-        } else if (el.tagName === 'SELECT') {
-            el.title = translated;
-        } else {
-            el.textContent = translated;
-        }
-    });
-    
-    // Mise à jour des attributs title
-    document.querySelectorAll('[data-i18n-title]').forEach(el => {
-        const key = el.getAttribute('data-i18n-title');
-        el.title = t(key);
-    });
-    
-    // Mise à jour des attributs placeholder
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-        const key = el.getAttribute('data-i18n-placeholder');
-        el.placeholder = t(key);
+        el.textContent = t(el.getAttribute('data-i18n'));
     });
 }
-
-// Initialiser la langue au chargement
-document.addEventListener('DOMContentLoaded', function() {
-    updateLanguageButton();
-    updateAllTranslations();
-});

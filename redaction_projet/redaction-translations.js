@@ -5,11 +5,7 @@ window.REDACTION_TRANSLATIONS = {
     en: {
         // General
         nav: {
-            retourPortfolio: "← Back to Portfolio",
-            fermerPage: "Close Page"
-        },
-        footer: {
-            credit: "Project writeup | Ethan Lacomme"
+            retourPortfolio: "← Back to Portfolio"
         },
         
         // LD Medieval
@@ -21,9 +17,7 @@ window.REDACTION_TRANSLATIONS = {
             
             introduction: {
                 titre: "Introduction",
-                contenu: "This level design project aims to meet the requirements of a navigation exercise in a medieval town. From the two reference shots below, the goal is to guide the player through a merchant street, enter a specific building to retrieve an object, and exit from the back and return to the starting point.",
-                reference1: "Reference - Medieval merchant street",
-                reference2: "Reference - Medieval building interior"
+                contenu: "This level design project aims to meet the requirements of a navigation exercise in a medieval town. From the two reference shots below, the goal is to guide the player through a merchant street, enter a specific building to retrieve an object, and exit from the back and return to the starting point."
             },
             
             brief: {
@@ -31,8 +25,7 @@ window.REDACTION_TRANSLATIONS = {
                 sousTitre: "The Context",
                 contenu: "The level starts as the master writer, speaking with an herbalist on his doorstep, asks the apprentice (the player) to fetch a book about plants so they can continue their research.",
                 objectifJoueur: "Player Objective",
-                objectifTexte: "The player must head down the merchant street, reach the writer's building at the end, retrieve the target book inside, then exit through the back door into the adjacent street to return to the starting point.",
-                objectifSchema: "Simplified player path"
+                objectifTexte: "The player must head down the merchant street, reach the writer's building at the end, retrieve the target book inside, then exit through the back door into the adjacent street to return to the starting point."
             },
             
             gameplay: {
@@ -42,21 +35,13 @@ window.REDACTION_TRANSLATIONS = {
                 phase2Titre: "Phase 2: Search",
                 phase2: "Inside, the player searches for the target book identified by its distinct logo compared to the other books.",
                 phase3Titre: "Phase 3: Return",
-                phase3: "Once the book is collected, an exit door opens to the adjacent street, leading back to the starting point to deliver it to the master writer.",
-                navigationLandmarks: "Navigation landmarks",
-                targetBook: "Target book to pick"
+                phase3: "Once the book is collected, an exit door opens to the adjacent street, leading back to the starting point to deliver it to the master writer."
             },
             
             layout: {
                 titre: "Layout & Blockout",
                 contenu1: "Here is the layout used as the foundation for the blockout: three main zones—merchant street, writer's building interior, and the backyard alley exit.",
-                contenu2: "The level is a sequence of streets with obstacles guiding the player toward the building via the market. The writer's house interior and its backyard provide the return path. The blockout was resized to open an extra street, creating a longer detour to the target building.",
-                overview: "Level layout overview",
-                extension: "Blockout extension",
-                merchantStreet: "Blockout merchant street",
-                buildingInterior: "Blockout building interior",
-                backyard: "Blockout backyard",
-                blockoutTitle: "Blockout"
+                contenu2: "The level is a sequence of streets with obstacles guiding the player toward the building via the market. The writer's house interior and its backyard provide the return path. The blockout was resized to open an extra street, creating a longer detour to the target building."
             },
             
             resultats: {
@@ -72,6 +57,67 @@ window.REDACTION_TRANSLATIONS = {
             }
         },
         
+        // Veille : les IA et l'usurpation d'identité
+        veilleIA: {
+            titre: "AI and Identity Theft",
+            dates: "Technology watch · created 04/13/2024, updated 04/24/2024",
+            intro: {
+                titre: "Introduction",
+                p1: "Artificial intelligence (AI) is revolutionizing many fields, but its growing use raises concerns about the ways it can be misused.",
+                p2: "This technology watch explores the problems AI raises by calling into question the authenticity of content, and the efforts needed to detect it."
+            },
+            usurpation: {
+                titre: "Identity theft in the age of AI",
+                p1: "AI-based identity theft uses machine learning on a person, from every possible personal trait, from appearance to voice, in order to reproduce them as realistically as possible.",
+                p2: "In the hands of malicious people, the results of this practice can be used to create fake social media profiles, generate counterfeit videos or audio, or harm the reputation of the victim.",
+                p3: "An alarming example of AI-generated content is deepfakes: videos created from a person's data and generated realistically. They are very often used to spread false information, for parody and/or political purposes, using the appearance of a well-known person to reach a wide audience."
+            },
+            menaces: {
+                titre: "Threats and malicious uses",
+                p1: "This practice can have consequences for many people, such as:",
+                liste: [
+                    "Disinformation and manipulation",
+                    "Damage to the victim's reputation",
+                    "Theft of the victim's identity",
+                    "Scams targeting deceived people"
+                ],
+                p2: "Tools such as DeepFaceLab, Deepswap or DeepFakes Web can be used to create deepfakes. There are also image generators such as DALL-E, which create images from text."
+            },
+            lutte: {
+                titre: "How to detect and fight deepfakes?",
+                p1: "Faced with these risks, several solutions help detect this type of content and protect against it.",
+                detection: {
+                    titre: "Detecting deepfakes",
+                    p: "For now, despite their realism, deepfakes can still be spotted with the naked eye thanks to details or finishes that are not yet perfected: an extra finger on a hand, an unrealistic shape…"
+                },
+                medias: {
+                    titre: "Checking media",
+                    p: "News shared by media outlets should be checked against other sources before being trusted."
+                },
+                education: {
+                    titre: "Education and awareness",
+                    p: "It is also important to raise awareness of the risks of deepfakes and to teach people how to detect them."
+                },
+                reglementation: {
+                    titre: "Regulation and cooperation",
+                    p: "In the European Union, AI regulation is still being developed and constantly evolving, especially since OpenAI's rise at the end of 2022 and the popularity, for better and for worse, it brought to AI. Laws are in force that allow, for example, filing a complaint against deepfakes using one's image."
+                }
+            },
+            conclusion: {
+                titre: "Conclusion",
+                p: "AI offers immense potential for the future, but its ever-wider use must come with greater vigilance against the risk of misuse. Awareness and regulation are ways to fight future abuses."
+            },
+            sources: {
+                titre: "Sources and references",
+                s1: "Deepfakes on Wikipedia (French)",
+                s2: "Examples of tools to create deepfakes (French)",
+                s3: "DeepFaceLab GitHub (obsolete)",
+                s4: "Example of AI regulation by the European Union (French)",
+                s5: "Video by YouTuber Cyprien on the problems of AI (French)",
+                s6: "OpenAI website"
+            }
+        },
+
         // Gamagoramon
         gamagoramon: {
             titre: "Gamagoramon",
@@ -186,298 +232,152 @@ window.REDACTION_TRANSLATIONS = {
     }
 };
 
-/**
- * Récupère une traduction anglaise
- * Retourne SEULEMENT si la langue est 'en'
- * Le français reste dans le HTML par défaut
- * @param {string} key - Clé de4 traduction (ex: "gamagoramon.titre")
- * @returns {string|null} - Texte traduit en anglais ou null si français
- */
-function tr(key) {
-    const lang = window.currentLanguage || 'fr';
-    
-    // Si français, retourner null pour garder le HTML français par défaut
-    if (lang !== 'en') {
-        return null;
-    }
-    
-    const keys = key.split('.');
-    let value = REDACTION_TRANSLATIONS['en'];
-    
-    for (let k of keys) {
-        value = value[k];
-        if (!value) return null;
-    }
-    
-    return value;
-}
+// ---------------------------------------------------------------------
+//  PAGES DÉTAILLÉES, dans l'ordre de navigation "précédent / suivant".
+//  Chemins depuis la racine du site. Pour une nouvelle page : ajouter une ligne.
+// ---------------------------------------------------------------------
+const PAGES_DETAILLEES = [
+    { chemin: "redaction_projet/grandmas_home/index.html",              fr: "Grandma's Home",                    en: "Grandma's Home" },
+    { chemin: "redaction_projet/gamagoramon/index.html",                fr: "Gamagoramon",                       en: "Gamagoramon" },
+    { chemin: "redaction_projet/layout_medieval/index.html",            fr: "Level design médiéval",             en: "Medieval level design" },
+    { chemin: "documents/veilles/IAetUsurpationDidentité/index.html",   fr: "Les IA et l'usurpation d'identité", en: "AI and Identity Theft" }
+];
 
-/**
- * Sauvegarde les textes français originaux du HTML
- * Appelée au chargement du DOM pour créer une cache
- */
-function saveFrenchTexts() {
-    window.FRENCH_TEXTS_CACHE = {};
-    document.querySelectorAll('[data-i18n-r]').forEach(el => {
-        const key = el.getAttribute('data-i18n-r');
-        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-            window.FRENCH_TEXTS_CACHE[key] = el.placeholder;
-        } else {
-            window.FRENCH_TEXTS_CACHE[key] = el.textContent;
-        }
-    });
-    // Aussi les listes
-    const pointsList = document.getElementById('resultats-list');
-    if (pointsList) {
-        window.FRENCH_TEXTS_CACHE['resultats-list'] = pointsList.innerHTML;
-    }
-    const gamaFeatures = document.getElementById('gama-features');
-    if (gamaFeatures) {
-        window.FRENCH_TEXTS_CACHE['gama-features'] = gamaFeatures.innerHTML;
-    }
-}
+// Racine du site, déduite de l'adresse de ce script (…/redaction_projet/redaction-translations.js)
+const RACINE_SITE = document.currentScript.src.replace(/redaction_projet\/redaction-translations\.js.*$/, '');
 
-/**
- * Restaure les textes français originaux du HTML
- * Appelée quand on bascule à 'fr'
- */
-function restoreFrenchTexts() {
-    if (!window.FRENCH_TEXTS_CACHE) return;
-    
-    document.querySelectorAll('[data-i18n-r]').forEach(el => {
-        const key = el.getAttribute('data-i18n-r');
-        const originalText = window.FRENCH_TEXTS_CACHE[key];
-        if (originalText) {
-            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                el.placeholder = originalText;
-            } else {
-                el.textContent = originalText;
-            }
-        }
-    });
-    // Aussi les listes
-    const pointsList = document.getElementById('resultats-list');
-    if (pointsList && window.FRENCH_TEXTS_CACHE['resultats-list']) {
-        pointsList.innerHTML = window.FRENCH_TEXTS_CACHE['resultats-list'];
-    }
-    const gamaFeatures = document.getElementById('gama-features');
-    if (gamaFeatures && window.FRENCH_TEXTS_CACHE['gama-features']) {
-        gamaFeatures.innerHTML = window.FRENCH_TEXTS_CACHE['gama-features'];
-    }
-}
+// Langue partagée avec le portfolio via le localStorage
+window.currentLanguage = localStorage.getItem('portfolio-language') || 'fr';
+document.documentElement.lang = window.currentLanguage;
 
-/**
- * Change la langue en mettant à jour le localStorage global
- */
-function setLanguage(lang) {
-    if (!['fr', 'en'].includes(lang)) {
-        console.warn(`Langue ${lang} non disponible`);
-        return;
-    }
-    
-    console.log('[REDACTION] Changement de langue:', window.currentLanguage, '->', lang);
-    
-    // Sauvegarder dans le localStorage (partagé avec toutes les pages)
-    localStorage.setItem('portfolio-language', lang);
-
-    // Si on revient au français, recharger la page pour reprendre le HTML par défaut
-    if (lang === 'fr') {
-        console.log('[REDACTION] Passage au FR - rechargement de la page');
-        location.reload();
-    } else {
-        // En anglais, appliquer les traductions sans recharger
-        console.log('[REDACTION] Passage en EN - application des traductions');
-        window.currentLanguage = lang;
-        document.documentElement.setAttribute('lang', lang);
-        updateLanguageButton();
-        updateAllRedactionTranslations();
-    }
-}
-
-/**
- * Toggle entre français et anglais (identique à la page principale)
- */
-function toggleLanguage() {
-    // console.log('[REDACTION] Toggle langue appelé, langue actuelle:', window.currentLanguage);
-    const newLang = window.currentLanguage === 'fr' ? 'en' : 'fr';
-    setLanguage(newLang);
-}
-
-// S'assurer que la fonction est disponible globalement
-window.toggleLanguage = toggleLanguage;
-
-/**
- * Mets à jour le bouton de langue
- */
-function updateLanguageButton() {
-    const langText = document.getElementById('lang-text');
-    const langIcon = document.getElementById('lang-icon');
-    
-    // console.log('[REDACTION] Mise à jour bouton, langue actuelle:', window.currentLanguage, 'texte trouvé:', !!langText, 'icône trouvée:', !!langIcon);
-    
-    if (langText) {
-        // Affiche la langue vers laquelle on peut aller (l'inverse de la langue actuelle)
-        langText.textContent = window.currentLanguage === 'fr' ? 'EN' : 'FR';
-        // console.log('[REDACTION] Texte bouton mis à jour:', langText.textContent);
-    }
-    
-    if (langIcon) {
-        // Affiche le drapeau de la langue vers laquelle on peut aller
-        langIcon.textContent = window.currentLanguage === 'fr' ? '🇺🇸' : '🇫🇷';
-        // console.log('[REDACTION] Icône bouton mise à jour:', langIcon.textContent);
-    }
-}
-
-/**
- * Mets à jour tous les éléments [data-i18n-r] dans une rédaction
- * Bascule entre français et anglais dynamiquement
- */
+// Valeur anglaise d'une clé du type "gamagoramon.titre" (null si absente)
 function getTranslationValue(key) {
-    const keys = key.split('.');
-    let value = REDACTION_TRANSLATIONS['en'];
-
-    for (const k of keys) {
-        value = value[k];
-        if (value === undefined || value === null) {
-            return null;
-        }
-    }
-
-    return value;
+    return key.split('.').reduce((value, k) => value?.[k], REDACTION_TRANSLATIONS.en) ?? null;
 }
 
-// Rend le texte ou la liste traduite dans l'élément HTML
-function renderTranslation(el, value) {
-    if (Array.isArray(value)) {
-        if (el.tagName === 'UL' || el.tagName === 'OL') {
-            el.innerHTML = value.map(item => `<li>${item}</li>`).join('');
-        }
-        return;
-    }
-
-    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-        el.placeholder = value;
-    } else {
-        el.textContent = value;
-    }
-}
-
+// Applique les traductions anglaises (en français, le HTML d'origine est conservé)
 function updateAllRedactionTranslations() {
-    const lang = window.currentLanguage || 'fr';
-    // On n'applique les traductions que si la langue est EN;
-    // En FR, on laisse le HTML par défaut (aucune modification)
-    if (lang !== 'en') {
+    if (window.currentLanguage !== 'en') return;
+    document.querySelectorAll('[data-i18n-r]').forEach(el => {
+        const value = getTranslationValue(el.getAttribute('data-i18n-r'));
+        if (value === null) return;
+        if (Array.isArray(value)) {
+            el.innerHTML = value.map(item => `<li>${item}</li>`).join('');
+        } else {
+            el.textContent = value;
+        }
+    });
+}
+
+// Le bouton affiche la langue vers laquelle on peut basculer.
+// Son étiquette (lue par les lecteurs d'écran et affichée au survol) dit ce qu'il fait.
+function updateLanguageButton() {
+    const isFr = window.currentLanguage === 'fr';
+    const bouton = document.getElementById('lang-toggle-btn');
+    document.getElementById('lang-text').textContent = isFr ? 'EN' : 'FR';
+    document.getElementById('lang-icon').textContent = isFr ? '🇺🇸' : '🇫🇷';
+    document.getElementById('lang-icon').setAttribute('aria-hidden', 'true');
+    bouton.setAttribute('aria-label', isFr ? 'Passer le site en anglais' : 'Switch the site to French');
+    bouton.title = isFr ? 'Passer le site en anglais' : 'Switch the site to French';
+}
+
+// Ajoute "← Projet précédent / Projet suivant →" en bas de la page
+function renderProjectNav() {
+    const ici = decodeURIComponent(location.pathname);
+    const index = PAGES_DETAILLEES.findIndex(page => ici.endsWith(page.chemin));
+    if (index === -1) return;
+
+    const en = window.currentLanguage === 'en';
+    const lien = (page, sens) => {
+        if (!page) return '<span></span>';
+        const libelle = sens === 'prec' ? (en ? '← Previous' : '← Précédent') : (en ? 'Next →' : 'Suivant →');
+        return `<a class="projet-nav__lien projet-nav__lien--${sens}" href="${RACINE_SITE}${encodeURI(page.chemin)}">
+                    <span class="projet-nav__sens">${libelle}</span>
+                    <span class="projet-nav__titre">${en ? page.en : page.fr}</span>
+                </a>`;
+    };
+
+    let nav = document.getElementById('projet-nav');
+    if (!nav) {
+        nav = document.createElement('nav');
+        nav.id = 'projet-nav';
+        nav.className = 'projet-nav';
+        document.querySelector('.redaction-content').appendChild(nav);
+    }
+    nav.setAttribute('aria-label', en ? 'Other projects' : 'Autres projets');
+    nav.innerHTML = lien(PAGES_DETAILLEES[index - 1], 'prec') + lien(PAGES_DETAILLEES[index + 1], 'suiv');
+}
+
+function applyLanguage(lang) {
+    // Retour au français : on recharge pour retrouver le HTML d'origine
+    if (lang === 'fr') {
+        location.reload();
         return;
     }
-
-    document.querySelectorAll('[data-i18n-r]').forEach(el => {
-        const key = el.getAttribute('data-i18n-r');
-        const value = getTranslationValue(key);
-        if (value !== null) {
-            renderTranslation(el, value);
-        }
-    });
-}
-
-/**
- * Compatibilité avec l'ancien nom de fonction.
- * La logique est maintenant entièrement gérée par updateAllRedactionTranslations().
- */
-function updateArrayTranslations() {
-    updateAllRedactionTranslations();
-}
-
-/**
- * Initialise la langue en se basant sur le localStorage global du site
- * Le localStorage est partagé entre toutes les pages du même domaine
- */
-function initRedactionLanguage() {
-    let targetLang = 'fr'; // Défaut
-    
-    // Priorité 1: Langue de la page qui a ouvert cette rédaction (window.opener)
-    if (window.opener && window.opener.currentLanguage) {
-        targetLang = window.opener.currentLanguage;
-        console.log('[REDACTION] Langue depuis page principale (opener):', targetLang);
-    } 
-    // Priorité 2: localStorage (si ouvert directement ou rechargé)
-    else {
-        const storedLang = localStorage.getItem('portfolio-language');
-        targetLang = storedLang || 'fr';
-        console.log('[REDACTION] Langue depuis localStorage:', targetLang);
-    }
-    
-    console.log('[REDACTION] Initialisation langue finale:', targetLang);
-
-    window.currentLanguage = targetLang;
-    document.documentElement.setAttribute('lang', targetLang);
-    
-    // Synchroniser le localStorage avec la langue détectée
-    localStorage.setItem('portfolio-language', targetLang);
-}
-
-/**
- * Écoute les changements du localStorage pour synchroniser entre onglets
- * Si la langue change dans un autre onglet, on met à jour automatiquement
- */
-function listenToLanguageChanges() {
-    window.addEventListener('storage', function(e) {
-        if (e.key === 'portfolio-language' && e.newValue) {
-            const newLang = e.newValue;
-            if (newLang !== window.currentLanguage) {
-                window.currentLanguage = newLang;
-                document.documentElement.setAttribute('lang', newLang);
-                updateLanguageButton();
-                updateAllRedactionTranslations();
-            }
-        }
-    });
-}
-
-/**
- * Ferme l'onglet/fenêtre actuelle
- */
-function closeRedactionPage() {
-    window.close();
-}
-
-// Initialiser la langue dès le chargement du script
-initRedactionLanguage();
-
-/**
- * Initialise la rédaction au chargement du DOM
- */
-document.addEventListener('DOMContentLoaded', function() {
-    // Synchroniser l'état visuel du bouton langue
+    window.currentLanguage = lang;
+    document.documentElement.lang = lang;
     updateLanguageButton();
-
-    // TOUJOURS mettre à jour les traductions (français ou anglais)
     updateAllRedactionTranslations();
+    renderProjectNav();
+}
 
-    // Écouter les changements du localStorage pour synchronisation automatique
-    listenToLanguageChanges();
+function toggleLanguage() {
+    const lang = window.currentLanguage === 'fr' ? 'en' : 'fr';
+    localStorage.setItem('portfolio-language', lang);
+    applyLanguage(lang);
+}
 
-    // Attacher les écouteurs pour les boutons
-    const closeBtn = document.querySelector('.btn-close');
-    if (closeBtn) {
-        closeBtn.addEventListener('click', function(event) {
-            event.preventDefault();
-            closeRedactionPage();
-        });
+// Synchronise la langue si elle change dans un autre onglet
+window.addEventListener('storage', e => {
+    if (e.key === 'portfolio-language' && e.newValue && e.newValue !== window.currentLanguage) {
+        applyLanguage(e.newValue);
     }
+});
 
-    // Bouton de langue
-    const langBtn = document.getElementById('lang-toggle-btn') || 
-                    document.querySelector('.lang-btn');
-    
-    if (langBtn) {
-        // Retirer l'attribut onclick s'il existe pour éviter les doubles appels
-        langBtn.removeAttribute('onclick');
-        
-        // Ajouter notre écouteur
-        langBtn.addEventListener('click', function(event) {
-            event.preventDefault();
-            event.stopPropagation();
-            toggleLanguage();
+// ---------------------------------------------------------------------
+//  Vidéos légères : chaque lecteur YouTube de la page est remplacé par sa
+//  miniature ; le vrai lecteur (lourd) ne se charge qu'au clic.
+// ---------------------------------------------------------------------
+function makeVideosLight() {
+    const label = window.currentLanguage === 'en' ? 'Play video' : 'Lire la vidéo';
+    document.querySelectorAll('iframe[src*="youtube"]').forEach(iframe => {
+        const id = iframe.src.match(/embed\/([\w-]{11})/)?.[1];
+        if (!id) return;
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'video-lite';
+        button.setAttribute('aria-label', label);
+        button.innerHTML = `<img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy">
+                            <span class="video-lite__play" aria-hidden="true"></span>`;
+        button.addEventListener('click', () => {
+            iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
+            button.replaceWith(iframe);
         });
-    }
+        iframe.replaceWith(button);
+    });
+}
+
+// ---------------------------------------------------------------------
+//  Bouton "retour en haut" (apparaît après un écran de défilement)
+// ---------------------------------------------------------------------
+function addBackToTop() {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'retour-haut';
+    button.hidden = true;
+    button.setAttribute('aria-label', window.currentLanguage === 'en' ? 'Back to top' : 'Retour en haut');
+    button.innerHTML = '<span aria-hidden="true">↑</span>';
+    button.addEventListener('click', () => window.scrollTo({ top: 0 }));
+    document.body.appendChild(button);
+    window.addEventListener('scroll', () => {
+        button.hidden = window.scrollY < window.innerHeight;
+    }, { passive: true });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateLanguageButton();
+    updateAllRedactionTranslations();
+    makeVideosLight();
+    addBackToTop();
+    renderProjectNav();
 });

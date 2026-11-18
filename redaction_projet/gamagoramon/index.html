@@ -3,22 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../img/icons/favicon-32.png">
+    <link rel="apple-touch-icon" href="../../img/icons/apple-touch-icon.png">
     <title data-i18n-r="gamagoramon.titre">Gamagoramon</title>
-    <link rel="stylesheet" href="../redaction.css">
-    <script src="../redaction-translations.js" defer></script>
+    <link rel="stylesheet" href="../redaction.css?v=dev">
+    <script src="../redaction-translations.js?v=dev" defer></script>
+    <!-- Description et aperçu affiché quand le lien est partagé (LinkedIn, Discord, mail...) -->
+    <meta name="description" content="Jeu de type Pokémon-like réalisé sous Unity en C# : combats, équipes de monstres générées aléatoirement.">
+    <link rel="canonical" href="https://ethanlacomme.github.io/portfolio/redaction_projet/gamagoramon/index.html">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ethanlacomme.github.io/portfolio/redaction_projet/gamagoramon/index.html">
+    <meta property="og:title" content="Gamagoramon | Ethan Lacomme">
+    <meta property="og:description" content="Jeu de type Pokémon-like réalisé sous Unity en C# : combats, équipes de monstres générées aléatoirement.">
+    <meta property="og:image" content="https://ethanlacomme.github.io/portfolio/redaction_projet/gamagoramon/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Statistiques de visite GoatCounter (sans cookies ; les visites en local ne sont pas comptées) -->
+    <script data-goatcounter="https://ethanlacomme.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
     <!-- Header avec bouton fermer -->
     <div id="redaction-header">
         <div class="redaction-nav">
             <a href="../../index.html" class="btn btn--sm" data-i18n-r="nav.retourPortfolio">← Retour au Portfolio</a>
-            <button type="button" class="btn-close" onclick="closeRedactionPage()" data-i18n-r="nav.fermerPage">Fermer la page</button>
             <button id="lang-toggle-btn" class="lang-btn" onclick="toggleLanguage()">
                 <span id="lang-icon">🇫🇷</span> <span id="lang-text">EN</span>
             </button>
         </div>
         <h1 data-i18n-r="gamagoramon.titre">Gamagoramon</h1>
-        <p class="subtitle" data-i18n-r="gamagoramon.sousTitre">Présentation du projet et spécificité travaillée</p>
+        <p class="subtitle" data-i18n-r="gamagoramon.sousTitre">Présentation du projet et spécificités travaillées</p>
     </div>
 
     <!-- Contenu principal -->
@@ -27,19 +42,19 @@
 
             <!-- Bannière -->
             <div class="redaction-media" style="margin-top:0;">
-                <img src="images/Gamagoramon_BannerFull.jpg" alt="Gamagoramon banner">
+                <img width="630" height="500" src="images/Gamagoramon_BannerFull.webp" alt="Gamagoramon – bannière avec le logo jaune et quatre monstres dessinés côte à côte">
             </div>
 
             <!-- Introduction -->
             <section>
                 <h2 data-i18n-r="gamagoramon.introduction.titre">Introduction</h2>
-                <p data-i18n-r="gamagoramon.introduction.contenu">Gamagoramon est un jeux de type Pokémon like simplifié, Le but est remporter le plus de combats possible avec son équipe de monstre généré aléatoirement tout comme celle de chaque équipe adverse.</p>
+                <p data-i18n-r="gamagoramon.introduction.contenu">Gamagoramon est un jeu de type Pokémon-like simplifié : le but est de remporter le plus de combats possible avec son équipe de monstres générée aléatoirement, tout comme celle de chaque équipe adverse.</p>
             </section>
 
             <!-- Features -->
             <section>
                 <h2 data-i18n-r="gamagoramon.gameplay.titre">Fonctionnalités de base</h2>
-                <p data-i18n-r="gamagoramon.gameplay.contenu">Le jeu va se baser sur une boucle de combat simple. dans pokémon les monstre ont 6 type de stats différentes 
+                <p data-i18n-r="gamagoramon.gameplay.contenu">Le jeu se base sur une boucle de combat simple. Dans Pokémon, les monstres ont 6 types de statistiques différentes : 
                 </p>
                 <ul id="stat-list" data-i18n-r="gamagoramon.gameplay.statList"><!-- liste 6 stats -->
                     <li>PV</li>
@@ -50,7 +65,7 @@
                     <li>Vitesse</li>
                 </ul>
                 <p data-i18n-r="gamagoramon.gameplay.contenu2">
-                    Ici j'ai réduit cela à seulement 3 stats principales 
+                    Ici, je les ai réduites à seulement 3 statistiques principales : 
                 </p>
                 <ul id="reduced-stat-list" data-i18n-r="gamagoramon.gameplay.reducedStatList"><!-- liste 3 stats -->
                     <li>PV</li>
@@ -58,7 +73,7 @@
                     <li>Défense</li>
                 </ul>
                 <p data-i18n-r="gamagoramon.gameplay.contenu2b">
-                    Cela permet de simplifier les calculs lors des combats tout en gardant une certaine profondeur stratégique notament avec l'affinité des types.
+                    Cela permet de simplifier les calculs lors des combats tout en gardant une certaine profondeur stratégique notamment avec l'affinité des types :
                 </p>
                 <ul id="type-list" data-i18n-r="gamagoramon.gameplay.typeList"><!-- liste types -->
                     <li>Feu > Plante | Feu < Eau</li>
@@ -67,7 +82,7 @@
                     <li>Normal = neutre pour les 3 types</li>
                 </ul>
                 <p data-i18n-r="gamagoramon.gameplay.contenu3">
-                    Chaque monstre possède 3 attaques différentes, à savoir l'attaque normal, l'attaque élémentaire de son type (sauf pour le type normal) et une attaque spéciale entre ces 3 choix.
+                    Chaque monstre possède 3 attaques différentes, à savoir l'attaque normale, l'attaque élémentaire de son type (sauf pour le type normal) et une attaque spéciale parmi ces 3 choix :
                 </p>
                 <ul id="attack-list" data-i18n-r="gamagoramon.gameplay.attackList"><!-- liste attaques -->
                     <li>Soin (récupère des PV)</li>
@@ -75,18 +90,18 @@
                     <li>Switch (change de monstre sans finir son tour)</li>
                 </ul>
                 <p data-i18n-r="gamagoramon.gameplay.contenu4">
-                    Le joueur dois donc utiliser son équipe de monstre qui étant généré aléatoirement aura des avantages ou non contre les équipes adverses.</p>
+                    Le joueur doit donc utiliser son équipe de monstres qui, étant générée aléatoirement, aura des avantages ou non contre les équipes adverses.</p>
                 <p data-i18n-r="gamagoramon.gameplay.contenu5">
-                    Dans le code j'ai créer une classe global Trainer qui gère les équipes de monstre du joueur et des ennemies, ces équipes sont générées aléatoirement en créant des objets dans la liste provenant de la classe Monster qui contient les différentes informations du monstre selon son préfab (sprite, type, nom...). Les statistiques sont défini en fonction du niveau, si par exemple la vie par niveau est de 4 et que le monstre est niveau 5 alors il aura 20 PV, de même pour les autres stats.
+                    Dans le code, j'ai créé une classe globale Trainer qui gère les équipes de monstres du joueur et des ennemis. Ces équipes sont générées aléatoirement en créant des objets dans la liste provenant de la classe Monster qui contient les différentes informations du monstre selon son préfab (sprite, type, nom...). Les statistiques sont définies en fonction du niveau : si par exemple la vie par niveau est de 4 et que le monstre est niveau 5 alors il aura 20 PV, de même pour les autres stats.
                 </p>
                 <p data-i18n-r="gamagoramon.gameplay.contenu6">
-                    La génération aléatoire pour l'équipe ennemie va aussi passer par une fonction qui va définir le niveau en fonction du nombre de combats déjà gagné par le joueur et par rapport au niveau de chaque monstre de sa liste pour que l'équipe ennemie soit généré de manière cohérente.
+                    La génération aléatoire pour l'équipe ennemie va aussi passer par une fonction qui va définir le niveau en fonction du nombre de combats déjà gagnés par le joueur et par rapport au niveau de chaque monstre de sa liste pour que l'équipe ennemie soit générée de manière cohérente.
                 </p>
                 <p data-i18n-r="gamagoramon.gameplay.contenu7">
-                    Le système de combat se base sur une boucle qui va alterner entre le tour du joueur et celui de l'ennemie jusqu'à ce que tous les monstres d'une équipe soient mis K.O. Chaque action (attaque, soin, parade, switch) est géré par des fonctions spécifiques qui mettent à jour les statistiques en conséquence et vérifient l'état des équipes après chaque action. A chaque KO d'un monstre ennemie le monstre du joueur actuellement sur le terrain gagne un niveau pour renforcer ces statistiques.
+                    Le système de combat se base sur une boucle qui va alterner entre le tour du joueur et celui de l'ennemi jusqu'à ce que tous les monstres d'une équipe soient mis K.O. Chaque action (attaque, soin, parade, switch) est gérée par des fonctions spécifiques qui mettent à jour les statistiques en conséquence et vérifient l'état des équipes après chaque action. À chaque K.O. d'un monstre ennemi, le monstre du joueur actuellement sur le terrain gagne un niveau pour renforcer ses statistiques.
                 </p>
                 <p data-i18n-r="gamagoramon.gameplay.contenu8">
-                    Il y a également un menu pour changer de monstre, pour utiliser des objets de soin ou pour fuir le combat et retourner sur le menu principale.
+                    Il y a également un menu pour changer de monstre, pour utiliser des objets de soin ou pour fuir le combat et retourner au menu principal.
                 </p>
 
             </section>
@@ -94,33 +109,39 @@
             <!-- Galerie d'images -->
             <section>
                 <h2 data-i18n-r="gamagoramon.galerie.titre">Galerie</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
-                    <figure style="text-align:center;">
-                        <img src="images/mainMenu.jpg" alt="Menu Principal" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <div class="redaction-gallery">
+                    <figure>
+                        <img width="1904" height="1182" src="images/mainMenu.webp" alt="Gamagoramon – menu principal avec boutons Start, Credits, Quit et record de victoires" loading="lazy">
                     </figure>
-                    <figure style="text-align:center;">
-                        <img src="images/Capture1.jpg" alt="Capture 1" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    <figure>
+                        <img width="1920" height="1080" src="images/Capture1.webp" alt="Gamagoramon – début de combat, la dresseuse adverse Andrea veut se battre" loading="lazy">
                     </figure>
-                    <figure style="text-align:center;">
-                        <img src="images/Capture2.jpg" alt="Capture 2" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    <figure>
+                        <img width="1920" height="1080" src="images/Capture2.webp" alt="Gamagoramon – combat où Feuillamara utilise l'attaque Feuillage contre Gafoulet" loading="lazy">
                     </figure>
-                    <figure style="text-align:center;">
-                        <img src="images/Capture3.jpg" alt="Capture 3" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    <figure>
+                        <img width="1920" height="1074" src="images/Capture3.webp" alt="Gamagoramon – menu de combat avec les choix Attaques, Objets, Monstres et Fuir" loading="lazy">
                     </figure>
-                    <figure style="text-align:center;">
-                        <img src="images/Capture4.jpg" alt="Capture 4" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    <figure>
+                        <img width="1920" height="1075" src="images/Capture4.webp" alt="Gamagoramon – choix d'attaque de Plantarago avec Feuillage, Soin et coup normal" loading="lazy">
                     </figure>
-                    <figure style="text-align:center;">
-                        <img src="images/Fuite.jpg" alt="Fuite" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    <figure>
+                        <img width="1902" height="1182" src="images/Fuite.webp" alt="Gamagoramon – fenêtre de confirmation pour fuir le combat et quitter la partie" loading="lazy">
                     </figure>
-                    <figure style="text-align:center;">
-                        <img src="images/Attaque.jpg" alt="Attaque" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    <figure>
+                        <img width="1910" height="1194" src="images/Attaque.webp" alt="Gamagoramon – menu des attaques de Gamageaura avec Jet d'eau et Parade" loading="lazy">
                     </figure>
-                    <figure style="text-align:center;">
-                        <img src="images/Objects.jpg" alt="Objects" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    <figure>
+                        <img width="1912" height="1188" src="images/Objects.webp" alt="Gamagoramon – menu des objets de soin : potions et rappels avec leurs quantités" loading="lazy">
                     </figure>
-                    <figure style="text-align:center;">
-                        <img src="images/Switch.jpg" alt="Switch" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    <figure>
+                        <img width="1914" height="1184" src="images/Switch.webp" alt="Gamagoramon – menu de changement de monstre avec type, niveau et PV de l'équipe" loading="lazy">
+                    </figure>
+                    <figure>
+                        <img width="960" height="352" src="images/Gamagoramon_Banner1.webp" alt="Gamagoramon – logo du jeu en lettres jaunes sur fond bleu" loading="lazy">
+                    </figure>
+                    <figure>
+                        <img width="640" height="360" src="images/Gamagoramon_Banner2.webp" alt="Gamagoramon – illustration des quatre monstres du jeu sur fond bleu" loading="lazy">
                     </figure>
                 </div>
             </section>
@@ -128,8 +149,8 @@
             <!-- Résultats / Retours -->
             <section>
                 <h2 data-i18n-r="gamagoramon.resultats.titre">Résultats et Apprentissages</h2>
-                <p data-i18n-r="gamagoramon.resultats.contenu">Le jeu dans l'ensemble permet d'enchainer des combats aléatoires par le biais de la génération d'équipe, ce qui offre de la rejouabilité malgré la simplicité du gameplay. Le système de combat est fonctionnel avec des stratégies simple à mettre en place et d'objets utilisable afin de remporter le plus de combats possible.</p>
-                <p data-i18n-r="gamagoramon.resultats.conclusion">Ce projet m'a permis de renforcer mes aquis sur le C# et Unity, notament sur la gestion des classes et de l'orienté objet. J'ai aussi pu approfondir mes compétences en conception de systèmes de jeu, nottament sur la gestion des données des monstres et des dresseurs pour que toutes les fonctions soit fonctionnelles lors de la lecture et de la modification de ces données. Cela m'a également permis de bien travailler en groupe sur la gestions des branche Git et de la répartition des tâches.</p>
+                <p data-i18n-r="gamagoramon.resultats.contenu">Le jeu dans l'ensemble permet d'enchaîner des combats aléatoires par le biais de la génération d'équipe, ce qui offre de la rejouabilité malgré la simplicité du gameplay. Le système de combat est fonctionnel avec des stratégies simples à mettre en place et des objets utilisables afin de remporter le plus de combats possible.</p>
+                <p data-i18n-r="gamagoramon.resultats.conclusion">Ce projet m'a permis de renforcer mes acquis en C# et sur Unity, notamment sur la gestion des classes et de l'orienté objet. J'ai aussi pu approfondir mes compétences en conception de systèmes de jeu, notamment sur la gestion des données des monstres et des dresseurs pour que toutes les fonctions soient opérationnelles lors de la lecture et de la modification de ces données. Cela m'a également permis de bien travailler en groupe sur la gestion des branches Git et la répartition des tâches.</p>
             </section>
 
             <div class="redaction-actions">

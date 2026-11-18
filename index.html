@@ -1,28 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32.png">
+    <link rel="apple-touch-icon" href="img/icons/apple-touch-icon.png">
     <title>Portfolio | Ethan Lacomme</title>
-    <link rel="icon" type="image/png" href="img/icons/portfolio.jpg" />
-    <link rel="stylesheet" href="style.css">
-    <script src="projets-data.js" defer></script>
-    <script src="competences-data.js" defer></script>
-    <script src="translations.js" defer></script>
-    <script src="app.js" defer></script>
-    <!-- balise descriptif -->
-    <meta name="description" content="Portfolio de Ethan Lacomme">
+    <link rel="stylesheet" href="style.css?v=dev">
+    <script src="projets-data.js?v=dev" defer></script>
+    <script src="outils-data.js?v=dev" defer></script>
+    <script src="experiences-data.js?v=dev" defer></script>
+    <script src="translations.js?v=dev" defer></script>
+    <!-- Vérifie les fichiers de données (seulement en local, invisible en ligne) -->
+    <script src="verification.js?v=dev" defer></script>
+    <script src="app.js?v=dev" defer></script>
+    <!-- Description pour les moteurs de recherche -->
+    <meta name="description" content="Portfolio d'Ethan Lacomme : projets de jeux vidéo, level design, expériences et compétences.">
+
+    <!-- Aperçu affiché quand le lien est partagé (LinkedIn, Discord, mail...) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ethanlacomme.github.io/portfolio/">
+    <meta property="og:title" content="Ethan Lacomme | Portfolio">
+    <meta property="og:description" content="Projets de jeux vidéo, level design, expériences et compétences.">
+    <meta property="og:image" content="https://ethanlacomme.github.io/portfolio/img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://ethanlacomme.github.io/portfolio/">
+    <!-- Fiche "personne" lue par Google (nom, liens, domaines) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ethan Lacomme",
+        "url": "https://ethanlacomme.github.io/portfolio/",
+        "image": "https://ethanlacomme.github.io/portfolio/img/og-image.png",
+        "sameAs": [
+            "https://www.linkedin.com/in/ethanlacomme/",
+            "https://github.com/Ethanific"
+        ],
+        "knowsAbout": [
+            "Level design",
+            "Game design",
+            "Unreal Engine",
+            "Unity",
+            "Blender"
+        ]
+    }
+    </script>
+    <!-- Statistiques de visite GoatCounter (sans cookies ; les visites en local ne sont pas comptées) -->
+    <script data-goatcounter="https://ethanlacomme.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
     
     <div id="site-header"></div>
-    
+
+    <main>
     <div class="section" id="accueil">
         <div class="content">
             <h2 data-i18n="accueil.titre"></h2>
             <p data-i18n="accueil.bienvenue"></p>
-            <br>
-            <p data-i18n="accueil.description"></p>
+            <div class="accueil-actions">
+                <a href="#projets" class="btn-plein" data-i18n="accueil.voirProjets"></a>
+                <a href="documents/Ethan Lacomme CV General.pdf" target="_blank" class="btn" data-i18n="aPropos.cv"></a>
+            </div>
         </div>
     </div>
 
@@ -34,110 +77,77 @@
                     <span data-i18n="aPropos.ligne1"></span><span id="age">??</span><span data-i18n="aPropos.ans"></span>
                 </p>
                 <p data-i18n="aPropos.ligne2"></p>
-                <p>
-                    <span data-i18n="aPropos.ligne3"></span><a href="https://icom.univ-lyon2.fr/gamagora" target="_blank" data-i18n="aPropos.programme"></a><span data-i18n="aPropos.ligne4"></span>
-                </p>
+                <p data-i18n="aPropos.ligne3"></p>
             </div>
         </div>
-        <!-- inclusion du CV-->
-        <div class="btn-box"><a href="documents/Ethan Lacomme CV General.pdf" target="_blank" class="btn" data-i18n="aPropos.cv"></a></div>
     </div>
 
-    <div class="section" id="competences">
+    <div class="section" id="experiences">
         <div class="content">
-            <h2 data-i18n="competences.titre"></h2>
-
-            <h3 class="titre-avec-lignes" data-i18n="competences.programmation"></h3>
-            
-            <div class="contentblock centre" id="programmation">
-                <!-- Chargé dynamiquement depuis competences-data.js -->
-            </div>
-
-            <!-- Bouton "Voir plus" pour programmation -->
-            <div class="btn-box" id="loadMoreProgrammationContainer">
-                <button id="loadMoreProgrammationBtn" onclick="loadMoreCompetences('programmation')" class="btn" style="display: none;" data-i18n="competences.voirPlus">Voir plus</button>
-            </div>
-
-            <h3 class="titre-avec-lignes" data-i18n="competences.environnement"></h3>
-
-            <div class="contentblock centre" id="environnementDev">
-                <!-- Chargé dynamiquement depuis competences-data.js -->
-            </div>
-            
-            <!-- Bouton "Voir plus" pour environnement -->
-            <div class="btn-box" id="loadMoreEnvironnementContainer">
-                <button id="loadMoreEnvironnementBtn" onclick="loadMoreCompetences('environnement')" class="btn" style="display: none;" data-i18n="competences.voirPlus"></button>
+            <h2 data-i18n="experiences.titre"></h2>
+            <!-- Chargé dynamiquement depuis experiences-data.js -->
+            <ol class="timeline" id="timeline"></ol>
+            <div class="btn-box">
+                <button id="experiencesBtn" onclick="toggleOldExperiences()" class="btn-plein" hidden></button>
             </div>
         </div>
     </div>
-    
+
+    <div class="section" id="outils">
+        <div class="content">
+            <h2 data-i18n="outils.titre"></h2>
+            <p class="outils-intro" data-i18n="outils.intro"></p>
+            <!-- Chargé dynamiquement depuis outils-data.js -->
+            <div class="outils" id="liste-outils"></div>
+        </div>
+    </div>
+
     <div class="section" id="projets">
         
         <div class="content">
             <h2 data-i18n="projets.titre"></h2>
         </div>
         <!-- Filtres et affichage -->
-        <div class="btn-box boxScaled" style="margin-left: auto; margin-right: auto; display: flex; align-items: center; gap: 2em; flex-wrap: wrap; justify-content: center;">
-            <div style="display: flex; align-items: center; gap: 0.5em;">
-                <label for="filterSelect" style="font-size: 1.2em; color: var(--Orange);" data-i18n="projets.tag"></label>
-                <select id="filterSelect" onchange="filterProjects(this.value)">
-                    <option value="all" selected="selected">Tout</option>
-                    <option value="jeux">Jeux</option>
-                    <option value="levelDesign">Level Design</option>
-                    <!-- <option value="gameDesign">Game Design</option> -->
-                    <option value="programmation">Programmations</option>
-                    <!-- <option value="musique">Musique</option> -->
-                    <option value="other">Autres</option>
-                </select>
-            </div>
-            <div style="display: flex; align-items: center; gap: 0.5em;">
-                <label for="projectsPerLineSelect" style="font-size: 1.2em; color: var(--Orange);" data-i18n="projets.colonnes">Colonnes :</label>
-                <select id="projectsPerLineSelect" onchange="setProjectsPerLine(this.value)">
-                    <option value="1">1</option>
-                    <option value="2" selected="selected">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-            </div>
-            <div style="display: flex; align-items: center; gap: 0.5em;">
-                <label for="itemsPerPageSelect" style="font-size: 1.2em; color: var(--Orange);" data-i18n="projets.elements">Éléments :</label>
-                <select id="itemsPerPageSelect" onchange="setItemsPerPage(this.value)">
-                    <option value="4">4</option>
-                    <option value="8" selected="selected">8</option>
-                    <option value="12">12</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                    <option value="-1">Maximum</option>
-                </select>
-            </div>
+        <div class="project-controls">
+            <!-- Boutons créés automatiquement depuis CATEGORIES (projets-data.js) -->
+            <div class="filtres" id="filtres" role="group"></div>
+            <!-- Sous-tags du domaine choisi (cachés s'il n'y en a pas) -->
+            <div class="filtres filtres--sous" id="sous-filtres" role="group" hidden></div>
+            <!-- Filtre par outil actif (choisi dans "Mes outils" ou sur une carte) -->
+            <div class="filtre-outil" id="filtre-outil" hidden></div>
         </div>
 
-        <div class="contentblock" id="all-projects">
-            <!-- Les projets seront chargés dynamiquement depuis projets.json -->
+        <div class="grid-auto" id="all-projects">
+            <!-- Chargé dynamiquement depuis projets-data.js -->
         </div>
 
         <!-- Bouton "Voir plus" -->
         <div class="btn-box" id="loadMoreContainer">
-            <button id="loadMoreBtn" onclick="loadMore()" class="btn" style="display: none;" data-i18n="projets.voirPlus"></button>
+            <button id="loadMoreBtn" onclick="loadMore()" class="btn-plein" style="display: none;" data-i18n="projets.voirPlus"></button>
         </div>
     </div>
 
     <div class="section" id="contact">
         <div class="content">
             <h2 data-i18n="contact.titre"></h2>
-            <div class="contentblock">
-                <div class="blocklist info">
-                    <img src="img/reseaux_sociaux/Gmail.jpg" alt="Gmail Logo">
-                    <img src="img/reseaux_sociaux/mail.jpg" alt="mail" width="90%" style="margin-top: 10px;"><!-- mail en image pour éviter le spam par copié collé -->
+            <div class="contentblock grid-auto">
+                <div class="blocklist">
+                    <img width="225" height="225" loading="lazy" src="img/reseaux_sociaux/Gmail.jpg" alt="Gmail Logo">
+                    <!-- Adresse assemblée par app.js pour éviter les robots de spam -->
+                    <p id="contact-email"></p>
+                    <div class="contact-actions">
+                        <a id="contact-mailto" class="btn" data-i18n="contact.ecrire"></a>
+                        <button type="button" id="contact-copy" class="btn" onclick="copyEmail()" data-i18n="contact.copier"></button>
+                    </div>
                 </div>
-                <div class="blocklist info">
-                    <img src="img/reseaux_sociaux/LinkedIn.jpg" alt="LinkedIn Logo">
-                    <a href="https://www.linkedin.com/in/ethan-l-55aa94250/" target="_blank">
+                <div class="blocklist">
+                    <img width="225" height="225" loading="lazy" src="img/reseaux_sociaux/LinkedIn.jpg" alt="LinkedIn Logo">
+                    <a href="https://www.linkedin.com/in/ethanlacomme/" target="_blank">
                         <p data-i18n="contact.linkedIn"></p>
                     </a>
                 </div>
-                <div class="blocklist info">
-                    <img src="img/reseaux_sociaux/GitHub.jpg" alt="GitHub Logo">
+                <div class="blocklist">
+                    <img width="224" height="224" loading="lazy" src="img/reseaux_sociaux/GitHub.webp" alt="GitHub Logo">
                     <a href="https://github.com/Ethanific" target="_blank">
                         <p data-i18n="contact.githubPrincipal"></p>
                     </a>
@@ -149,6 +159,13 @@
             </div>
         </div>
     </div>
+    </main>
+
+    <!-- Bouton "retour en haut" (apparaît après avoir défilé) -->
+    <button id="retourHaut" class="retour-haut" onclick="window.scrollTo({ top: 0 })" hidden>
+        <span aria-hidden="true">↑</span>
+        <span class="sr-only" data-i18n="nav.retourHaut"></span>
+    </button>
 
     <div id="site-footer"></div>
 

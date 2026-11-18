@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="/portfolio/img/icons/favicon-32.png">
+    <link rel="apple-touch-icon" href="/portfolio/img/icons/apple-touch-icon.png">
+    <title>Page introuvable | Ethan Lacomme</title>
+    <!-- Page autonome (styles intégrés) : GitHub Pages l'affiche pour n'importe quelle adresse inexistante,
+         donc les chemins relatifs vers style.css ne fonctionneraient pas. -->
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 2rem;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #fff;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(8,45,85,1) 0%, rgba(6,40,76,1) 25%, rgba(5,34,64,1) 80%, rgba(5,28,52,1) 100%);
+        }
+        .code { font-size: clamp(5rem, 20vw, 9rem); font-weight: bold; color: rgb(255, 210, 75); line-height: 1; }
+        h1 { margin: 1rem 0 0.5rem; font-size: clamp(1.5rem, 1.2rem + 2vw, 2.4rem); color: rgb(147, 226, 255); }
+        p { font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem); color: #dde6f0; }
+        a {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.6em 1.6em;
+            border-radius: 0.3em;
+            background: rgb(225, 255, 106);
+            color: #000;
+            font-size: clamp(1rem, 0.9rem + 0.45vw, 1.3rem);
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        a:hover { background: rgb(255, 255, 0); transform: scale(1.05); }
+    </style>
+    <!-- Statistiques de visite GoatCounter (sans cookies ; les visites en local ne sont pas comptées) -->
+    <script data-goatcounter="https://ethanlacomme.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+    <main>
+        <div class="code">404</div>
+        <h1 id="titre">Cette page n'existe pas</h1>
+        <p id="texte">Le lien est peut-être cassé ou la page a été déplacée.</p>
+        <a id="retour" href="/">Retour au portfolio</a>
+    </main>
+    <script>
+        // Sur GitHub Pages, le site est dans /portfolio/ ; en local, à la racine
+        const accueil = location.hostname.endsWith('github.io') ? '/portfolio/' : '/';
+        document.getElementById('retour').href = accueil;
+
+        // Même langue que le reste du site
+        if (localStorage.getItem('portfolio-language') === 'en') {
+            document.documentElement.lang = 'en';
+            document.title = 'Page not found | Ethan Lacomme';
+            document.getElementById('titre').textContent = "This page doesn't exist";
+            document.getElementById('texte').textContent = 'The link may be broken or the page may have moved.';
+            document.getElementById('retour').textContent = 'Back to the portfolio';
+        }
+    </script>
+</body>
+</html>
